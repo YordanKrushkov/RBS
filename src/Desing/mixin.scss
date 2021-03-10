@@ -1,0 +1,18 @@
+@import './variables.scss';
+
+
+@mixin inputField {
+    height: 50px;
+    border: 2px solid $mainColor;
+    font-size: 20px;
+    margin:10px;
+    width: 80%;
+    max-width: 200px;
+
+}
+
+@mixin MQ($arg) {
+    @media screen and (max-width:$arg) {
+        @content
+    }
+}

@@ -1,0 +1,69 @@
+@import '../../Desing/variables.scss';
+.navigation{
+    margin:0;
+    height: 60px;
+    background-color: $mainColor;
+    opacity: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navUl{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 30%;
+    li{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        text-transform: uppercase;
+        font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      &:hover{
+        font-weight: bold;
+        background-color: darken($mainColor, 2);
+        cursor: pointer;
+      }
+      a{
+        text-decoration: none;
+        color: white;
+        font-size:20px;
+        
+    }
+    }
+}
+
+
+// .h1{ 
+//     font-weight: bold;
+//     color: white;
+//     font-size: 52px;
+//     margin: 10px 0 0 55px;
+//   font-family: 'Montserrat', sans-serif;
+
+// }
+
+.loginField{
+    display: none;
+}
+
+.img{
+    width: 35px;
+    margin: 10px 0 0 0 ;
+}
+
+.logout{
+    display: flex;
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo{
+    height: 50px;
+    margin:5px 0 0 50px;
+}

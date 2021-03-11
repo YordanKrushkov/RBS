@@ -45,13 +45,16 @@
 }
 
 .cardContainer{
-    width: 90%;
+    width: 75%;
     
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 100px auto;
+    margin: 60px auto;
     @include MQ(1288px){
         width: 100%;
+    }
+    @include MQ(850px){
+        justify-content: center;
     }
 }

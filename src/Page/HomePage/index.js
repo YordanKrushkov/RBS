@@ -15,7 +15,6 @@ const Body = (props) => {
     useEffect(()=>{
         getPropertiesService.getData().then(x=>setProperties(x))
         .catch(err=>console.log("error",err))
-        console.log(properties);
     },[])
     properties.map(x=>console.log(x))
     return (

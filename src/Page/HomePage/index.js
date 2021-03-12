@@ -16,7 +16,6 @@ const Body = (props) => {
         getPropertiesService.getData().then(x=>setProperties(x))
         .catch(err=>console.log("error",err))
     },[])
-    properties.map(x=>console.log(x))
     return (
         <Fragment>
         <div className="homeContainer" style={{backgroundImage:`url(${pic})`}}>

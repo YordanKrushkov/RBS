@@ -1,0 +1,27 @@
+@import '../../../Desing/mixin.scss';
+@import '../../../Desing/variables.scss';
+ 
+    .checkbox{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 25%;
+        margin:5px 0;
+        h2{
+            font-size: 14px;
+            margin: 0 10px;
+        }
+        input{
+            margin: 0;
+            width: 16px;
+            height: 16px;
+            position: relative;
+            &::after{
+                content: "";
+                border:2px solid $mainColor;
+                width:12px;
+                height: 12px;
+                position: absolute;
+            }
+        }
+    }

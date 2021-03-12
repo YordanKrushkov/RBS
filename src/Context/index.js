@@ -21,6 +21,7 @@ class AuthContextProvider extends Component {
             userEmail: '',
         })
     }
+
     componentDidMount() {
         userVerify('x-auth-token')
             .then((res) => {

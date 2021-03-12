@@ -1,0 +1,150 @@
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
+
+#submitPropertie {
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    height:auto;
+    background-color: white;
+    margin: 40px auto;
+    justify-content: flex-start;
+    border-radius: 10px;
+
+    @include formHeader;
+
+    main {
+        width: 80%;
+        margin: 30px auto;
+
+        section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .submitInputWrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            input {
+                width: 100%;
+            }
+
+            #street {
+                max-width: 88%;
+                height: 35px;
+                display: flex;
+                align-self: flex-end;
+                margin-right: 20px;
+                padding: 0 10px;
+            }
+            h2 {
+                margin: 0;
+            }
+        }
+        .addressStreet {
+            width: 80%;
+            display: flex;
+        }
+        input {
+            @include inputField;
+            outline: none;
+            &:focus {
+                background-color: $color;
+            }
+        }
+        .optionMenu {
+            @include inputField;
+            outline: none;
+            &:focus {
+                background-color: $color;
+            }
+        }
+
+        h2 {
+            font-size: 16px;
+        }
+        .secondRow {
+            width: (100% / 4);
+
+            input {
+                max-width: 80%;
+                height: 42px;
+                padding: 5px;
+                box-sizing: border-box;
+            }
+        }
+    }
+
+   .checkboxContainer {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+        flex-wrap:wrap;
+        height: 100px;
+        width: 80%;
+        margin: 10px auto;
+   } 
+
+
+   .formDescription{
+
+    width: 75%;
+    margin: 10px auto;
+    height: 100px;
+    h2 {
+        font-size: 16px;
+    }
+    textarea{
+        width: 100%;
+        height: 100%;
+        border: 2px solid $mainColor;
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 10px;
+        outline: none;
+        resize: none;
+        box-sizing: border-box;
+        &:focus{
+            background-color: $color;
+        }
+    }
+   }
+   .addImages{
+       width: 75%;
+       margin: 10px auto;
+       box-sizing: border-box;
+    #imgContainer{
+        min-height: 40px;
+        border-radius: 5px;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        li{
+            text-decoration: none;
+            margin: 0 5px;
+        }
+    }
+
+    section {
+        display: flex;
+    }
+    span{
+        @include buttons;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px auto;
+    }
+    input {
+        display: none;
+    }
+   }
+
+
+    button {
+  @include buttons;
+}///end of the container
+}

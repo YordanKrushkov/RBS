@@ -4,25 +4,12 @@ import './index.scss'
 import AllCities from '../searchInputs/cities'
 import Price from '../searchInputs/price'
 import inputs from '../searchInputs/type'
+import {switchMenu} from '../../Utils/eventHandlers'
 
 const Search = () => {
-    const [style, changeStyle] = useState(true);
+    const [offer, changeOffer] = useState(true);
     const [search, changeSearch] = useState({ sellOrRent: 'RENT' })
     const history = useHistory()
-
-    const clickHendler = (e) => {
-
-        changeSearch({
-            ...search,
-            sellOrRent: e.target.textContent
-        })
-        if (e.target.textContent === 'SALE') {
-            changeStyle(false)
-        } else {
-            changeStyle(true)
-        }
-        console.log(search);
-    };
 
     const changeHandler = (e) => {
         changeSearch({
@@ -45,24 +32,24 @@ const Search = () => {
             <div className="formWrapper">
                 <header>
                     <ul>
-                        <li onClick={clickHendler} value='RENT'  className={ style ?"new" :"" } >RENT</li>
-                        <li onClick={clickHendler}  value='SELL' className={ style ?"" :"new" }>SALE</li>
+                        <li onClick={(e)=>{switchMenu(e,changeOffer)}} value='RENT' style={{borderTopLeftRadius:10}}  className="new" >RENT</li>
+                        <li onClick={(e)=>{switchMenu(e,changeOffer)}}  value='SELL' style={{borderTopRightRadius:10}}>SALE</li>
                     </ul>
                 </header>
                 <main className="searchFormBody">
-                    <h4> Search for Property </h4>
+                    <h4>Search for Property </h4>
                     <div className="imputs" >
                         <label htmlFor="city">City</label>
                         <AllCities>{{className:"options", func:changeHandler, required:true}}</AllCities>
                     </div>
                    <div className="imputs" >
                         <label htmlFor="price">Min.Price</label>
-                       {style ? <Price.RentingPrice>{{id:"minPrice",className:"options", func:changeHandler, required:true}}</Price.RentingPrice>
+                       {offer==="RENT" ? <Price.RentingPrice>{{id:"minPrice",className:"options", func:changeHandler, required:true}}</Price.RentingPrice>
                        : <Price.SellingPrice>{{id:"minPrice",className:"options", func:changeHandler, required:true}}</Price.SellingPrice>}
                         </div>
                    <div className="imputs" >
                         <label htmlFor="price">Max.Price</label>
-                        {style ? <Price.RentingPrice>{{id:"maxPrice",className:"options", func:changeHandler, required:true}}</Price.RentingPrice>
+                        {offer==="SELL" ? <Price.RentingPrice>{{id:"maxPrice",className:"options", func:changeHandler, required:true}}</Price.RentingPrice>
                         :<Price.SellingPrice>{{id:"maxPrice",className:"options", func:changeHandler, required:true}}</Price.SellingPrice> 
                         }
                         </div>

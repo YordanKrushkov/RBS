@@ -6,7 +6,7 @@ const AllCities = (props) => {
     let {className, func}=props.children
     return (
         <select name="town" id="city" defaultValue="0" className={className} onChange={func}  required>
-            <option id="city" value="0">Show All</option>
+            <option id="city" value="0">Select...</option>
             <option id="city" value="Avon">Avon</option>
             <option id="city" value="Bedfordshire">Bedfordshire</option>
             <option id="city" value="Berkshire">Berkshire</option>

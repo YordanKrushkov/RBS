@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import  './index.scss'
 import { Link, useHistory } from 'react-router-dom'
-import {AuthContext} from '../../Context/Context';
+import {AuthContext} from '../../Context';
 import authenticate from '../../services/auth'
 // import notify from '../../utils/notification'
 const url = 'http://localhost:4000/api/login'
@@ -12,7 +12,6 @@ const Login = () => {
         password: '',
     })
     const context = useContext(AuthContext);
-    console.log(context);
     const history = useHistory();
     const chnageHendler = (e) => {
         getUser({

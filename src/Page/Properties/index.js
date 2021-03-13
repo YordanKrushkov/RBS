@@ -1,32 +1,47 @@
-import {useState,useEffect} from 'react';
+import { useState, useEffect } from 'react';
+import './index.scss'
 import Filter from "../../Components/filterBar";
+import getPropertiesService from '../../services/getData'
 import CardElement from '../../Components/cards'
+
+
 const Properties = (prop) => {
-    let offer=prop.location.pathname.split('/')[1].toUpperCase()
-    const [filter, setFilter]=useState({
-        city:'',
-        type:'',
-        bedrooms:'',
-        minPrice:'',
-        maxPrice:'',
-        sort:''
-    })   
-    const [data, setData]=useState('');
+    const [properties, takeProperties] = useState()
+    let offer = prop.location.pathname.split('/')[1].toUpperCase()
 
-    useEffect(()=>{
+    const [filter, setFilter] = useState({
+        offer: offer,
+        city: '',
+        type: '',
+        bedrooms: '',
+        minPrice: '',
+        maxPrice: '',
+        sort: ''
     })
-
-    const ChangeHandler=(e)=>{
+    useEffect(() => {
         setFilter({
-            [e.target.id]:e.target.value
+            ...filter,
+            offer: offer,
+        })
+    }, [prop.location])
+    useEffect(() => {
+        getPropertiesService.getSome(filter).then(res => takeProperties(res)).catch(err => console.log("error", err))
+    }, [filter])
+    const ChangeHandler = (e) => {
+        setFilter({
+            ...filter,
+            offer: offer,
+            [e.target.id]: e.target.value
         })
     }
-    return ( 
+    return (
         <div id="propertiesContainer">
-        <Filter>{{ChangeHandler,offer}}</Filter>
-
+            <Filter>{ { ChangeHandler, offer } }</Filter>
+            <main>
+            {properties && properties.map(x => <CardElement data={ x } key={ x._id } />) }
+            </main>
         </div>
-     );
+    );
 }
- 
+
 export default Properties;

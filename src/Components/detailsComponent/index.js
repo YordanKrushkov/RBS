@@ -1,0 +1,62 @@
+import React from 'react'
+import './index.scss'
+import { IoIosBed } from "react-icons/io";
+import { GiBathtub } from "react-icons/gi";
+
+const DetailsContainer = (properties) => {
+    let count = 0;
+
+    return (
+        <div className="detailsContainer">
+            <div id='detailsField'>
+                <div id="detailsIconWrapper">
+                    <div>
+                        <IoIosBed className="iconsPic" />
+                        <span>{ properties.bedrooms }</span>
+                    </div>
+                    <div>
+                        <GiBathtub className="iconsPic" />
+                        <span>{ properties.bathroom }</span>
+                    </div>
+                </div>
+                <div className="infoBody">
+                    <h2>Details</h2>
+                    <ul>
+                        <li>Size: { properties.area } sq.m</li>
+                        <li>Heating: { properties.heating }</li>
+                        <li>{ properties.furnished }</li>
+                        <li>Construction: { properties.construction }</li>
+                        <li>Floor: { properties.floormax }</li>
+                    </ul>
+                </div>
+
+                <div className="infoBody">
+                    <div>
+                        <h2>More Details</h2>
+
+                    </div>
+                    <ul className="moreDetailsList">
+                        { properties.details ? (properties.details.map(e => {
+                            return <li key={ count++ }>{ e }</li>
+                        })) : null }
+                    </ul>
+                </div>
+                <div id="detailDescription">
+                    <h2>Description</h2>
+                    <div>
+                        <p>{ properties.description }</p>
+                    </div>
+                </div>
+            </div>
+            <div id='floorplanField'>
+                { properties.floorplan ? <img src={ properties.floorplan } alt='floorplan' /> : null }
+            </div>
+            <div id='mapField'>
+
+            </div>
+
+        </div>
+    )
+
+}
+export default DetailsContainer

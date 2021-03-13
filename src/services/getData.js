@@ -18,15 +18,15 @@ const getPropertiesService= {
         }});
          return await promise.json();
     },
-    async getSome(getProperties, sellOrRent, filter) {
-        const promise = await fetch(`${url}${sellOrRent}?city=${filter.city}&type=${filter.type}&bedrooms=${filter.bedrooms}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&sortBy=${filter.sortBy}`,
+    async getSome(filter) {
+        console.log(filter);
+        const promise = await fetch(`${url}${filter.offer}?city=${filter.city}&type=${filter.type}&bedrooms=${filter.bedrooms}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&sortBy=${filter.sortBy}`,
         {
             method:'GET',
             headers: {
             'Authorization': getCookie('x-auth-token')
         }});
-        const properties = await promise.json();
-        getProperties(properties)
+        return promise.json()
     },
 
     async SearchItem(getProperties,filter){

@@ -15,7 +15,7 @@ const Header = () => {
             <ul className="navUl">
             {isAuth&&<li><Link to="/post">Post</Link></li>}
             <li><Link to="/rent">Rent</Link></li>
-            <li><Link to="/sell">Buy</Link></li>
+            <li><Link to="/sale">Buy</Link></li>
             {isAuth?<li onClick={logout}><Link to="/logout">LOGOUT</Link> </li>:<li> <Link to="/login">LOGIN</Link> </li>}
             </ul>
         </div>

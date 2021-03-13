@@ -3,14 +3,14 @@ import { useHistory } from 'react-router-dom'
 import './index.scss'
 import AllCities from '../searchInputs/cities'
 import Price from '../searchInputs/price'
-import inputs from '../searchInputs/type'
+import input from '../searchInputs/type'
 import {switchMenu} from '../../Utils/eventHandlers'
 
 const Search = () => {
     const [offer, changeOffer] = useState(true);
     const [search, changeSearch] = useState({ sellOrRent: 'RENT' })
     const history = useHistory()
-
+    const {TypeSelect, BedroomCount}=input;
     const changeHandler = (e) => {
         changeSearch({
             ...search,
@@ -56,12 +56,12 @@ const Search = () => {
                     <div className="typeContainer">
                         <div className="type">
                             <label htmlFor="type">Property Type</label>
-                            <inputs.TypeSelect>{{className:"typeflat", func:changeHandler, required:false}}</inputs.TypeSelect>
+                            <TypeSelect>{{className:"typeflat", func:changeHandler, required:false}}</TypeSelect>
                         </div>
 
                         <div className="type">
                             <label htmlFor="type">Bedroom</label>
-                            <inputs.bedroomCount>{{className:"typeflat", func:changeHandler, required:false}}</inputs.bedroomCount>
+                            <BedroomCount>{{className:"typeflat", func:changeHandler, required:false}}</BedroomCount>
                         </div>
                     </div>
                 </main>

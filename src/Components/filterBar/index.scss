@@ -1,0 +1,33 @@
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
+.filterBar{
+    background-color: $white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 95%;
+    height: 50px;
+    align-self: center;
+    border: 2px solid $mainColor;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: 0 auto;
+}
+.filterButton{
+    width: (100% /7);
+}
+
+.filterSpan{
+    font-size: 16px;
+    font-weight: bold;
+}
+.searchInput{
+    width: 120px;
+    height: 30px;
+    border: none;
+    font-size: 18px;
+    padding: 2px;
+    border: 2px solid $mainColor;
+    font-size: 14px;
+}
+

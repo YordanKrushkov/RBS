@@ -28,8 +28,9 @@ const Login = () => {
         await authenticate(url, {
             email, password
         }, (user) => {
-            context.login(user);
-            localStorage.setItem("user", email);
+            console.log(email);
+            context.login(user.email);
+            localStorage.setItem("user", user.email);
             history.push('/');
         }, (err) => {
             console.log('wrong password or email:',err);

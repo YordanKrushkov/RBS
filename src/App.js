@@ -5,6 +5,7 @@ import Login from './Page/Login'
 import Register from './Page/Register'
 import SubmitForm from './Page/SubmitForm'
 import Header from './Components/Header'
+import Properties from './Page/Properties';
 function App() {
   return (
     <div className="App">
@@ -15,6 +16,8 @@ function App() {
     <Route path="/login" component={Login}/>
     <Route path="/post" component={SubmitForm}/>
     <Route path="/register" component={Register}/>
+    <Route path="/rent" component={Properties}/>
+    <Route path="/sell" component={Properties}/>
     </Switch>
     </Router> 
     </div>

@@ -25,6 +25,7 @@ class AuthContextProvider extends Component {
     componentDidMount() {
         userVerify('x-auth-token')
             .then((res) => {
+                console.log('res', res);
                 if (res && res.auth) {
                     this.setState({
                         isAuthenticated: true,

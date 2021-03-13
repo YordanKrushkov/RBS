@@ -30,6 +30,7 @@ const SubmitForm = () => {
     const [offer, changeOffer] = useState('RENT');
     const history = useHistory()
 
+    const {TypeSelect, BedroomCount,BathroomCount} = inputs;
     useEffect(() => {
         const isLogged = getCookie('x-auth-token')
         if (!isLogged) {
@@ -77,15 +78,15 @@ const SubmitForm = () => {
                     <section>
                         <div className="submitInputWrapper secondRow">
                             <h2>Property Type</h2>
-                            <inputs.TypeSelect>{ { className: "optionMenu", func: onChangeHandler } }</inputs.TypeSelect>
+                            <TypeSelect>{ { className: "optionMenu", func: onChangeHandler } }</TypeSelect>
                         </div>
                         <div className="submitInputWrapper secondRow">
                             <h2>Bedrooms</h2>
-                            <inputs.bedroomCount>{ { className: "optionMenu", func: onChangeHandler } }</inputs.bedroomCount>
+                            <BedroomCount>{ { className: "optionMenu", func: onChangeHandler } }</BedroomCount>
                         </div>
                         <div className="submitInputWrapper secondRow">
                             <h2>Bathrooms</h2>
-                            <inputs.bathroomCount>{ { className: "optionMenu", func: onChangeHandler } }</inputs.bathroomCount>
+                            <BathroomCount>{ { className: "optionMenu", func: onChangeHandler } }</BathroomCount>
                         </div>
                         <div className="submitInputWrapper secondRow">
                             <h2>Price</h2>

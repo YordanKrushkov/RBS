@@ -17,7 +17,7 @@ const optionFields= {
         )
     },
 
-    bedroomCount(props) {
+    BedroomCount(props) {
         let {className,func} =props.children
         return (
             <select name="type" id="bedrooms" className={className} defaultValue="0" onChange={func} required>
@@ -31,7 +31,7 @@ const optionFields= {
         )
 
     },
-    bathroomCount(props) {
+    BathroomCount(props) {
         let {className,func} =props.children
         return (
             <select name="type" id="bathroom" className={ className } onChange={ func } required>

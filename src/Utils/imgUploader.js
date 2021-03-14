@@ -1,4 +1,5 @@
 import getCookie from '../services/cookies'
+import {useHistory} from 'react-router-dom'
 
 const uploadImage = (e, setIMG) => {
     const file = e.target.files[0];
@@ -12,11 +13,14 @@ const uploadImage = (e, setIMG) => {
 
 const setimage = async (base64EncodedImage, properties, url) => {
     try {
-        await fetch(`http://localhost:4000${url}`, {
+    let result = await fetch(`http://localhost:4000${url}`, {
             method: "POST",
             body: JSON.stringify({ data: base64EncodedImage, prop: properties }),
             headers: { "Content-type": "application/json", 'Authorization': getCookie('x-auth-token') }
         });
+
+
+    return result;
 
     } catch (error) {
         console.error(error);

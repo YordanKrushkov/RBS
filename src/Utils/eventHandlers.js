@@ -15,8 +15,23 @@ const openImgInput = (id) => {
         e.target.classList.add('new');
         e.target.nextElementSibling.classList.remove('new')
         changeStyle('RENT')
-
     }
+  };
+
+  const switchDetailsMenu = (e,setInfo) => {
+    const details = document.getElementById('details');
+    const map = document.getElementById('map');
+
+   if (e.target === details) {
+            details.classList.add('selectedDetailsMenu')
+            map.classList.remove('selectedDetailsMenu')
+            setInfo(true)
+
+        } else if(e.target === map) {
+                map.classList.add('selectedDetailsMenu')
+                details.classList.remove('selectedDetailsMenu')
+                setInfo(false)
+            }
   };
 
   const detailHendler = (e,initialState) => {
@@ -35,5 +50,6 @@ const openImgInput = (id) => {
 export {
     openImgInput,
     switchMenu,
-    detailHendler
+    detailHendler,
+    switchDetailsMenu
 }

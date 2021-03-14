@@ -3,6 +3,7 @@ import React from 'react';
 import {useHistory  } from 'react-router-dom'
 import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
+import {Image, Transformation } from 'cloudinary-react'
 const CardElement = (props) => {
     const history=useHistory()
     let propertie=props.data;
@@ -29,7 +30,10 @@ const CardElement = (props) => {
         
         <header>
             <div className="propImage">
-                <img src={propertie.img} alt=""/>
+                {/* <img src={propertie.img} alt=""/> */}
+                <Image publicId={propertie.img} cloudName="zltgrd">
+                    <Transformation width="150" height="150"/>
+                </Image>
             </div>
             <div className="cardImgInfo">
                 <h2>{propertie.price}</h2>

@@ -50,8 +50,7 @@ const SubmitForm = () => {
 
     const submitHandler=(e)=>{
         e.preventDefault();
-            setimage(img,properties,'/api/upload'); 
-
+            setimage(img,properties,'/api/upload').then(res=> history.push('/')).catch(err=>console.error(err))
     };
 
     return (

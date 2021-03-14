@@ -42,14 +42,14 @@ const getPropertiesService= {
     },
 
 
-    async getSingleProp(getProperties, id) {
+    async getSingleProp(id) {
         const promise = await fetch(`${url}${id}`,  {
             method:'GET',
             headers: {
             'Authorization': getCookie('x-auth-token')
         }});
         const properties = await promise.json();
-        getProperties(properties)
+        return properties;
     }
 }
 

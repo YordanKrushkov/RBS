@@ -6,7 +6,7 @@ import {openImgInput ,switchMenu, detailHendler} from '../../Utils/eventHandlers
 import {setimage,uploadImage} from '../../Utils/imgUploader';
 import inputs from '../../Components/searchInputs/type'
 import { AuthContext } from '../../Context'
-import getCookie from '../../services/cookies'
+import getCookie from '../../Services/cookies'
 import Checkbox from '../../Components/Small Components/Checkbox'
 
 

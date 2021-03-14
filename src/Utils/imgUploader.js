@@ -1,4 +1,4 @@
-import getCookie from '../services/cookies'
+import getCookie from '../Services/cookies'
 import {useHistory} from 'react-router-dom'
 
 const uploadImage = (e, setIMG) => {

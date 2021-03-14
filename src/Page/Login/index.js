@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import  './index.scss'
 import { Link, useHistory } from 'react-router-dom'
 import {AuthContext} from '../../Context';
-import authenticate from '../../services/auth'
+import authenticate from '../../Services/auth'
 // import notify from '../../utils/notification'
 const url = 'http://localhost:4000/api/login'
 

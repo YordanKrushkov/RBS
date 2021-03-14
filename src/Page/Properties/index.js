@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import './index.scss'
-import Filter from "../../Components/filterBar";
-import getPropertiesService from '../../services/getData'
-import CardElement from '../../Components/cards'
+import Filter from "../../Components/FilterBar";
+import getPropertiesService from '../../Services/getData'
+import CardElement from '../../Components/Cards'
 
 
 const Properties = (prop) => {

@@ -1,13 +1,13 @@
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import './index.scss'
 
 const GoogleMap = (props) => {
     const {location}= props
     const mapStyles = {
-        width: '100%',
-        height: '100%',
+        width: '95%',
+        height: '95%',
         padding: '10px',
-        boxSizing:" border-box"
+        boxSizing:" border-box",
+        margin:"auto"
       };
 
     return (

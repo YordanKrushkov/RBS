@@ -1,15 +1,16 @@
 import getCookie from './cookies'
-const url = 'http://localhost:4000/api/verify';
+const url = 'http://localhost:4000/api/getuser';
 
-const userVerify = async (token) => {
+const getUser = async () => {
+
     let promise = await fetch(url, {
-        method: 'POST',
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': getCookie(token)
+            'Authorization': getCookie('x-auth-token'),
         },
     })
     let extra = await promise.json()
     return extra
 }
-export default userVerify
+export default getUser

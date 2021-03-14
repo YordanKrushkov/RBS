@@ -1,16 +1,19 @@
-import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom'
-import getProperties from '../../services/getData';
+import { useState, useEffect,useContext } from 'react';
+import { useHistory,Link } from 'react-router-dom'
+import getProperties from '../../Services/getData';
 import DetailsContainer from '../../Components/detailsComponent';
 import {switchDetailsMenu} from '../../Utils/eventHandlers'
 import {Image,Transformation} from 'cloudinary-react'
 import GoogleMap from '../../Components/GoogleMap'
 import getLocation from '../../Utils/getLocation';
+import {AuthContext} from '../../Context'
 import './index.scss';
 const SingleCard = () => {
     const [properties, setProperties] = useState([]);
     const [info, setInfo] = useState(true);
     const [location, setLocation]=useState('')
+    const {isAuthenticated}=useContext(AuthContext)
+    const isAuth =isAuthenticated
     let images=properties.images
     const history = useHistory()
    
@@ -59,7 +62,7 @@ const SingleCard = () => {
                     <h2> £ { properties.price }</h2>
                 </header>
                 <div>
-                    <button>Contact</button>
+                   <Link to={isAuth ?'':'/register'}><button>Contact</button></Link> 
                 </div>
 
             </aside>

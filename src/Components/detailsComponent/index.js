@@ -37,12 +37,6 @@ const DetailsContainer = ({properties}) => {
                     </div>
                 </div>
             </div>
-            <div id='floorplanField'>
-                { properties.floorplan ? <img src={ properties.floorplan } alt='floorplan' /> : null }
-            </div>
-            <div id='mapField'>
-
-            </div>
 
         </div>
     )

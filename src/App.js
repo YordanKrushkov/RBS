@@ -7,6 +7,7 @@ import SubmitForm from './Page/SubmitForm'
 import Header from './Components/Header'
 import Properties from './Page/Properties';
 import SingleCard from './Page/DetailsPage';
+import Profile from './Page/Profile';
 function App() {
   return (
     <div className="App">
@@ -19,6 +20,7 @@ function App() {
     <Route path="/register" component={Register}/>
     <Route path="/rent" component={Properties}/>
     <Route path="/sale" component={Properties}/>
+    <Route path="/profile" component={Profile}/>
     <Route path="/:id" component={SingleCard}/>
     </Switch>
     </Router> 

@@ -5,6 +5,7 @@ import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
 import {Image, Transformation } from 'cloudinary-react'
 const CardElement = (props) => {
+    console.log("data",props.data);
     const history=useHistory()
     let propertie=props.data;
     let char = '';

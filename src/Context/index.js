@@ -1,5 +1,5 @@
 import React, { Component, createContext } from 'react';
-import userVerify from '../services/userVerify'
+import userVerify from '../Services/userVerify'
 export const AuthContext = createContext();
 
 class AuthContextProvider extends Component {
@@ -25,7 +25,6 @@ class AuthContextProvider extends Component {
     componentDidMount() {
         userVerify('x-auth-token')
             .then((res) => {
-                console.log('res', res);
                 if (res && res.auth) {
                     this.setState({
                         isAuthenticated: true,

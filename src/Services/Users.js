@@ -1,9 +1,9 @@
 import getCookie from './cookies'
-const url = 'http://localhost:4000/api/getuser';
+import {getuser} from './API'
 
 const getUser = async () => {
 
-    let promise = await fetch(url, {
+    let promise = await fetch(getuser, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -13,4 +13,6 @@ const getUser = async () => {
     let extra = await promise.json()
     return extra
 }
-export default getUser
+export {
+    getUser,
+}

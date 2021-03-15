@@ -3,18 +3,18 @@ const openImgInput = (id) => {
   };
 
 
-  const switchMenu = (e,changeStyle) => {
+  const switchMenu = (e,changeOffer) => {
       let data={};
     if (e.target.textContent === 'SALE') {
         data={changeStyle:false, sellOrRent:'SALE'}
         e.target.classList.add('new');
         e.target.previousElementSibling.classList.remove('new')
-        changeStyle('SALE')
+        changeOffer('SALE')
     } else {
         data={changeStyle:true, sellOrRent:'RENT'}
         e.target.classList.add('new');
         e.target.nextElementSibling.classList.remove('new')
-        changeStyle('RENT')
+        changeOffer('RENT')
     }
   };
 

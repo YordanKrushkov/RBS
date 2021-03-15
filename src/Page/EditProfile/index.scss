@@ -1,0 +1,70 @@
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
+
+
+.editForm{
+    width: 40%;
+    height:90%;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    position: relative;
+
+    div{
+
+            position: absolute;
+            border-radius: 50%;
+            top: 40px;
+            left: 20px;
+            width: 120px;
+            overflow:hidden;
+   
+        img{
+            width: 100%;
+            object-fit: cover;
+           
+        }
+        &:hover{
+            cursor: pointer;
+            border: 1px solid $mainColor;
+        }
+    }
+        h1{
+        color: black;
+        }
+
+        section{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+
+            label{
+                font-size: 16px;
+                font-weight: bold;
+                 margin: 5px 0;
+            }
+
+            input{
+                @include inputField;
+                text-align:center
+               }
+        }
+
+        button{
+            @include buttons;
+            min-height:50px;
+            width: 100%;
+            margin-bottom: 0;
+            border-radius: 0;
+
+            &:hover{
+                cursor: pointer;
+                background-color: darken($mainColor, 5);
+            }
+        }
+
+}

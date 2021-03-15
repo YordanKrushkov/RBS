@@ -1,7 +1,7 @@
 import './index.scss'
 import { useEffect, useState, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import getUser from '../../Services/getUser'
+import {getUser} from '../../Services/Users'
 import { FaCog } from "react-icons/fa";
 import { AuthContext } from '../../Context'
 import CardElement from '../../Components/Cards'
@@ -69,7 +69,7 @@ const Profile = () => {
                 <div className="profileMenu"><FaCog /></div>
                 <div id="profileMenuWrapper">
                     <ul>
-                        <li><Link to="#">Edit Profile</Link></li>
+                        <li><Link to="/edit">Edit Profile</Link></li>
                         <li><Link to="#">Messeges</Link></li>
                         <li onClick={ logOut }>SignOut</li>
                     </ul>
@@ -79,7 +79,7 @@ const Profile = () => {
                 <h1 className="propsH1 top">My properties</h1>
                 <div className="myProperties">
                     { data ? data.map(x =>
-                        <div class="myProf">
+                        <div className="myProf"  key={x._id}>
                             <CardElement data={ x } />
                         </div>
                     ) : null }
@@ -88,8 +88,8 @@ const Profile = () => {
                     <h1 className="propsH1">Liked properties</h1>
                 <div className="myProperties">
                     { liked ? liked.map(x =>
-                    <div class="myProf">
-                            <CardElement data={ x } />
+                    <div className="myProf" key={x._id}>
+                            <CardElement  data={ x } />
                     </div>
                     ) : null }
 

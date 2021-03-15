@@ -8,7 +8,6 @@ import CardElement from '../../Components/Cards'
 const Properties = (prop) => {
     const [properties, takeProperties] = useState()
     let offer = prop.location.pathname.split('/')[1].toUpperCase()
-
     const [filter, setFilter] = useState({
         offer: offer,
         city: '',
@@ -18,14 +17,29 @@ const Properties = (prop) => {
         maxPrice: '',
         sort: ''
     })
+
+  
     useEffect(() => {
-        setFilter({
-            ...filter,
-            offer: offer,
-        })
+        if(offer==='PROPERTIES'){
+            setFilter({
+                ...prop.location.state
+            })
+         }else{
+            setFilter({
+                ...filter,
+                offer: offer,
+            })
+         }
+      
     }, [prop.location])
+
+    
     useEffect(() => {
-        getPropertiesService.getSome(filter).then(res => takeProperties(res)).catch(err => console.log("error", err))
+        if(offer==="PROPERTIES"){
+            getPropertiesService.SearchItem(filter).then(res => takeProperties(res)).catch(err => console.log("error", err))
+        }else{
+            getPropertiesService.getSome(filter).then(res => takeProperties(res)).catch(err => console.log("error", err))
+        }
     }, [filter])
     const ChangeHandler = (e) => {
         setFilter({

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import './index.scss'
 import AllCities from '../searchInputs/cities'
@@ -7,28 +7,34 @@ import input from '../searchInputs/type'
 import {switchMenu} from '../../Utils/eventHandlers'
 
 const Search = () => {
-    const [offer, changeOffer] = useState(true);
-    const [search, changeSearch] = useState({ sellOrRent: 'RENT' })
+    const [offer, changeOffer] = useState('RENT');
+    const [search, changeSearch] = useState({ offer: offer })
     const history = useHistory()
     const {TypeSelect, BedroomCount}=input;
     const changeHandler = (e) => {
         changeSearch({
             ...search,
-            [e.target.id]: e.target.value
+            [e.target.id]: e.target.value,
+            offer:offer,
         })
     }
-
+    useEffect(() => {
+        changeSearch({
+            ...search,
+            offer:offer
+        })
+    }, [offer])
     const searchIt = (e) => {
         e.preventDefault()
         history.push({
             pathname: '/properties',
-            search: `?sellOrRent=${search.sellOrRent}&city=${search.city}&type=${search.type}&bedrooms=${search.bedrooms}&minPrice=${search.minPrice}&maxPrice=${search.maxPrice}`,
+            search: `?offer=${search.offer}&city=${search.city}&type=${search.type}&bedrooms=${search.bedrooms}&minPrice=${search.minPrice}&maxPrice=${search.maxPrice}`,
             state: search
         })
 
     }
     return (
-        <form action="">
+        <form action="" onSubmit={searchIt}>
             <div className="formWrapper">
                 <header>
                     <ul>

@@ -17,19 +17,17 @@ const Login = () => {
         getUser({
             ...user,
             [e.target.id]: e.target.value
-        })
-        
+        })        
     };
   
     const submitHandler = async (e) => {
         e.preventDefault();
-        
         const { email, password } = user;
         await authenticate(url, {
             email, password
         }, (user) => {
-            console.log(email);
-            context.login(user.email);
+            const {email,properties,likedProperties}=user
+            context.login(email, properties, likedProperties);
             localStorage.setItem("user", user.email);
             history.push('/');
         }, (err) => {

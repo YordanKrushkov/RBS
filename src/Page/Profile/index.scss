@@ -109,21 +109,46 @@
     main{
         width: 100%;
         margin: 40px auto;
+    
     }
 
 
     
   
 }
-#myProperties{
-    margin:40px auto;
+
+.myProperties{
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    overflow-x:scroll ;
+    margin: 20px auto;
     background-color: $color;
-    align-items: center;
-   
+
+    &::-webkit-scrollbar{
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+    &::-webkit-scrollbar-thumb {
+        background: $white;
+      }
+    &::-webkit-scrollbar-thumb:hover {
+        background: $mainColor;
+      }
 }
-#likedProperties{
-    min-height: 200px;
+.myProf{
+    margin: 0 40px;
+    width: 500px;
+}
+
+.propsH1{
+    margin: 10px 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.top{
+    margin-top: 30px;
 }

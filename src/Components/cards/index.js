@@ -1,15 +1,37 @@
-import './index.scss'
-import React from 'react';
+import {useState,useContext,useEffect} from 'react';
 import {useHistory  } from 'react-router-dom'
+import {Image, Transformation } from 'cloudinary-react'
+import { AuthContext } from '../../Context';
+
+import likePropertie from '../../Services/likeProperties'
+
 import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
-import {Image, Transformation } from 'cloudinary-react'
+import { FaRegHeart, FaHeart} from "react-icons/fa";
+import './index.scss'
+
+ 
 const CardElement = (props) => {
-    console.log("data",props.data);
+    const [style, setStyle]=useState(true);
+    const [liked, setLiked]=useState(false);
+    const context=useContext(AuthContext);
     const history=useHistory()
+
+    const userProps=context.userProperties;
+    const likedProps=context.likedProperties;
     let propertie=props.data;
-    let char = '';
-    let bath=''
+    const id=propertie._id;
+    useEffect(() => {
+        if(userProps&&userProps.includes(id)){
+            setStyle(false)
+        }else if(likedProps&&likedProps.includes(id)){
+            setLiked(true);
+        }
+    }, [])
+    useEffect(() => {
+   
+    }, [liked])
+    let char,bath = '';
     if (propertie.bedrooms && propertie.bedrooms!=='Studio') {
         char = propertie.bedrooms.charAt(0)
     }else{
@@ -18,20 +40,36 @@ const CardElement = (props) => {
     if (propertie.bathroom) {
         bath = propertie.bathroom.charAt(0)
     }
-    const id=propertie._id;
+
+ 
+    
    const handleClick=(e)=>{
        e.preventDefault()
         history.push(id)
    }
-  
-    
- 
+   const likeHandler=(e)=>{
+       let key='';
+
+       if(liked){
+
+           key="dislike"
+           setLiked(false)
+       }
+       else{
+
+           key='like'
+           setLiked(true)
+       }
+
+       likePropertie(key,id)
+   }
+
     return (
-        <div className="parent" onClick={handleClick}>
+        <div className="parent">
         
         <header>
             <div className="propImage">
-                {/* <img src={propertie.img} alt=""/> */}
+                {style ? !liked ?<FaRegHeart id="like" onClick={likeHandler}/>:<FaHeart id="liked" onClick={likeHandler}/>:null}
                 <Image publicId={propertie.img} cloudName="zltgrd">
                     <Transformation width="150" height="150"/>
                 </Image>
@@ -47,7 +85,7 @@ const CardElement = (props) => {
             </div>
         </header>
         <footer>
-            <button>Details</button>
+            <button  onClick={handleClick}>Details</button>
         </footer>
         
     

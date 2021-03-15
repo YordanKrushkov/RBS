@@ -14,6 +14,30 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        position: relative;
+        width: 100% !important;
+        #like{
+            position: absolute;
+            font-size: 20px;
+            top: 5px;
+            right: 10px;
+
+            &:hover{
+            color: $mainColor;
+            cursor: pointer;
+            }
+        }
+        #liked{
+            position: absolute;
+            font-size: 20px;
+            top: 5px;
+            right: 10px;
+
+            &:hover{
+            color: $mainColor;
+            cursor: pointer;
+            }
+        }
     }
     .cardImgInfo{
         width: 50%;
@@ -75,3 +99,4 @@
         border-top-left-radius: 10px;
     }
 }
+

@@ -5,12 +5,16 @@ export const AuthContext = createContext();
 class AuthContextProvider extends Component {
     state = {
         isAuthenticated: null,
-        userEmail: ''
+        userEmail: '',
+        userProperties:'',
+        likedProperties:'',
     }
-    login = (email) => {
+    login = (email,properties,likedProperties) => {
         this.setState({
             isAuthenticated: true,
-            userEmail: email
+            userEmail: email,
+            userProperties:properties,
+            likedProperties:likedProperties,
         })
     }
     logout = () => {
@@ -29,6 +33,8 @@ class AuthContextProvider extends Component {
                     this.setState({
                         isAuthenticated: true,
                         userEmail: localStorage.getItem('user'),
+                        userProperties:res.user.properties,
+                        likedProperties:res.user.likedProperties
                     })
                 } else {
                     this.logout()

@@ -17,6 +17,7 @@ const authenticate = async (url, body, onSuccess, onFailure) => {
                 id: response._id,
                 name: response.name,
                 surname: response.surname,
+                properties:response.properties
             })
         } else {
             onFailure()

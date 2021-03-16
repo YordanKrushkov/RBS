@@ -1,5 +1,18 @@
 import getCookie from '../Services/cookies'
-import {useHistory} from 'react-router-dom'
+
+const uploadSingleImage=(e,setIMG)=>{
+    console.log(e.target);
+    const file = e.target.files[0];
+    console.log(file);
+    const reader = new FileReader(); 
+    reader.readAsDataURL(file);
+    console.log(reader.result);
+    reader.onloadend = () => {
+        setIMG({img:reader.result})
+    }
+};
+
+
 
 const uploadImage = (e, setIMG) => {
     const file = e.target.files[0];
@@ -11,11 +24,11 @@ const uploadImage = (e, setIMG) => {
     }
 };
 
-const setimage = async (base64EncodedImage, properties, url) => {
+const setimage = async (base64EncodedImage, body, url) => {
     try {
     let result = await fetch(`http://localhost:4000${url}`, {
             method: "POST",
-            body: JSON.stringify({ data: base64EncodedImage, prop: properties }),
+            body: JSON.stringify({ data: base64EncodedImage, prop: body }),
             headers: { "Content-type": "application/json", 'Authorization': getCookie('x-auth-token') }
         });
 
@@ -38,6 +51,7 @@ const appendList = (id, sorce) => {
     container.appendChild(el);
 }
 
+
 export {
-    setimage, appendList, uploadImage
+    setimage, appendList, uploadImage,uploadSingleImage
 }

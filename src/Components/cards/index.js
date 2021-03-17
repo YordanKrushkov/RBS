@@ -2,6 +2,7 @@ import {useState,useContext,useEffect} from 'react';
 import {useHistory  } from 'react-router-dom'
 import {Image, Transformation } from 'cloudinary-react'
 import { AuthContext } from '../../Context';
+import { ActionContext } from '../../Context/actionContext';
 
 import likePropertie from '../../Services/likeProperties'
 
@@ -13,22 +14,26 @@ import './index.scss'
  
 const CardElement = (props) => {
     const [style, setStyle]=useState(true);
-    const [liked, setLiked]=useState(false);
+    const [lik, setLiked]=useState(false);
     const context=useContext(AuthContext);
+    const {like,dislike,liked}=useContext(ActionContext);
     const history=useHistory()
-
     const userProps=context.userProperties;
     const likedProps=context.likedProperties;
+    ;
     let propertie=props.data;
     const id=propertie._id;
     useEffect(() => {
-        if(userProps&&userProps.includes(id)){
-            setStyle(false)
-        }else if(likedProps&&likedProps.includes(id)){
-            setLiked(true);
+       if(userProps&& userProps.includes(id)){
+           setStyle(false)
+       } 
+         if(liked&&liked.includes(id)){
+         setLiked(true)
         }
-    }, [liked])
-    
+        if(likedProps&&likedProps.includes(id)){
+            setLiked(true)
+        }
+    }, [lik])
     let char,bath = '';
     if (propertie.bedrooms && propertie.bedrooms!=='Studio') {
         char = propertie.bedrooms.charAt(0)
@@ -48,17 +53,16 @@ const CardElement = (props) => {
    const likeHandler=(e)=>{
        let key='';
 
-       if(liked){
-
+       if(lik){
            key="dislike"
            setLiked(false)
+           dislike(id)
        }
        else{
-
            key='like'
            setLiked(true)
+           like(id)
        }
-
        likePropertie(key,id)
    }
 
@@ -67,7 +71,7 @@ const CardElement = (props) => {
         
         <header>
             <div className="propImage">
-                {style ? !liked ?<FaRegHeart id="like" onClick={likeHandler}/>:<FaHeart id="liked" onClick={likeHandler}/>:null}
+                {style ? !lik ?<FaRegHeart id="like" onClick={likeHandler}/>:<FaHeart id="liked" onClick={likeHandler}/>:null}
                 <Image publicId={propertie.img} cloudName="zltgrd">
                     <Transformation width="150" height="150"/>
                 </Image>

@@ -4,20 +4,23 @@ import { Link, useHistory } from 'react-router-dom'
 import {getUser} from '../../Services/Users'
 import { FaCog } from "react-icons/fa";
 import { AuthContext } from '../../Context'
+import { ActionContext } from '../../Context/actionContext'
 import CardElement from '../../Components/Cards'
 import {Image, Transformation} from 'cloudinary-react'
 import img from '../../Assets/images/profile.png'
 const Profile = () => {
     const [user, setUser] = useState('')
+    const {liked} = useContext(ActionContext)
+
     useEffect(() => {
         getUser().then(res => setUser(res)).catch(err => console.error(err))
-    },[])
+    },[liked])
    
     const context = useContext(AuthContext)
     const history = useHistory()
     const data = user.properties;
-    const liked=user.likedProperties;
-    console.log(user);
+    const likedProps=user.likedProperties;
+
     const logOut = (e) => {
         context.logout()
         history.push('/')
@@ -92,7 +95,7 @@ const Profile = () => {
                 </div>
                     <h1 className="propsH1">Liked properties</h1>
                 <div className="myProperties">
-                    { liked ? liked.map(x =>
+                    { likedProps ? likedProps.map(x =>
                     <div className="myProf" key={x._id}>
                             <CardElement  data={ x } />
                     </div>

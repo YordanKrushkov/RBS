@@ -27,8 +27,10 @@ const CardElement = (props) => {
         }else if(likedProps&&likedProps.includes(id)){
             setLiked(true);
         }
+    }, [])
+    useEffect(() => {
+   
     }, [liked])
-    
     let char,bath = '';
     if (propertie.bedrooms && propertie.bedrooms!=='Studio') {
         char = propertie.bedrooms.charAt(0)

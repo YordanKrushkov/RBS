@@ -10,7 +10,7 @@ import img from '../../Assets/images/profile.png'
 const Edit = (loged) => {
     const [user,setUser]=useState({})
     const [IMG, setImg]=useState('')
-    const [data, getData] = useState({
+    const [properties, getData] = useState({
         profilephoto:'',
         name:'',
         surname:'',
@@ -19,7 +19,7 @@ const Edit = (loged) => {
     })
 
     useEffect(() => {
-        getUser().then(res=>{setUser(res)}).catch(err=>console.log(err))
+        getUser().then(res=>setUser(res)).catch(err=>console.log(err))
     }, [])
     const context=useContext(UserContext)
     const history=useHistory()
@@ -29,12 +29,11 @@ const Edit = (loged) => {
             ...user,
             [e.target.id]: e.target.value,
         });
+        console.log(user);
     };
     const submitHandler = async (e) => {
         e.preventDefault();
         setimage(IMG.img, user, "/api/updateuser")
-        .then(()=>history.push('./profile'))
-        .catch(err=>console.log(err))
     };
 
 
@@ -46,7 +45,7 @@ const Edit = (loged) => {
              <Image publicId={user.profilephoto} id="detailsProfilePicture" cloudName="zltgrd">
                 <Transformation width="150" height="150"/>
             </Image>
-            :<img src={IMG.img || img} alt="ProfilePicture" />}
+            :<img src={img} alt="ProfilePicture" />}
         </div>
          <input type="file" id="uploadProfilePicture" style={{display:'none'}} onChange={(e)=>{uploadSingleImage(e, setImg)}}/>
             <section>

@@ -11,12 +11,13 @@ const Profile = () => {
     const [user, setUser] = useState('')
     useEffect(() => {
         getUser().then(res => setUser(res)).catch(err => console.error(err))
-    }, [])
+    },[])
+   
     const context = useContext(AuthContext)
     const history = useHistory()
     const data = user.properties;
     const liked=user.likedProperties;
-    
+    console.log(user);
     const logOut = (e) => {
         context.logout()
         history.push('/')

@@ -2,20 +2,24 @@ import {useState, useContext, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import UserContext from '../../Context'
 import {getUser} from '../../Services/Users'
+import {openImgInput} from '../../Utils/eventHandlers'
+import {uploadSingleImage, setimage} from '../../Utils/imgUploader';
+import {Image, Transformation} from 'cloudinary-react'
 import './index.scss'
 import img from '../../Assets/images/profile.png'
 const Edit = (loged) => {
     const [user,setUser]=useState({})
-    const [properties, getData] = useState({
-        profilePicture:'',
-        firstName:'',
-        lastName:'',
+    const [IMG, setImg]=useState('')
+    const [data, getData] = useState({
+        profilephoto:'',
+        name:'',
+        surname:'',
         phone:'',
-        location:'',
+        address:'',
     })
 
     useEffect(() => {
-        getUser().then(res=>setUser(res)).catch(err=>console.log(err))
+        getUser().then(res=>{setUser(res)}).catch(err=>console.log(err))
     }, [])
     const context=useContext(UserContext)
     const history=useHistory()
@@ -25,31 +29,26 @@ const Edit = (loged) => {
             ...user,
             [e.target.id]: e.target.value,
         });
-        console.log(user);
     };
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log(user);
-        // let promise = await fetch('https://properties-3e020-default-rtdb.firebaseio.com/users.json', {
-        //     method: 'POST',
-        //     body: JSON.stringify(properties)
-        // })
-        // let data = await promise.json();
-        // history.push('/');
-        // return data;
+        setimage(IMG.img, user, "/api/updateuser")
+        .then(()=>history.push('./profile'))
+        .catch(err=>console.log(err))
     };
-
-
-
 
 
     return (
         <form className="editForm" onSubmit={submitHandler}>
         <h4 >Update your profile</h4>
-        <div>
-         <img src={img} alt="ProfilePicture"/>
+        <div onClick={()=>openImgInput('uploadProfilePicture')}>
+        {user.profilephoto ?
+             <Image publicId={user.profilephoto} id="detailsProfilePicture" cloudName="zltgrd">
+                <Transformation width="150" height="150"/>
+            </Image>
+            :<img src={IMG.img || img} alt="ProfilePicture" />}
         </div>
-         <input type="file" style={{display:'none'}}/>
+         <input type="file" id="uploadProfilePicture" style={{display:'none'}} onChange={(e)=>{uploadSingleImage(e, setImg)}}/>
             <section>
                 <label htmlFor='firstName'>First Name</label>
                 <input placeholder={user.name} type='text' id='name' onChange={onChangeHandler} />
@@ -64,7 +63,7 @@ const Edit = (loged) => {
             </section>
             <section>
             <label htmlFor='location'>Location</label>
-            <input placeholder={user.location|| "London, UK"} type='text' id='location' onChange={onChangeHandler} />
+            <input placeholder={user.location|| "London, UK"} type='text' id='address' onChange={onChangeHandler} />
             </section>
             <button> Submit</button>
         </form>

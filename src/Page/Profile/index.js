@@ -5,17 +5,19 @@ import {getUser} from '../../Services/Users'
 import { FaCog } from "react-icons/fa";
 import { AuthContext } from '../../Context'
 import CardElement from '../../Components/Cards'
+import {Image, Transformation} from 'cloudinary-react'
 import img from '../../Assets/images/profile.png'
 const Profile = () => {
     const [user, setUser] = useState('')
     useEffect(() => {
         getUser().then(res => setUser(res)).catch(err => console.error(err))
-    }, [])
+    },[])
+   
     const context = useContext(AuthContext)
     const history = useHistory()
     const data = user.properties;
     const liked=user.likedProperties;
-    
+    console.log(user);
     const logOut = (e) => {
         context.logout()
         history.push('/')
@@ -39,7 +41,10 @@ const Profile = () => {
         <div id="profileWrapper" onClick={ settings }>
             <header>
                 <div id="profilePicture">
-                    <img src={ user.profilePicture ? user.profilePicture : img } alt="" />
+                {user.profilephoto ?<Image publicId={user.profilephoto} id="detailsProfilePicture" cloudName="zltgrd">
+                <Transformation width="150" height="150"/>
+                 </Image>
+                    :<img src={img } alt="" />}
                 </div>
                 <div id="profileInfo">
                     <h1>My Profile</h1>
@@ -59,10 +64,10 @@ const Profile = () => {
                                 <h6>{ user.phone }</h6>
                             </div> : null }
 
-                        { user.location ?
+                        { user.address ?
                             <div>
                                 <h6>Live in:</h6>
-                                <h6>{ user.location }</h6>
+                                <h6>{ user.address }</h6>
                             </div> : null }
                     </div>
                 </div>

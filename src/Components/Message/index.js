@@ -1,6 +1,7 @@
 import './index.scss';
 import {useState, useEffect} from 'react';
-
+import Email from '../../Services/sendEmail'
+import { IoIosCloseCircle } from "react-icons/io";
 const Message = ({ownerName,ownerEmail, email, name}) => {
 
 const [state, setState]=useState({
@@ -10,7 +11,6 @@ const [state, setState]=useState({
     to_name:'',
     message:'',
 });
-console.log(name);
 useEffect(()=>{
 
  setState({
@@ -32,26 +32,22 @@ const changeHandler=(e)=>{
 }
 
 
-    const sendEmail=(e)=>{
 
-        fetch('http://localhost:4000/api/email', {
-            method: 'POST',
-            body: JSON.stringify(state),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res=>
-            console.log(res))
-        .catch(err=>console.log(err))
+    const closeMessage=(e)=>{
+        let el=document.getElementById('messageContainer');
+        el.style.display='none'
+    }
+    const sendEmail=(e)=>{
+        e.preventDefault()
+        Email(state).then(()=>closeMessage()).catch(err=>console.log("email",err))
 
     }
-
-
     return ( 
         <form id="messageContainer" onSubmit={sendEmail}>
             <header>
                 <h1>To: <span name="to_name" id="to_name">{ownerName&&ownerName}</span></h1> 
                 <h1>from: <span name="from_name" id="from_name">{name&&name}</span></h1>
+                <IoIosCloseCircle id="closeMessage" onClick={closeMessage}/>
             </header>
             <main>
                 <textarea id="message" name="message" onChange={changeHandler} placeholder="Type your message here">

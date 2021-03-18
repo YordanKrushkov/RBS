@@ -30,9 +30,7 @@ const Body = (props) => {
                     <li>Sell</li>
                 </ul>
             </div>
-            {/* <img className={ styles.img } src={ pic } alt="No pic" /> */}
             <Search />
-          
         </div>
         <div className="cardContainer">
             {properties? properties.map(x=><CardElement data={x} key={x._id}/>):null}

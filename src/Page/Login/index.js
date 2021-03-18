@@ -19,14 +19,12 @@ const Login = () => {
             [e.target.id]: e.target.value
         })        
     };
-  
     const submitHandler = async (e) => {
         e.preventDefault();
         const { email, password } = user;
         await authenticate(url, {
             email, password
         }, (user) => {
-            const {email,properties,name,surname,likedProperties}=user
             context.login(user);
             localStorage.setItem("user", user.email);
             history.push('/');

@@ -8,13 +8,17 @@ class AuthContextProvider extends Component {
         userEmail: '',
         userProperties:'',
         likedProperties:'',
+        name:'',
+        surname:''
     }
-    login = (email,properties,likedProperties) => {
+    login = ({email,name,surname,properties,likedProperties}) => {
         this.setState({
             isAuthenticated: true,
             userEmail: email,
             userProperties:properties,
             likedProperties:likedProperties,
+            name:name,
+            surname: surname
         })
     }
     logout = () => {
@@ -32,7 +36,9 @@ class AuthContextProvider extends Component {
                 if (res && res.auth) {
                     this.setState({
                         isAuthenticated: true,
-                        userEmail: localStorage.getItem('user'),
+                        userEmail: res.user.email,
+                        name:res.user.name,
+                        surname:res.user.surname,
                         userProperties:res.user.properties,
                         likedProperties:res.user.likedProperties
                     })

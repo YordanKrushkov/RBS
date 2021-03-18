@@ -36,7 +36,8 @@ const Register = () => {
         await authenticate(url, {
             name, surname, email, password
         }, (user) => {
-            context.login(user);
+            const {email,properties,likedProperties, name,surname}=user
+            context.login(email,properties,likedProperties, name,surname);
             localStorage.setItem("user", email);
             history.push('/');
         }, (e) => {

@@ -26,8 +26,8 @@ const Login = () => {
         await authenticate(url, {
             email, password
         }, (user) => {
-            const {email,properties,likedProperties}=user
-            context.login(email, properties, likedProperties);
+            const {email,properties,name,surname,likedProperties}=user
+            context.login(user);
             localStorage.setItem("user", user.email);
             history.push('/');
         }, (err) => {

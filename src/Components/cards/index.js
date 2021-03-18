@@ -15,22 +15,21 @@ import './index.scss'
 const CardElement = (props) => {
     const [style, setStyle]=useState(true);
     const [lik, setLiked]=useState(false);
-    const context=useContext(AuthContext);
+    const {userProperties,likedProperties, isAuthenticated}=useContext(AuthContext);
     const {like,dislike,liked}=useContext(ActionContext);
     const history=useHistory()
-    const userProps=context.userProperties;
-    const likedProps=context.likedProperties;
     ;
+    console.log(isAuthenticated);
     let propertie=props.data;
     const id=propertie._id;
     useEffect(() => {
-       if(userProps&& userProps.includes(id)){
+       if(userProperties&& userProperties.includes(id) || !isAuthenticated){
            setStyle(false)
        } 
          if(liked&&liked.includes(id)){
          setLiked(true)
         }
-        if(likedProps&&likedProps.includes(id)){
+        if(likedProperties&&likedProperties.includes(id)){
             setLiked(true)
         }
     }, [lik])

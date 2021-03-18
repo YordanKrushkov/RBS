@@ -2,6 +2,7 @@ import { useState, useEffect,useContext } from 'react';
 import { useHistory,Link } from 'react-router-dom'
 import getProperties from '../../Services/getData';
 import DetailsContainer from '../../Components/detailsComponent';
+import Message from '../../Components/Message';
 import {switchDetailsMenu} from '../../Utils/eventHandlers'
 import {Image,Transformation} from 'cloudinary-react'
 import GoogleMap from '../../Components/GoogleMap'
@@ -9,15 +10,23 @@ import getLocation from '../../Utils/getLocation';
 import {AuthContext} from '../../Context'
 import './index.scss';
 const SingleCard = () => {
-    const [properties, setProperties] = useState([]);
+    const [properties, setProperties] = useState('');
     const [info, setInfo] = useState(true);
     const [location, setLocation]=useState('')
-    const {isAuthenticated}=useContext(AuthContext)
+    const context=useContext(AuthContext)
+    const {isAuthenticated, userEmail, name, surname}=useContext(AuthContext)
+    console.log('useemai',context);
     const isAuth =isAuthenticated
     let images=properties.images
     const history = useHistory()
+    // const {email, name, surname}=properties.ownerId
+    let ownerEmail,firstName, LastName='';
+    if(properties){
+         ownerEmail=properties.ownerId.email;
+         firstName=properties.ownerId.name;
+         LastName=properties.ownerId.surname;
+    }
    
-
     useEffect(() => {
         const id = history.location.pathname
         getProperties.getSingleProp(id)
@@ -34,6 +43,13 @@ const SingleCard = () => {
     const changePicture=(e)=>{
         let profile=document.getElementById('detailsProfilePicture');
         profile.src=e.target.src
+    }
+
+    const sendMassage=(e)=>{
+        let el=document.getElementById('messageContainer');
+        if(el.style.display!=='flex'){
+            el.style.display="flex"
+        }
     }
 
     return (
@@ -62,7 +78,7 @@ const SingleCard = () => {
                     <h2> £ { properties.price }</h2>
                 </header>
                 <div>
-                   <Link to={isAuth ?'':'/register'}><button>Contact</button></Link> 
+            <button onClick={sendMassage}>Contact</button>
                 </div>
 
             </aside>
@@ -75,6 +91,7 @@ const SingleCard = () => {
         
             </section>
             </main>
+            <Message ownerName={`${firstName} ${LastName}`} ownerEmail={ownerEmail} email={userEmail} name={`${name} ${surname}`}/>
         </div>
     )
 }

@@ -15,11 +15,9 @@ const SingleCard = () => {
     const [location, setLocation]=useState('')
     const context=useContext(AuthContext)
     const {isAuthenticated, userEmail, name, surname}=useContext(AuthContext)
-    console.log('useemai',context);
     const isAuth =isAuthenticated
     let images=properties.images
     const history = useHistory()
-    // const {email, name, surname}=properties.ownerId
     let ownerEmail,firstName, LastName='';
     if(properties){
          ownerEmail=properties.ownerId.email;

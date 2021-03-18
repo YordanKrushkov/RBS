@@ -22,6 +22,20 @@
             padding-left: 20px;
             color: $white;
         }
+
+        #closeMessage{
+            position: absolute;
+            font-size: 20px;
+            color: $white;
+            top: 5px;
+            right:5px;
+
+            &:hover{
+                cursor: pointer;
+                color: darken($white, 8);
+                font-size: 21px;
+            }
+        }
     }
 
      main {

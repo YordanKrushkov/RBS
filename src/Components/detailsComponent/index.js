@@ -3,9 +3,7 @@ import './index.scss'
 import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
 
-const DetailsContainer = ({properties}) => {
-    let count = 0;
-
+const DetailsContainer = ({ properties }) => {
     return (
         <div className="detailsContainer">
             <div id='detailsField'>
@@ -22,11 +20,10 @@ const DetailsContainer = ({properties}) => {
                 <div className="infoBody">
                     <div>
                         <h2>Details</h2>
-
                     </div>
                     <ul className="moreDetailsList">
                         { properties.details ? (properties.details.map(e => {
-                            return <li key={ count++ }>{ e }</li>
+                            return <li key={ e }>{ e }</li>
                         })) : null }
                     </ul>
                 </div>

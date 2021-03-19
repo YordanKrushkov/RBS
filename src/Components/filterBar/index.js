@@ -1,11 +1,12 @@
-import React from 'react'
 import './index.scss'
-import optionFields from '../searchInputs/type'
-import Price from '../searchInputs/price'
-import AllCities from '../searchInputs/cities'
+import TypeSelect from '../FormElements/Properties/Type'
+import BedroomCount from '../FormElements/Properties/Bedrooms'
+import RentingPrice from '../FormElements/Price/RentingPrice'
+import SellingPrice from '../FormElements/Price/SellingPrice'
+import AllCities from '../FormElements/Cities'
 const Filter = (props) => {
     const {ChangeHandler, offer}=props.children
-    const { TypeSelect, BedroomCount } = optionFields
+    
     return (
         <div id='filterBar' className="filterBar" >
             <span className="filterSpan">Filter:</span>
@@ -23,13 +24,13 @@ const Filter = (props) => {
             </div>
             <div className="filterButton" >
                 <label htmlFor="price" className="filterSpan">Min.Price</label>
-                { offer === "RENT" ? <Price.RentingPrice>{ { id: "minPrice", className: "searchInput", func: ChangeHandler, required: true } }</Price.RentingPrice>
-                    : <Price.SellingPrice>{ { id: "minPrice", className: "searchInput", func: ChangeHandler, required: true } }</Price.SellingPrice> }
+                { offer === "RENT" ? <RentingPrice>{ { id: "minPrice", className: "searchInput", func: ChangeHandler, required: true } }</RentingPrice>
+                    : <SellingPrice>{ { id: "minPrice", className: "searchInput", func: ChangeHandler, required: true } }</SellingPrice> }
             </div>
             <div className="filterButton" >
                 <label htmlFor="price" className="filterSpan">Max.Price</label>
-                { offer === "RENT" ? <Price.RentingPrice>{ { id: "maxPrice", className: "searchInput", func: ChangeHandler, required: true } }</Price.RentingPrice>
-                    : <Price.SellingPrice>{ { id: "maxPrice", className: "searchInput", func: ChangeHandler, required: true } }</Price.SellingPrice>
+                { offer === "RENT" ? <RentingPrice>{ { id: "maxPrice", className: "searchInput", func: ChangeHandler, required: true } }</RentingPrice>
+                    : <SellingPrice>{ { id: "maxPrice", className: "searchInput", func: ChangeHandler, required: true } }</SellingPrice>
                 }
             </div>
             <div className="filterButton">

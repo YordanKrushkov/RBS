@@ -14,15 +14,6 @@ const getUser = async () => {
     return extra
 };
 
-const updateUser=async(body)=>{
-  const  promise = await fetch('', {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-}
 export {
     getUser,
 }

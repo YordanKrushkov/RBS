@@ -1,16 +1,17 @@
 import React, { useState,useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import './index.scss'
-import AllCities from '../searchInputs/cities'
-import Price from '../searchInputs/price'
-import input from '../searchInputs/type'
+import AllCities from '../FormElements/Cities'
+import RentingPrice from '../FormElements/Price/RentingPrice'
+import SellingPrice from '../FormElements/Price/SellingPrice'
+import TypeSelect from '../FormElements/Properties/Type'
+import BedroomCount from '../FormElements/Properties/Bedrooms'
 import {switchMenu} from '../../Utils/eventHandlers'
 
 const Search = () => {
     const [offer, changeOffer] = useState('RENT');
     const [search, changeSearch] = useState({ offer: offer })
     const history = useHistory()
-    const {TypeSelect, BedroomCount}=input;
     const changeHandler = (e) => {
         changeSearch({
             ...search,
@@ -50,13 +51,13 @@ const Search = () => {
                     </div>
                    <div className="imputs" >
                         <label htmlFor="price">Min.Price</label>
-                       {offer==="RENT" ? <Price.RentingPrice>{{id:"minPrice",className:"options", func:changeHandler, required:true}}</Price.RentingPrice>
-                       : <Price.SellingPrice>{{id:"minPrice",className:"options", func:changeHandler, required:true}}</Price.SellingPrice>}
+                       {offer==="RENT" ? <RentingPrice>{{id:"minPrice",className:"options", func:changeHandler, required:true}}</RentingPrice>
+                       : <SellingPrice>{{id:"minPrice",className:"options", func:changeHandler, required:true}}</SellingPrice>}
                         </div>
                    <div className="imputs" >
                         <label htmlFor="price">Max.Price</label>
-                        {offer==="SELL" ? <Price.RentingPrice>{{id:"maxPrice",className:"options", func:changeHandler, required:true}}</Price.RentingPrice>
-                        :<Price.SellingPrice>{{id:"maxPrice",className:"options", func:changeHandler, required:true}}</Price.SellingPrice> 
+                        {offer==="SELL" ? <RentingPrice>{{id:"maxPrice",className:"options", func:changeHandler, required:true}}</RentingPrice>
+                        :<SellingPrice>{{id:"maxPrice",className:"options", func:changeHandler, required:true}}</SellingPrice> 
                         }
                         </div>
                     <div className="typeContainer">

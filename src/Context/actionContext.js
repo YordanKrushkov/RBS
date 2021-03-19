@@ -4,7 +4,7 @@ export const ActionContext=createContext();
 
 class ActionContextProvider extends Component{
     state={
-       liked:[]
+       liked:[],
     }
     like =(id)=>{
         // let items=[];

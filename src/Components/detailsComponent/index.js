@@ -4,6 +4,7 @@ import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
 
 const DetailsContainer = ({ properties }) => {
+
     return (
         <div className="detailsContainer">
             <div id='detailsField'>

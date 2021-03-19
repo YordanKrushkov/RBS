@@ -1,0 +1,41 @@
+@import '../../Desing/variables.scss';
+@import '../../Desing/mixin.scss';
+
+
+#confirm{
+    position: absolute;
+    background-color: $white;
+    border-radius: 10px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    left: 30%;
+    top: 30%;
+    display: none;
+    header{
+        h1{
+            font-weight: 600
+        }
+    }
+    footer{
+        button{
+            @include buttons;
+            margin:0;
+            border-radius: 0;
+            height: 50px;
+
+            &:hover{
+                cursor: pointer;
+                background-color: darken($mainColor, 5);
+            }
+        }
+        button:nth-child(1){
+            background-color: $oposite;
+            &:hover{
+                cursor: pointer;
+                background-color: darken($oposite, 5);
+            }
+        }
+    }
+}

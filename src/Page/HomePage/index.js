@@ -1,4 +1,4 @@
-import {useState, useContext,useEffect, Fragment} from 'react'
+import {useState,useEffect, Fragment} from 'react'
 import './index.scss'
 import pic from '../../Assets/images/britishHouse2.jpg'
 import getPropertiesService from '../../Services/getData'

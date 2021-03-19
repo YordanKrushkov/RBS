@@ -1,12 +1,14 @@
-import React from 'react'
-
 
 const AllCities = (props) => {
 
-    let {className, func}=props.children
+    let {className, func,value}=props.children
     return (
         <select name="town" id="city" defaultValue="0" className={className} onChange={func}  required>
-            <option id="city" value="0">Select...</option>
+             {value?<option value={value}>{value}</option>:  <option value="0">Select...</option>}
+            <option id="city" value="London">London</option>
+            <option id="city" value="Greater Manchester">Greater Manchester</option>
+            <option id="city" value="Merseyside">Merseyside</option>
+            <option id="city" value="Kent">Kent</option>
             <option id="city" value="Avon">Avon</option>
             <option id="city" value="Bedfordshire">Bedfordshire</option>
             <option id="city" value="Berkshire">Berkshire</option>
@@ -25,19 +27,15 @@ const AllCities = (props) => {
             <option id="city" value="East Sussex">East Sussex</option>
             <option id="city" value="Essex">Essex</option>
             <option id="city" value="Gloucestershire">Gloucestershire</option>
-            <option id="city" value="Greater Manchester">Greater Manchester</option>
             <option id="city" value="Hampshire">Hampshire</option>
             <option id="city" value="Herefordshire">Herefordshire</option>
             <option id="city" value="Hertfordshire">Hertfordshire</option>
             <option id="city" value="Humberside">Humberside</option>
             <option id="city" value="Isle of Wight">Isle of Wight</option>
             <option id="city" value="Isles of Scilly">Isles of Scilly</option>
-            <option id="city" value="Kent">Kent</option>
             <option id="city" value="Lancashire">Lancashire</option>
             <option id="city" value="Leicestershire">Leicestershire</option>
             <option id="city" value="Lincolnshire">Lincolnshire</option>
-            <option id="city" value="London">London</option>
-            <option id="city" value="Merseyside">Merseyside</option>
             <option id="city" value="Middlesex">Middlesex</option>
             <option id="city" value="Norfolk">Norfolk</option>
             <option id="city" value="North Yorkshire">North Yorkshire</option>

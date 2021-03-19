@@ -1,14 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import './index.scss'
-import AllCities from '../../Components/searchInputs/cities'
+import AllCities from '../../Components/FormElements/Cities'
 import {openImgInput ,switchMenu, detailHendler} from '../../Utils/eventHandlers'
 import {setimage,uploadImage} from '../../Utils/imgUploader';
-import inputs from '../../Components/searchInputs/type'
+import TypeSelect from '../../Components/FormElements/Properties/Type';
+import BedroomCount from '../../Components/FormElements/Properties/Bedrooms'
+import BathroomCount from '../../Components/FormElements/Properties/Bathrooms'
 import { AuthContext } from '../../Context'
 import getCookie from '../../Services/cookies'
-import Checkbox from '../../Components/Small Components/Checkbox'
-
+import userVerify from '../../Services/userVerify'
+import Checkbox from '../../Components/FormElements/Checkbox'
 
 const SubmitForm = () => {
     const context = useContext(AuthContext)
@@ -30,7 +32,6 @@ const SubmitForm = () => {
     const [offer, changeOffer] = useState('RENT');
     const history = useHistory()
 
-    const {TypeSelect, BedroomCount,BathroomCount} = inputs;
     useEffect(() => {
         const isLogged = getCookie('x-auth-token')
         if (!isLogged) {
@@ -50,7 +51,13 @@ const SubmitForm = () => {
 
     const submitHandler=(e)=>{
         e.preventDefault();
-            setimage(img,properties,'/api/upload').then(res=> history.push('/')).catch(err=>console.error(err))
+            setimage(img,properties,'/api/upload')
+            .then(res=> {
+                userVerify().then(res=>context.updateProperties(res))
+            }).then(()=>{
+                history.push('/')
+            })
+            .catch(err=>console.error(err))
     };
 
     return (

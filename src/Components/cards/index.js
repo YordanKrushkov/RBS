@@ -22,7 +22,9 @@ const CardElement = (props) => {
     let propertie = props.data;
     const id = propertie._id;
 
+
     useEffect(() => {
+        console.log(userProperties);
         if (userProperties && userProperties.includes(id) || !isAuthenticated) {
             setStyle(false)
         }
@@ -33,7 +35,6 @@ const CardElement = (props) => {
             setLiked(true)
         }
     }, [lik])
-    
     let char, bath = '';
     if (propertie.bedrooms && propertie.bedrooms !== 'Studio') {
         char = propertie.bedrooms.charAt(0)

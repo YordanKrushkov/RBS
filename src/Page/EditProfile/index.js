@@ -1,6 +1,5 @@
-import {useState, useContext, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
-import UserContext from '../../Context'
 import {getUser} from '../../Services/Users'
 import {openImgInput} from '../../Utils/eventHandlers'
 import {uploadSingleImage, setimage} from '../../Utils/imgUploader';
@@ -10,18 +9,10 @@ import img from '../../Assets/images/profile.png'
 const Edit = (loged) => {
     const [user,setUser]=useState({})
     const [IMG, setImg]=useState('')
-    const [data, getData] = useState({
-        profilephoto:'',
-        name:'',
-        surname:'',
-        phone:'',
-        address:'',
-    })
-
+   
     useEffect(() => {
         getUser().then(res=>{setUser(res)}).catch(err=>console.log(err))
     }, [])
-    const context=useContext(UserContext)
     const history=useHistory()
     const onChangeHandler = (e) => {
 

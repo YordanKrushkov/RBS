@@ -32,8 +32,8 @@ const setimage = async (base64EncodedImage, body, url) => {
             headers: { "Content-type": "application/json", 'Authorization': getCookie('x-auth-token') }
         });
 
-
-    return result;
+    const res=await result.json()
+    return res;
 
     } catch (error) {
         console.error(error);

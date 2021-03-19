@@ -118,6 +118,12 @@ main{
             }
         }
     }
+    #deleteButton{
+        background-color: $oposite ;
+        &:hover{
+            background-color: darken($oposite, 5);
+        }
+    }
 
     section{
         display: flex;

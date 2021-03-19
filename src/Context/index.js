@@ -11,6 +11,14 @@ class AuthContextProvider extends Component {
         name:'',
         surname:''
     }
+
+    updateProperties=(res)=>{
+        this.setState({
+            userProperties:res.properties,
+            likedProperties:res.likedProperties,
+        })
+    }
+
     login = ({email,name,surname,properties,likedProperties}) => {
         this.setState({
             isAuthenticated: true,
@@ -29,10 +37,8 @@ class AuthContextProvider extends Component {
             userEmail: '',
         })
     }
-
     componentDidMount() {
-        userVerify('x-auth-token')
-            .then((res) => {
+        userVerify().then((res) => {
                 if (res && res.auth) {
                     this.setState({
                         isAuthenticated: true,
@@ -46,11 +52,12 @@ class AuthContextProvider extends Component {
                     this.logout()
                 }
             })
-            .catch((e) => this.logout())
+            .catch((e) =>console.log(e))
     }
+    
     render() {
         return (
-            <AuthContext.Provider value={ { ...this.state, login: this.login, logout: this.logout } }>
+            <AuthContext.Provider value={ { ...this.state, login: this.login, logout: this.logout, updateProperties:this.updateProperties } }>
                 {this.props.children }
             </AuthContext.Provider>
         );

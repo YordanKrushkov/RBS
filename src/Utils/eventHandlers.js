@@ -4,14 +4,14 @@ const openImgInput = (id) => {
 
 
   const switchMenu = (e,changeOffer) => {
-      let data={};
+    //   let data={};
     if (e.target.textContent === 'SALE') {
-        data={changeStyle:false, sellOrRent:'SALE'}
+        // data={changeStyle:false, sellOrRent:'SALE'}
         e.target.classList.add('new');
         e.target.previousElementSibling.classList.remove('new')
         changeOffer('SALE')
     } else {
-        data={changeStyle:true, sellOrRent:'RENT'}
+        // data={changeStyle:true, sellOrRent:'RENT'}
         e.target.classList.add('new');
         e.target.nextElementSibling.classList.remove('new')
         changeOffer('RENT')
@@ -45,11 +45,21 @@ const openImgInput = (id) => {
     }
 
 };
-
-
+const open=(id, display)=>{
+    let el=document.getElementById(id);
+    if(el.style.display!==display){
+        el.style.display=display
+    }
+}
+const close=(id)=>{
+    let el=document.getElementById(id);
+    el.style.display='none'
+}
 export {
     openImgInput,
     switchMenu,
     detailHendler,
-    switchDetailsMenu
+    switchDetailsMenu,
+    close,
+    open
 }

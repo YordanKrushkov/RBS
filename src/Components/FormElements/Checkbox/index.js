@@ -1,8 +1,8 @@
 import './index.scss';
 
-
 const Checkbox = (props) => {
-    let {name, func}=props.children
+    let {name, func}=props.children;
+
     return ( 
         <div className="checkbox"> 
         <h2>{name}</h2>

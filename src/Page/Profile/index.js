@@ -1,5 +1,5 @@
 import './index.scss'
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState, useContext, Fragment } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import {getUser} from '../../Services/Users'
 import { FaCog } from "react-icons/fa";
@@ -8,41 +8,31 @@ import { ActionContext } from '../../Context/actionContext'
 import CardElement from '../../Components/Cards'
 import {Image, Transformation} from 'cloudinary-react'
 import img from '../../Assets/images/profile.png'
+import {open,close} from '../../Utils/eventHandlers'
+import Edit from '../../Components/EditProfile'
 const Profile = () => {
     const [user, setUser] = useState('')
     const {liked} = useContext(ActionContext)
 
     useEffect(() => {
-        getUser().then(res => setUser(res)).catch(err => console.error(err))
+        getUser()
+        .then(res => setUser(res))
+        .catch(err => console.error(err))
     },[liked])
    
     const context = useContext(AuthContext)
     const history = useHistory()
-    const data = user.properties;
-    const likedProps=user.likedProperties;
-
+    const {properties,likedProperties} = user;
+    
     const logOut = (e) => {
         context.logout()
         history.push('/')
     }
-    const settings = (e) => {
-        let settings = document.getElementById('profileMenuWrapper');
-        let path = false;
-        if (e.target.tagName === "path" || e.target.tagName === 'svg') {
-            path = true;
-        }
-        if (e.target.className === "profileMenu" && settings.style.display !== "block") {
-            settings.style.display = "block"
-        } else if (path && settings.style.display !== "block") {
-            settings.style.display = "block"
-        } else {
-            settings.style.display = "none"
-        }
-    }
 
-    return (
-        <div id="profileWrapper" onClick={ settings }>
-            <header>
+    return ( 
+        <div id="profileWrapper">
+            <Edit/>
+            <header id="hidde">
                 <div id="profilePicture">
                 {user.profilephoto ?<Image publicId={user.profilephoto} id="detailsProfilePicture" cloudName="zltgrd">
                 <Transformation width="150" height="150"/>
@@ -74,10 +64,9 @@ const Profile = () => {
                             </div> : null }
                     </div>
                 </div>
-                <div className="profileMenu"><FaCog /></div>
+                <div className="profileMenu" onClick={(e)=>{close('hidde');open('editFormWrapper','block') }}><FaCog /></div>
                 <div id="profileMenuWrapper">
                     <ul>
-                        <li><Link to="/edit">Edit Profile</Link></li>
                         <li><Link to="#">Messeges</Link></li>
                         <li onClick={ logOut }>SignOut</li>
                     </ul>
@@ -86,18 +75,18 @@ const Profile = () => {
             <main>
                 <h1 className="propsH1 top">My properties</h1>
                 <div className="myProperties">
-                    { data ? data.map(x =>
+                    { properties ? properties.map(x =>
                         <div className="myProf"  key={x._id}>
-                            <CardElement data={ x } />
+                            <CardElement data={ x }/>
                         </div>
                     ) : null }
 
                 </div>
                     <h1 className="propsH1">Liked properties</h1>
                 <div className="myProperties">
-                    { likedProps ? likedProps.map(x =>
+                    { likedProperties ? likedProperties.map(x =>
                     <div className="myProf" key={x._id}>
-                            <CardElement  data={ x } />
+                            <CardElement  data={ x }/>
                     </div>
                     ) : null }
 

@@ -1,14 +1,20 @@
-import './index.scss';
+import Checkbox from './checkbox'
 
-const Checkbox = (props) => {
-    let {name, func}=props.children;
 
+const CheckboxContainer = ({detailHendler,initialState}) => {
     return ( 
-        <div className="checkbox"> 
-        <h2>{name}</h2>
-        <input type="checkbox" name={name} id={name} onChange={ func } />
-        </div>
+        <section className="checkboxContainer">
+        <Checkbox>{{name:"Furnished", func:(e)=>{detailHendler(e,initialState)}}}</Checkbox>
+        <Checkbox>{{name:"Balcony", func:(e)=>{detailHendler(e,initialState)}}}</Checkbox>
+        <Checkbox>{{name:"Easy transport", func:(e)=>{detailHendler(e,initialState)}}}</Checkbox>
+        <Checkbox>{{name:"Garden", func:(e)=>{detailHendler(e,initialState)}}}</Checkbox>
+        <Checkbox>{{name:"Swiming Pool", func:(e)=>{detailHendler(e,initialState)}}}</Checkbox>
+        <Checkbox>{{name:"Parking", func:(e)=>{detailHendler(e,initialState)}}}</Checkbox>
+        <Checkbox>{{name:"Garage", func:(e)=>{detailHendler(e,initialState)}}}</Checkbox>
+        <Checkbox>{{name:"Pets Wellcome", func:(e)=>{detailHendler(e,initialState)}}}</Checkbox>
+        <Checkbox>{{name:"Smocking allow", func:(e)=>{detailHendler(e,initialState)}}}</Checkbox>
+         </section>
      );
 }
  
-export default Checkbox;
+export default CheckboxContainer;

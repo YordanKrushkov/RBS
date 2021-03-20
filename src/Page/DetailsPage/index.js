@@ -9,20 +9,20 @@ import {switchDetailsMenu,open,close} from '../../Utils/eventHandlers'
 import {Image,Transformation} from 'cloudinary-react'
 import GoogleMap from '../../Components/GoogleMap'
 import getLocation from '../../Utils/getLocation';
+import EditProperty from '../../Components/EditProperty'
 import {AuthContext} from '../../Context'
 import './index.scss';
-import userVerify from '../../Services/userVerify';
+
 const SingleCard = () => {
     const [properties, setProperties] = useState('');
     const [info, setInfo] = useState(true);
     const [location, setLocation]=useState('')
     const [mine,isMine]=useState(false) 
-    const {isAuthenticated, userEmail, name, surname,userProperties ,updateProperties }=useContext(AuthContext)
+    const {isAuthenticated, userEmail, name, surname, userID }=useContext(AuthContext)
     const isAuth =isAuthenticated
     let images=properties.images
     const history = useHistory()
     const id = history.location.pathname
-
     let ownerEmail,firstName, LastName='';
     if(properties){
          ownerEmail=properties.ownerId.email;
@@ -30,8 +30,7 @@ const SingleCard = () => {
          LastName=properties.ownerId.surname;
     }
     useEffect(()=>{
-        let prop=id.split('/')[1]
-        if(userProperties.includes(prop)){
+        if(properties&&properties.ownerId._id===userID){
             isMine(true)
         }
     },[properties])
@@ -74,8 +73,9 @@ const SingleCard = () => {
                             <li id='map' onClick={(e)=>switchDetailsMenu(e,setInfo)} >Map</li>
                         </ul>
                     </header>
-                    { info? <DetailsContainer properties={properties}/>
-                    :<div id="mapContainer"><GoogleMap location={location}/></div>}
+                    <EditProperty properties={properties}/>
+                    {/* { info? <DetailsContainer properties={properties}/>
+                    :<div id="mapContainer"><GoogleMap location={location}/></div>} */}
                 </div>
             </div>
             <main>

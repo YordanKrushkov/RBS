@@ -4,9 +4,9 @@ export const AuthContext = createContext();
 
 class AuthContextProvider extends Component {
     state = {
+        userID:'',
         isAuthenticated: null,
         userEmail: '',
-        userProperties:'',
         likedProperties:'',
         name:'',
         surname:''
@@ -14,16 +14,15 @@ class AuthContextProvider extends Component {
 
     updateProperties=(res)=>{
         this.setState({
-            userProperties:res.properties,
             likedProperties:res.likedProperties,
         })
     }
 
-    login = ({email,name,surname,properties,likedProperties}) => {
+    login = ({email,name,surname,likedProperties,id}) => {
         this.setState({
+            userID:id,
             isAuthenticated: true,
             userEmail: email,
-            userProperties:properties,
             likedProperties:likedProperties,
             name:name,
             surname: surname
@@ -41,11 +40,11 @@ class AuthContextProvider extends Component {
         userVerify().then((res) => {
                 if (res && res.auth) {
                     this.setState({
+                        userID:res.user.id,
                         isAuthenticated: true,
                         userEmail: res.user.email,
                         name:res.user.name,
                         surname:res.user.surname,
-                        userProperties:res.user.properties,
                         likedProperties:res.user.likedProperties
                     })
                 } else {

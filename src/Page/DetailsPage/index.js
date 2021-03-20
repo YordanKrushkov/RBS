@@ -34,7 +34,7 @@ const SingleCard = () => {
             isMine(true)
         }
     },[properties])
-   
+ 
     useEffect(() => {
         getProperties.getSingleProp(id)
         .then(res=>setProperties(res))
@@ -74,8 +74,8 @@ const SingleCard = () => {
                         </ul>
                     </header>
                     <EditProperty properties={properties}/>
-                    {/* { info? <DetailsContainer properties={properties}/>
-                    :<div id="mapContainer"><GoogleMap location={location}/></div>} */}
+                    { info? <DetailsContainer properties={properties}/>
+                    :<div id="mapContainer"><GoogleMap location={location}/></div>}
                 </div>
             </div>
             <main>
@@ -89,7 +89,10 @@ const SingleCard = () => {
                 <div>
                 {!mine 
                 ?<button onClick={()=>open('messageContainer','flex')}>Contact</button>
-                :<button onClick={()=>open('confirm','flex')} id="deleteButton">Delete</button>}
+                :(<div className="buttonsWrapper">
+                    <button onClick={()=>{open('editDetailsContainer','block'); close('detailsContainer')}} id="editPropButton">Edit</button>
+                    <button onClick={()=>open('confirm','flex')} id="deleteButton">Delete</button>
+                </div>)}
                 </div>
 
             </aside>

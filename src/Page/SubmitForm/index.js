@@ -94,7 +94,7 @@ const SubmitForm = () => {
                         </div>
                     </section>
                 </main>
-                <CheckboxContainer detailHendler={ detailHendler } initialState={ initialState } />
+                <CheckboxContainer className="checkboxContainer" detailHendler={ detailHendler } initialState={ initialState } />
                 <section className="addImages">
                     <div>
                         <ul id="imgContainer">

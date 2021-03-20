@@ -18,7 +18,8 @@ class AuthContextProvider extends Component {
         })
     }
 
-    login = ({email,name,surname,likedProperties,id}) => {
+    login = ({email,name,surname,likedProperties,id,_id}) => {
+        console.log(_id);
         this.setState({
             userID:id,
             isAuthenticated: true,
@@ -40,7 +41,7 @@ class AuthContextProvider extends Component {
         userVerify().then((res) => {
                 if (res && res.auth) {
                     this.setState({
-                        userID:res.user.id,
+                        userID:res.user._id,
                         isAuthenticated: true,
                         userEmail: res.user.email,
                         name:res.user.name,

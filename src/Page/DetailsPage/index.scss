@@ -118,6 +118,12 @@ main{
             }
         }
     }
+    .buttonsWrapper{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+  
     #deleteButton{
         background-color: $oposite ;
         &:hover{
@@ -128,7 +134,7 @@ main{
     section{
         display: flex;
         flex-wrap: wrap;
-        margin-top: 20px;
+        margin-top: 80px;
 
         img{
             width: 40%;
@@ -138,6 +144,7 @@ main{
             }
         }
     }
+  
 }
 
 

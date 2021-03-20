@@ -1,26 +1,34 @@
 @import "../../Desing/variables.scss";
 @import "../../Desing/mixin.scss";
 
+#editFormWrapper{
+    margin-bottom: 40px;
+    display: none;
 
+    h1{
+        margin: 0;
+        padding-bottom: 50px;
+        color: black;
+        
+        }
+}
 .editForm{
-    width: 40%;
+    width: 90%;
     height:90%;
-    margin: 40px auto;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     background-color: white;
-    position: relative;
-
+    header{
+        width: 100%;
+    }
+    main{
+        width: 100%;
+        margin: 0 auto;
+    }
     div{
 
-            position: absolute;
-            border-radius: 50%;
-            top: 40px;
-            left: 20px;
-            width: 150px;
-            height: 150px;
+            width: 320px;
             overflow:hidden;
    
         img{
@@ -33,19 +41,17 @@
             border: 1px solid $mainColor;
         }
     }
-        h1{
-        color: black;
-        }
+     
 
         section{
             display: flex;
-            flex-direction: column;
             width: 100%;
             align-items: center;
+            justify-content: space-between;
 
             label{
                 font-size: 16px;
-                font-weight: bold;
+                font-weight: 600;
                  margin: 5px 0;
             }
 

@@ -8,7 +8,6 @@ import Header from './Components/Header'
 import Properties from './Page/Properties';
 import SingleCard from './Page/DetailsPage';
 import Profile from './Page/Profile';
-import Edit from './Page/EditProfile';
 function App() {
   return (
     <div className="App">
@@ -24,7 +23,6 @@ function App() {
     <Route path="/search" component={Properties}/>
     <Route path="/profile" component={Profile}/>
     <Route path='/properties' component={ Properties } />
-    <Route path="/edit" component={Edit}/>
     <Route path="/:id" component={SingleCard}/>
     </Switch>
     </Router> 

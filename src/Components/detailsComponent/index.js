@@ -1,4 +1,4 @@
-import React from 'react'
+import {useEffect} from 'react'
 import './index.scss'
 import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
@@ -6,7 +6,7 @@ import { GiBathtub } from "react-icons/gi";
 const DetailsContainer = ({ properties }) => {
 
     return (
-        <div className="detailsContainer">
+        <div id="detailsContainer">
             <div id='detailsField'>
                 <div id="detailsIconWrapper">
                     <div>

@@ -17,7 +17,7 @@ const Checkbox = (props) => {
         <div className="checkbox">
             <h2>{ name }</h2>
             {checked 
-                ? <input type="checkbox" defaultChecked={ true } name={ name } id={ name } onChange={ func } />
+                ? <input type="checkbox" defaultChecked={checked} name={ name } id={ name } onChange={ func } />
                 : <input type="checkbox" name={ name } id={ name } onChange={ func } />
             }
         </div>

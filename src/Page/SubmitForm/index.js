@@ -12,8 +12,10 @@ import userVerify from '../../Services//userVerify'
 import CheckboxContainer from '../../Components/FormElements/Checkbox'
 
 const SubmitForm = () => {
-    const [arr,setArr]=useState([]);
+    const [arr, setArr] = useState([]);
     const [img, setIMG] = useState([]);
+    const [offer, changeOffer] = useState('RENT');
+
     const [properties, getData] = useState({
         type: '',
         price: '',
@@ -27,8 +29,6 @@ const SubmitForm = () => {
         floorplan: '',
         ownerId: '',
     });
-    const initialState=[]
-    const [offer, changeOffer] = useState('RENT');
     const history = useHistory()
     useEffect(() => {
         userVerify().then((res) => { !res.auth && history.push('/login') })
@@ -38,21 +38,25 @@ const SubmitForm = () => {
     const onChangeHandler = (e) => {
         getData({
             ...properties,
-            details:arr,
+            details: arr,
+            sellOrRent: offer,
             [e.target.id]: e.target.value,
         });
-        console.log(properties);
 
     };
+    useEffect(() => {
+        getData({
+            ...properties,
+            sellOrRent: offer
+        })
+    }, [offer])
     const submitHandler = (e) => {
         e.preventDefault();
-
         getData({
             ...properties,
             sellOrRent: offer,
-            details:arr,
+            details: arr,
         });
-        console.log(properties);
         submitData(img, properties, '/properties/create')
             .then((res) => {
                 history.push('/')
@@ -99,7 +103,7 @@ const SubmitForm = () => {
                         </div>
                     </section>
                 </main>
-                <CheckboxContainer className="checkboxContainer" detailHendler={detailHendler} arr={ arr } setArr={setArr}/>
+                <CheckboxContainer className="checkboxContainer" detailHendler={ detailHendler } arr={ arr } setArr={ setArr } />
                 <section className="addImages">
                     <div>
                         <ul id="imgContainer">
@@ -108,7 +112,7 @@ const SubmitForm = () => {
                     </div>
                     <section>
                         <span onClick={ () => { openImgInput('fileImg') } }>{ img.length == 0 ? "Add Profile Picture" : "Add More Images" }</span>
-                        <input id="fileImg" type="file" multiple onChange={ (e) => { uploadImage(e, setIMG,'imgContainer') } } />
+                        <input id="fileImg" type="file" multiple onChange={ (e) => { uploadImage(e, setIMG, 'imgContainer') } } />
                     </section>
 
                 </section>

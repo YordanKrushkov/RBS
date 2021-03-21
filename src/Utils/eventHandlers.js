@@ -43,6 +43,7 @@ const detailHendler = (e, setArr, arr) => {
         initialState.splice(index, 1)
         setArr(initialState)
     }
+    return initialState
 };
 const open = (id, display) => {
     let el = document.getElementById(id);
@@ -50,9 +51,37 @@ const open = (id, display) => {
         el.style.display = display
     }
 }
+const openX = () => {
+    let element = document.querySelectorAll('.deleteImage');
+    if (element) {
+        Array.from(element).forEach(el => {
+            if (el.style.display !== 'block') {
+                el.style.display = 'block'
+            }
+        })
+    }
+
+}
 const close = (id) => {
     let el = document.getElementById(id);
     el.style.display = 'none'
+}
+const closeX = (id) => {
+    let element = document.querySelectorAll('.deleteImage');
+    if (element) {
+        Array.from(element).forEach(el => {
+            el.style.display = 'none'
+        })
+    }
+}
+
+const confirm = (e) => {
+    if (e.target.innerHTML === 'Yes') {
+        return true
+    } else if (e.target.innerHTML === 'No') {
+        close('confirm')
+        return false
+    }
 }
 export {
     openImgInput,
@@ -60,5 +89,8 @@ export {
     detailHendler,
     switchDetailsMenu,
     close,
-    open
+    open,
+    confirm,
+    openX,
+    closeX
 }

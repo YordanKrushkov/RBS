@@ -1,7 +1,7 @@
 import './index.scss';
 
 
-const Confirm = ({func}) => {
+const Confirm = ({func, }) => {
 
 
     return ( 

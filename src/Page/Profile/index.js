@@ -13,12 +13,13 @@ import Edit from '../../Components/EditProfile'
 const Profile = () => {
     const [user, setUser] = useState('')
     const {liked} = useContext(ActionContext)
+    const [update, isUpdate]=useState(false)
 
     useEffect(() => {
         getUser()
         .then(res => setUser(res))
         .catch(err => console.error(err))
-    },[liked])
+    },[liked,update])
    
     const context = useContext(AuthContext)
     const history = useHistory()
@@ -31,7 +32,7 @@ const Profile = () => {
 
     return ( 
         <div id="profileWrapper">
-            <Edit/>
+            <Edit isUpdate={isUpdate}/>
             <header id="hidde">
                 <div id="profilePicture">
                 {user.profilephoto ?<Image publicId={user.profilephoto} id="detailsProfilePicture" cloudName="zltgrd">

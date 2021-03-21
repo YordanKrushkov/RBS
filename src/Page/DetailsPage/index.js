@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import deletePropertie from '../../Services/deletePropertie'
 import getProperties from '../../Services/getData';
 import DetailsContainer from '../../Components/DetailsComponent';
+import DetailImages from '../../Components/DetailsImages'
 import Message from '../../Components/Message';
 import Confirm from '../../Components/ConfirmAction'
 import {switchDetailsMenu,open,close} from '../../Utils/eventHandlers'
@@ -11,6 +12,7 @@ import GoogleMap from '../../Components/GoogleMap'
 import getLocation from '../../Utils/getLocation';
 import EditProperty from '../../Components/EditProperty'
 import {AuthContext} from '../../Context'
+import AddMoreImages from '../../Components/AddMoreImages'
 import './index.scss';
 
 const SingleCard = () => {
@@ -90,19 +92,13 @@ const SingleCard = () => {
                 {!mine 
                 ?<button onClick={()=>open('messageContainer','flex')}>Contact</button>
                 :(<div className="buttonsWrapper">
-                    <button onClick={()=>{open('editDetailsContainer','block'); close('detailsContainer')}} id="editPropButton">Edit</button>
+                    <button onClick={()=>{open('editDetailsContainer','block');open('newImageWrapper','block'); close('detailsContainer')}} id="editPropButton">Edit</button>
                     <button onClick={()=>open('confirm','flex')} id="deleteButton">Delete</button>
                 </div>)}
                 </div>
-
             </aside>
-            <section>
-            {images && images.map(x=>
-                <Image publicId={x} key={x} cloudName="zltgrd" onClick={changePicture}>
-                <Transformation width="150" height="150"/>
-                </Image>
-        )}
-            </section>
+            <DetailImages images={images} changePicture={changePicture}/>
+            <AddMoreImages properties={properties}/>
             </main>
             <Confirm func={clickHandler}/>
             <Message ownerName={`${firstName} ${LastName}`} ownerEmail={ownerEmail} email={userEmail} name={`${name} ${surname}`}/>

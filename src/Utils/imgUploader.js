@@ -1,4 +1,3 @@
-import getCookie from '../Services/cookies'
 
 const uploadSingleImage=(e,setIMG)=>{
     console.log(e.target);
@@ -12,33 +11,15 @@ const uploadSingleImage=(e,setIMG)=>{
     }
 };
 
-
-
-const uploadImage = (e, setIMG) => {
+const uploadImage = (e, setIMG, id) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-        appendList('imgContainer', reader.result)
+        appendList(id, reader.result)
         setIMG((img) => [...img, reader.result])
     }
 };
-
-const setimage = async (base64EncodedImage, body, url) => {
-    try {
-    let result = await fetch(`http://localhost:4000${url}`, {
-            method: "POST",
-            body: JSON.stringify({ data: base64EncodedImage, prop: body }),
-            headers: { "Content-type": "application/json", 'Authorization': getCookie('x-auth-token') }
-        });
-
-    const res=await result.json()
-    return res;
-
-    } catch (error) {
-        console.error(error);
-    }
-}
 
 const appendList = (id, sorce) => {
     let container = document.getElementById(id);
@@ -53,5 +34,5 @@ const appendList = (id, sorce) => {
 
 
 export {
-    setimage, appendList, uploadImage,uploadSingleImage
+ appendList, uploadImage,uploadSingleImage
 }

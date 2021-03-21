@@ -7,16 +7,15 @@ import submitData from '../../Services/submitData'
 import { Image, Transformation } from 'cloudinary-react'
 import './index.scss'
 import img from '../../Assets/images/profile.png'
-const Edit = (loged) => {
-    const [user, setUser] = useState({})
+const Edit = ({isUpdate}) => {
+    const [user, setUser] = useState('')
     const [IMG, setImg] = useState('')
-
     useEffect(() => {
         getUser()
-        .then(res => { setUser(res) })
+        .then(res => { setUser(res); 
+        })
         .catch(err => console.log(err))
     }, [IMG]);
-    const history = useHistory()
     const onChangeHandler = (e) => {
 
         setUser({
@@ -27,12 +26,15 @@ const Edit = (loged) => {
     const submitHandler = async (e) => {
         e.preventDefault();
         submitData(IMG.img, user, "/api/updateuser")
-        .then(() =>{ 
+        .then((res) =>{ 
             close('editFormWrapper'); 
             open('hidde','flex');
+            isUpdate(true);
+            setImg('') 
             })
             .catch(err => console.log(err))
-            setImg('') 
+            isUpdate(false)
+
     };
 
 

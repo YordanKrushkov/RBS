@@ -5,7 +5,7 @@ import { GiBathtub } from "react-icons/gi";
 import BedroomCount from '../../Components/FormElements/Properties/Bedrooms'
 import BathroomCount from '../../Components/FormElements/Properties/Bathrooms'
 import CheckboxContainer from '../../Components/FormElements/Checkbox'
-import {close, detailHendler, open} from '../../Utils/eventHandlers'
+import {close, closeX, detailHendler, open} from '../../Utils/eventHandlers'
 import UpdateProfile from '../../Services/updateProperty';
 
 const EditProperty = ({properties}) => {
@@ -54,6 +54,7 @@ setEdit({
         close('editDetailsContainer');
         close('newImageWrapper');
         open('detailsContainer', 'block');
+        closeX()
         } )
         .catch((err)=>console.log(err))
     }

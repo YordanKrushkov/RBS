@@ -6,7 +6,7 @@ import DetailsContainer from '../../Components/DetailsComponent';
 import DetailImages from '../../Components/DetailsImages'
 import Message from '../../Components/Message';
 import Confirm from '../../Components/ConfirmAction'
-import {switchDetailsMenu,open,close} from '../../Utils/eventHandlers'
+import {switchDetailsMenu,open,close,confirm, openX} from '../../Utils/eventHandlers'
 import {Image,Transformation} from 'cloudinary-react'
 import GoogleMap from '../../Components/GoogleMap'
 import getLocation from '../../Utils/getLocation';
@@ -18,6 +18,7 @@ import './index.scss';
 const SingleCard = () => {
     const [properties, setProperties] = useState('');
     const [info, setInfo] = useState(true);
+    const [update, setUpdate]=useState(false)
     const [location, setLocation]=useState('')
     const [mine,isMine]=useState(false) 
     const {isAuthenticated, userEmail, name, surname, userID }=useContext(AuthContext)
@@ -36,13 +37,12 @@ const SingleCard = () => {
             isMine(true)
         }
     },[properties])
- 
     useEffect(() => {
         getProperties.getSingleProp(id)
         .then(res=>setProperties(res))
         .catch(err=>console.error(err))
-        
-    }, [])
+        console.log(update);
+    }, [update])
     useEffect(()=>{
         getLocation(properties.street, properties.city)
         .then(res=>setLocation(res))
@@ -54,12 +54,12 @@ const SingleCard = () => {
         profile.src=e.target.src
     }
     const clickHandler=(e)=>{
-        if(e.target.innerHTML==='Yes'){
-            deletePropertie(id).then(()=>{
-                history.push('/')
-            })
-        }else if(e.target.innerHTML==='No'){
-            close('confirm')
+        let res=confirm(e);
+        if(res){
+            deletePropertie(id)
+            .then(()=>{
+            history.push('/')
+            }).catch(err=>console.log(err))
         }
     }
     return (
@@ -75,7 +75,7 @@ const SingleCard = () => {
                             <li id='map' onClick={(e)=>switchDetailsMenu(e,setInfo)} >Map</li>
                         </ul>
                     </header>
-                    <EditProperty properties={properties}/>
+                    <EditProperty setUpdate={setUpdate} properties={properties}/>
                     { info? <DetailsContainer properties={properties}/>
                     :<div id="mapContainer"><GoogleMap location={location}/></div>}
                 </div>
@@ -92,13 +92,13 @@ const SingleCard = () => {
                 {!mine 
                 ?<button onClick={()=>open('messageContainer','flex')}>Contact</button>
                 :(<div className="buttonsWrapper">
-                    <button onClick={()=>{open('editDetailsContainer','block');open('newImageWrapper','block'); close('detailsContainer')}} id="editPropButton">Edit</button>
+                    <button onClick={()=>{open('editDetailsContainer','block');open('newImageWrapper','block');openX(); close('detailsContainer')}} id="editPropButton">Edit</button>
                     <button onClick={()=>open('confirm','flex')} id="deleteButton">Delete</button>
                 </div>)}
                 </div>
             </aside>
-            <DetailImages images={images} changePicture={changePicture}/>
-            <AddMoreImages properties={properties}/>
+            <DetailImages setUpdate={setUpdate} mine={mine} images={images} id={properties._id} changePicture={changePicture}/>
+            {mine &&<AddMoreImages setUpdate={setUpdate} properties={properties}/>}
             </main>
             <Confirm func={clickHandler}/>
             <Message ownerName={`${firstName} ${LastName}`} ownerEmail={ownerEmail} email={userEmail} name={`${name} ${surname}`}/>

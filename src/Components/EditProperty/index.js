@@ -6,28 +6,33 @@ import BedroomCount from '../../Components/FormElements/Properties/Bedrooms'
 import BathroomCount from '../../Components/FormElements/Properties/Bathrooms'
 import CheckboxContainer from '../../Components/FormElements/Checkbox'
 import {close, detailHendler, open} from '../../Utils/eventHandlers'
-import getCookie from '../../Services/cookies'
-import UpdateProfile from '../../Services/updateProperty'
+import UpdateProfile from '../../Services/updateProperty';
+
 const EditProperty = ({properties}) => {
 const initialState=properties.details
 const {bedrooms,bathroom,description}=properties
-
+const [arr,setArr]=useState([]);
 const [edit,setEdit]=useState({
     id:'',
     bedrooms: '',
     bathroom: '',
-    details: initialState,
+    details: [],
     description: '',
 })
+
+useEffect(() => {
+setArr(initialState)
+}, [initialState]);
+
 useEffect(()=>{
 setEdit({
     id:properties._id,
     bedrooms:bedrooms,
     bathroom:bathroom,
     description:description,
-    details:initialState
+    details:arr
 })
-},[properties])
+},[arr, properties])
 
     const onChangeHandler=(e)=>{
         setEdit({
@@ -41,10 +46,15 @@ setEdit({
     
         setEdit({
             ...edit,
-            details: initialState,
-        })
+            details: arr,
+        });
+        
         UpdateProfile(edit)
-        .then(()=> {close('editDetailsContainer');open('detailsContainer', 'block')} )
+        .then(()=> {
+        close('editDetailsContainer');
+        close('newImageWrapper');
+        open('detailsContainer', 'block');
+        } )
         .catch((err)=>console.log(err))
     }
     return ( 
@@ -53,26 +63,18 @@ setEdit({
             <div id="detailsIconWrapper">
                 <div>
                     <IoIosBed className="iconsEdit" />
-                    {/* <span>{ properties.bedrooms }</span> */}
                     <BedroomCount>{ { className: "optionMenu",value:properties.bedrooms, func: onChangeHandler } }</BedroomCount>
                 </div>
                 <div>
                     <GiBathtub className="iconsEdit" />
                     <BathroomCount>{ { className: "optionMenu",value:properties.bathroom, func: onChangeHandler } }</BathroomCount>
-
                 </div>
-
             </div>
             <div className="infoBody">
                 <div>
                     <h2>Details</h2>
                 </div>
-                {/* <ul className="moreDetailsList">
-                    { properties.details ? (properties.details.map(e => {
-                        return <li key={ e }>{ e }</li>
-                    })) : null }
-                </ul> */}
-                <CheckboxContainer className="editPropertyCheckbox" detailHendler={ detailHendler } initialState={ initialState }/>
+                <CheckboxContainer className="editPropertyCheckbox" detailHendler={detailHendler} initialState={ initialState } setArr={setArr} arr={ arr }/>
             </div>
             <div id="detailDescription">
                 <h2>Description</h2>

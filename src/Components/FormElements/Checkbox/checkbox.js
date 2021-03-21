@@ -12,11 +12,13 @@ const Checkbox = (props) => {
             isChecked(true)
         }
     }, [initialState])
+    
     return (
         <div className="checkbox">
             <h2>{ name }</h2>
-            {checked ? <input type="checkbox" defaultChecked={ true } name={ name } id={ name } onChange={ func } />
-                     : <input type="checkbox" name={ name } id={ name } onChange={ func } /> 
+            {checked 
+                ? <input type="checkbox" defaultChecked={ true } name={ name } id={ name } onChange={ func } />
+                : <input type="checkbox" name={ name } id={ name } onChange={ func } />
             }
         </div>
     );

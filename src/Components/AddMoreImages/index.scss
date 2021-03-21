@@ -1,0 +1,58 @@
+@import '../../Desing/variables.scss';
+@import '../../Desing/mixin.scss';
+
+#newImageWrapper{
+    width: 100%;
+    margin-top: 20px !important;
+    display: none;
+    div {
+        width: 100%;
+        margin: 10px auto;
+        box-sizing: border-box;
+
+        #newImageList{
+            width: 100%;
+            min-height: 40px;
+            border-radius: 5px;
+            list-style: none;
+            display: flex !important;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 0;
+            li{
+                text-decoration: none;
+                width: 120px;
+                margin: 0 5px;
+
+                img{
+                    object-fit: cover;
+                    width: 120px;
+                }
+            }
+        }
+    }
+    }
+    button{
+        @include buttons;
+        margin: 10px;
+        width: 100%;
+    }
+    footer{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        #addMoreImages{
+            font-size: 48px;
+            color: $mainColor;
+    
+
+            &:hover{
+                cursor: pointer;
+                color: darken($mainColor, 5);
+                font-size: 49px;
+            }
+        }
+        input {
+            display: none;
+        }
+    }

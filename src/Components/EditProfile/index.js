@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { getUser } from '../../Services/Users'
 import { openImgInput, close,open } from '../../Utils/eventHandlers'
-import { uploadSingleImage, setimage } from '../../Utils/imgUploader';
+import { uploadSingleImage } from '../../Utils/imgUploader';
+import submitData from '../../Services/submitData'
 import { Image, Transformation } from 'cloudinary-react'
 import './index.scss'
 import img from '../../Assets/images/profile.png'
@@ -14,7 +15,7 @@ const Edit = (loged) => {
         getUser()
         .then(res => { setUser(res) })
         .catch(err => console.log(err))
-    }, [])
+    }, [IMG]);
     const history = useHistory()
     const onChangeHandler = (e) => {
 
@@ -25,9 +26,13 @@ const Edit = (loged) => {
     };
     const submitHandler = async (e) => {
         e.preventDefault();
-        setimage(IMG.img, user, "/api/updateuser")
-            .then(() =>{ close('editFormWrapper'); open('hidde','flex')})
+        submitData(IMG.img, user, "/api/updateuser")
+        .then(() =>{ 
+            close('editFormWrapper'); 
+            open('hidde','flex');
+            })
             .catch(err => console.log(err))
+            setImg('') 
     };
 
 
@@ -35,8 +40,10 @@ const Edit = (loged) => {
         <form className="editForm" onSubmit={ submitHandler }>
         <header>
             <div onClick={ () => openImgInput('uploadProfilePicture') }>
-                { user.profilephoto ?
-                    <Image publicId={ user.profilephoto } id="detailsProfilePicture" cloudName="zltgrd">
+                { IMG.img ?
+                    <img src={ IMG.img} alt="ProfilePicture" /> 
+                    : user.profilephoto 
+                    ?<Image publicId={ user.profilephoto } id="detailsProfilePicture" cloudName="zltgrd">
                         <Transformation width="150" height="150" />
                     </Image>
                     : <img src={ IMG.img || img } alt="ProfilePicture" /> }

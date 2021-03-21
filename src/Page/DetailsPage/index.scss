@@ -130,20 +130,6 @@ main{
             background-color: darken($oposite, 5);
         }
     }
-
-    section{
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 80px;
-
-        img{
-            width: 40%;
-            margin: 5px 10px 5px 0;
-            &:hover{
-                cursor: pointer;
-            }
-        }
-    }
   
 }
 

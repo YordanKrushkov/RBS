@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom'
 import './index.scss'
 import AllCities from '../../Components/FormElements/Cities'
 import { openImgInput, switchMenu, detailHendler } from '../../Utils/eventHandlers'
-import { setimage, uploadImage } from '../../Utils/imgUploader';
+import { uploadImage } from '../../Utils/imgUploader';
+import submitData from '../../Services/submitData'
 import TypeSelect from '../../Components/FormElements/Properties/Type';
 import BedroomCount from '../../Components/FormElements/Properties/Bedrooms'
 import BathroomCount from '../../Components/FormElements/Properties/Bathrooms'
@@ -11,7 +12,7 @@ import userVerify from '../../Services//userVerify'
 import CheckboxContainer from '../../Components/FormElements/Checkbox'
 
 const SubmitForm = () => {
-    const initialState = [];
+    const [arr,setArr]=useState([]);
     const [img, setIMG] = useState([]);
     const [properties, getData] = useState({
         type: '',
@@ -21,14 +22,14 @@ const SubmitForm = () => {
         bedrooms: '',
         bathroom: '',
         sellOrRent: '',
-        details: initialState,
+        details: arr,
         description: '',
         floorplan: '',
         ownerId: '',
     });
+    const initialState=[]
     const [offer, changeOffer] = useState('RENT');
     const history = useHistory()
-
     useEffect(() => {
         userVerify().then((res) => { !res.auth && history.push('/login') })
             .catch((err) => history.push('/login'))
@@ -37,18 +38,22 @@ const SubmitForm = () => {
     const onChangeHandler = (e) => {
         getData({
             ...properties,
-            sellOrRent: offer,
-            details: [(details) => [...details, ...initialState]],
+            details:arr,
             [e.target.id]: e.target.value,
         });
+        console.log(properties);
+
     };
     const submitHandler = (e) => {
         e.preventDefault();
+
         getData({
             ...properties,
-            details: (details => [...details, ...initialState]),
+            sellOrRent: offer,
+            details:arr,
         });
-        setimage(img, properties, '/api/upload')
+        console.log(properties);
+        submitData(img, properties, '/properties/create')
             .then((res) => {
                 history.push('/')
             })
@@ -94,7 +99,7 @@ const SubmitForm = () => {
                         </div>
                     </section>
                 </main>
-                <CheckboxContainer className="checkboxContainer" detailHendler={ detailHendler } initialState={ initialState } />
+                <CheckboxContainer className="checkboxContainer" detailHendler={detailHendler} arr={ arr } setArr={setArr}/>
                 <section className="addImages">
                     <div>
                         <ul id="imgContainer">
@@ -103,7 +108,7 @@ const SubmitForm = () => {
                     </div>
                     <section>
                         <span onClick={ () => { openImgInput('fileImg') } }>{ img.length == 0 ? "Add Profile Picture" : "Add More Images" }</span>
-                        <input id="fileImg" type="file" multiple onChange={ (e) => { uploadImage(e, setIMG) } } />
+                        <input id="fileImg" type="file" multiple onChange={ (e) => { uploadImage(e, setIMG,'imgContainer') } } />
                     </section>
 
                 </section>

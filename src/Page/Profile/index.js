@@ -1,44 +1,44 @@
 import './index.scss'
 import { useEffect, useState, useContext, Fragment } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import {getUser} from '../../Services/Users'
+import { getUser } from '../../Services/Users'
 import { FaCog } from "react-icons/fa";
 import { AuthContext } from '../../Context'
 import { ActionContext } from '../../Context/actionContext'
 import CardElement from '../../Components/Cards'
-import {Image, Transformation} from 'cloudinary-react'
+import { Image, Transformation } from 'cloudinary-react'
 import img from '../../Assets/images/profile.png'
-import {open,close} from '../../Utils/eventHandlers'
+import { open, close } from '../../Utils/eventHandlers'
 import Edit from '../../Components/EditProfile'
 const Profile = () => {
     const [user, setUser] = useState('')
-    const {liked} = useContext(ActionContext)
-    const [update, isUpdate]=useState(false)
+    const { liked } = useContext(ActionContext)
+    const [update, isUpdate] = useState(false)
 
     useEffect(() => {
         getUser()
-        .then(res => setUser(res))
-        .catch(err => console.error(err))
-    },[liked,update])
-   
+            .then(res => setUser(res))
+            .catch(err => console.error(err))
+    }, [liked, update])
+
     const context = useContext(AuthContext)
     const history = useHistory()
-    const {properties,likedProperties} = user;
-    
+    const { properties, likedProperties } = user;
+
     const logOut = (e) => {
         context.logout()
         history.push('/')
     }
 
-    return ( 
+    return (
         <div id="profileWrapper">
-            <Edit isUpdate={isUpdate}/>
+            <Edit isUpdate={ isUpdate } />
             <header id="hidde">
                 <div id="profilePicture">
-                {user.profilephoto ?<Image publicId={user.profilephoto} id="detailsProfilePicture" cloudName="zltgrd">
-                <Transformation width="150" height="150"/>
-                 </Image>
-                    :<img src={img } alt="" />}
+                    { user.profilephoto ? <Image publicId={ user.profilephoto } id="detailsProfilePicture" cloudName="zltgrd">
+                        <Transformation width="150" height="150" />
+                    </Image>
+                        : <img src={ img } alt="" /> }
                 </div>
                 <div id="profileInfo">
                     <h1>My Profile</h1>
@@ -65,7 +65,7 @@ const Profile = () => {
                             </div> : null }
                     </div>
                 </div>
-                <div className="profileMenu" onClick={(e)=>{close('hidde');open('editFormWrapper','block') }}><FaCog /></div>
+                <div className="profileMenu" onClick={ (e) => { close('hidde'); open('editFormWrapper', 'block') } }><FaCog /></div>
                 <div id="profileMenuWrapper">
                     <ul>
                         <li><Link to="#">Messeges</Link></li>
@@ -77,18 +77,18 @@ const Profile = () => {
                 <h1 className="propsH1 top">My properties</h1>
                 <div className="myProperties">
                     { properties ? properties.map(x =>
-                        <div className="myProf"  key={x._id}>
-                            <CardElement data={ x }/>
+                        <div className="myProf" key={ x._id }>
+                            <CardElement data={ x } />
                         </div>
                     ) : null }
 
                 </div>
-                    <h1 className="propsH1">Liked properties</h1>
+                <h1 className="propsH1">Liked properties</h1>
                 <div className="myProperties">
                     { likedProperties ? likedProperties.map(x =>
-                    <div className="myProf" key={x._id}>
-                            <CardElement  data={ x }/>
-                    </div>
+                        <div className="myProf" key={ x._id }>
+                            <CardElement data={ x } />
+                        </div>
                     ) : null }
 
                 </div>

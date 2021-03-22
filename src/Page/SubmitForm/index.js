@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
-import './index.scss'
-import AllCities from '../../Components/FormElements/Cities'
-import { openImgInput, switchMenu, detailHendler } from '../../Utils/eventHandlers'
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import AllCities from '../../Components/FormElements/Cities';
+import { openImgInput, switchMenu, detailHendler } from '../../Utils/eventHandlers';
 import { uploadImage } from '../../Utils/imgUploader';
-import submitData from '../../Services/submitData'
-import TypeSelect from '../../Components/FormElements/Properties/Type';
-import BedroomCount from '../../Components/FormElements/Properties/Bedrooms'
-import BathroomCount from '../../Components/FormElements/Properties/Bathrooms'
-import userVerify from '../../Services//userVerify'
-import CheckboxContainer from '../../Components/FormElements/Checkbox'
+import submitData from '../../Services/submitData';
+import {userVerify} from '../../Services/Users';
+import {verifySubmit} from '../../Utils/verifyData'
+import CheckboxContainer from '../../Components/FormElements/Checkbox';
+import OptionsSection from '../../Components/FormElements/OptionsSection';
+import './index.scss';
 
 const SubmitForm = () => {
     const [arr, setArr] = useState([]);
@@ -26,13 +25,13 @@ const SubmitForm = () => {
         sellOrRent: '',
         details: arr,
         description: '',
-        floorplan: '',
         ownerId: '',
     });
     const history = useHistory()
     useEffect(() => {
-        userVerify().then((res) => { !res.auth && history.push('/login') })
-            .catch((err) => history.push('/login'))
+        userVerify()
+        .then((res) => { !res.auth && history.push('/login') })
+        .catch((err) => history.push('/login'))
     }, [])
 
     const onChangeHandler = (e) => {
@@ -42,7 +41,6 @@ const SubmitForm = () => {
             sellOrRent: offer,
             [e.target.id]: e.target.value,
         });
-
     };
     useEffect(() => {
         getData({
@@ -52,6 +50,7 @@ const SubmitForm = () => {
     }, [offer])
     const submitHandler = (e) => {
         e.preventDefault();
+        verifySubmit(properties,img)
         getData({
             ...properties,
             sellOrRent: offer,
@@ -59,7 +58,11 @@ const SubmitForm = () => {
         });
         submitData(img, properties, '/properties/create')
             .then((res) => {
-                history.push('/')
+                if(res){
+                    history.push('/')
+                }else if(res.error){
+                  return
+                }
             })
             .catch(err => console.error(err))
     };
@@ -76,42 +79,26 @@ const SubmitForm = () => {
                 <main>
                     <section>
                         <div className="submitInputWrapper">
-                            <h2>City</h2>
+                            <h2>City *</h2>
                             <AllCities>{ { className: "optionMenu", func: onChangeHandler } }</AllCities>
                         </div>
                         <div className="submitInputWrapper addressStreet">
-                            <h2>Address</h2>
+                            <h2>Address *</h2>
                             <input type="text" id="street" onChange={ onChangeHandler } />
                         </div>
                     </section>
-                    <section>
-                        <div className="submitInputWrapper secondRow">
-                            <h2>Property Type</h2>
-                            <TypeSelect>{ { className: "optionMenu", func: onChangeHandler } }</TypeSelect>
-                        </div>
-                        <div className="submitInputWrapper secondRow">
-                            <h2>Bedrooms</h2>
-                            <BedroomCount>{ { className: "optionMenu", func: onChangeHandler } }</BedroomCount>
-                        </div>
-                        <div className="submitInputWrapper secondRow">
-                            <h2>Bathrooms</h2>
-                            <BathroomCount>{ { className: "optionMenu", func: onChangeHandler } }</BathroomCount>
-                        </div>
-                        <div className="submitInputWrapper secondRow">
-                            <h2>Price</h2>
-                            <input className="optionMenu" type="text" id="price" onChange={ onChangeHandler } />
-                        </div>
-                    </section>
+                    <OptionsSection onChangeHandler={onChangeHandler} />
+                    <p>All fields marked with <b>*</b> are required and must be filled.</p>
+                    <p id="wrongInput"></p>
                 </main>
                 <CheckboxContainer className="checkboxContainer" detailHendler={ detailHendler } arr={ arr } setArr={ setArr } />
                 <section className="addImages">
                     <div>
                         <ul id="imgContainer">
-
                         </ul>
                     </div>
                     <section>
-                        <span onClick={ () => { openImgInput('fileImg') } }>{ img.length == 0 ? "Add Profile Picture" : "Add More Images" }</span>
+                        <span id="imageButton" onClick={ () => { openImgInput('fileImg') } }>{ img.length == 0 ? "Add Profile Picture *" : "Add More Images" }</span>
                         <input id="fileImg" type="file" multiple onChange={ (e) => { uploadImage(e, setIMG, 'imgContainer') } } />
                     </section>
 

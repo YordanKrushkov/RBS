@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import  './index.scss'
 import { Link, useHistory } from 'react-router-dom'
 import {AuthContext} from '../../Context';
@@ -37,7 +37,7 @@ const Login = () => {
     return (
         <div className="loginContainer">
             <h1 >Sign in</h1>
-            <p >Sign in to save your favourite properties, searches, house prices and more.</p>
+            <p >Sign in for your favourite properties and more.</p>
             <form action="" className="loginForm" onSubmit={ submitHandler }>
                 <label htmlFor="email">Email</label>
                 <input type="email" name="" id="email"  onChange={ chnageHendler } />

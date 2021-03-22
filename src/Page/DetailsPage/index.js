@@ -1,18 +1,18 @@
 import { useState, useEffect,useContext } from 'react';
 import { useHistory } from 'react-router-dom'
-import deletePropertie from '../../Services/deletePropertie'
-import getProperties from '../../Services/getData';
+import {deleteProperty,getSingleProp} from '../../Services/propertiesServices'
 import DetailsContainer from '../../Components/DetailsComponent';
 import DetailImages from '../../Components/DetailsImages'
 import Message from '../../Components/Message';
 import Confirm from '../../Components/ConfirmAction'
-import {switchDetailsMenu,open,close,confirm, openX} from '../../Utils/eventHandlers'
+import {switchDetailsMenu,confirm} from '../../Utils/eventHandlers'
 import {Image,Transformation} from 'cloudinary-react'
 import GoogleMap from '../../Components/GoogleMap'
 import getLocation from '../../Utils/getLocation';
 import EditProperty from '../../Components/EditProperty'
 import {AuthContext} from '../../Context'
 import AddMoreImages from '../../Components/AddMoreImages'
+import Aside from '../../Components/DetailsAsside'
 import './index.scss';
 
 const SingleCard = () => {
@@ -38,10 +38,9 @@ const SingleCard = () => {
         }
     },[properties])
     useEffect(() => {
-        getProperties.getSingleProp(id)
+        getSingleProp(id)
         .then(res=>setProperties(res))
         .catch(err=>console.error(err))
-        console.log(update);
     }, [update])
     useEffect(()=>{
         getLocation(properties.street, properties.city)
@@ -56,7 +55,7 @@ const SingleCard = () => {
     const clickHandler=(e)=>{
         let res=confirm(e);
         if(res){
-            deletePropertie(id)
+            deleteProperty(id)
             .then(()=>{
             history.push('/')
             }).catch(err=>console.log(err))
@@ -81,22 +80,7 @@ const SingleCard = () => {
                 </div>
             </div>
             <main>
-            <aside>
-                <header>
-                    <h3>{ `${properties.bedrooms} ${properties.type}` }</h3>
-                    <h5>{ `${properties.street} ${properties.city}` }</h5>
-                    <h5>{ properties.ownerId ? (`${properties.ownerId.name} ${properties.ownerId.surname}`) : null }</h5>
-                    <h2> £ { properties.price }</h2>
-                </header>
-                <div>
-                {!mine 
-                ?<button onClick={()=>open('messageContainer','flex')}>Contact</button>
-                :(<div className="buttonsWrapper">
-                    <button onClick={()=>{open('editDetailsContainer','block');open('newImageWrapper','block');openX(); close('detailsContainer')}} id="editPropButton">Edit</button>
-                    <button onClick={()=>open('confirm','flex')} id="deleteButton">Delete</button>
-                </div>)}
-                </div>
-            </aside>
+            <Aside properties={properties} mine={mine} />
             <DetailImages setUpdate={setUpdate} mine={mine} images={images} id={properties._id} changePicture={changePicture}/>
             {mine &&<AddMoreImages setUpdate={setUpdate} properties={properties}/>}
             </main>

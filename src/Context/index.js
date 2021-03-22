@@ -1,5 +1,5 @@
 import React, { Component, createContext } from 'react';
-import userVerify from '../Services/userVerify'
+import {userVerify} from '../Services/Users'
 export const AuthContext = createContext();
 
 class AuthContextProvider extends Component {
@@ -19,7 +19,6 @@ class AuthContextProvider extends Component {
     }
 
     login = ({email,name,surname,likedProperties,id,_id}) => {
-        console.log(_id);
         this.setState({
             userID:id,
             isAuthenticated: true,
@@ -52,7 +51,7 @@ class AuthContextProvider extends Component {
                     this.logout()
                 }
             })
-            .catch((e) =>console.log(e))
+            .catch((err) =>console.log(err))
     }
     
     render() {

@@ -1,148 +1,71 @@
-@import '../../Desing/variables.scss';
-@import '../../Desing/mixin.scss';
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
 
-#detailsPage{
+#detailsPage {
     width: 90%;
     display: flex;
     justify-content: space-between;
     margin: 40px auto;
 
-#propertyInfo{
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-
-    img{
-    width: 90%;
-    }
-
-    header{
+    #propertyInfo {
+        width: 90%;
         display: flex;
-        justify-content: flex-start;
-        max-width: 90%;
+        flex-direction: column;
 
+        img {
+            width: 90%;
+        }
 
-        ul{
-            width: 100%;
-            height: 80px;
+        header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            list-style-type: none;
-            padding: 0;
-            margin: 0px;
-    
-            li{
-                font-size: 24px;
-                font-weight: bold;
-                height: 100%;
-                width: 100%;
-            
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
-                background-color: $mainColor;
+            justify-content: flex-start;
+            max-width: 90%;
 
-                &:hover{
-                    cursor: pointer;
-                    background-color: darken($mainColor, 5);
+            ul {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                list-style-type: none;
+                padding: 0;
+                margin: 0px;
+
+                li {
+                    font-size: 20px;
+                    font-weight: 600;
+                    height: 100%;
+                    width: 100%;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    background-color: $mainColor;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: darken($mainColor, 5);
+                    }
                 }
             }
-        }
-    } //HEADER
-
-   
-} //propertyInfo
-main{
-    max-width: 30%;
-    width: 100%;
-    aside{
-        background-color: white;
+        } //HEADER
+    } //propertyInfo
+    main {
+        max-width: 30%;
         width: 100%;
-        height: 100%;
-        max-height: 25%;
-        min-height: 280px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        header{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top:10px;
-    
-    
-    
-            h3{
-                text-transform:capitalize;
-                margin: 20px 0 0 0;
-            }
-            h5{
-                font-size: 20px;
-                 font-weight: unset;
-                 margin: 10px 0 0 0;
-            }
-    
-            h2{
-                color:$mainColor;
-                font-size:36px;
-                margin: 10px;
-            }
-        }
-    
-        div{
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-
-            a{
-                width: 100%;
-            }
-        }
-    
-        button{
-            width: 100%;
-            height: 50px;
-            border: none;
-            color: $white;
-            background-color: $mainColor;
-            font-size: 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            outline: none;
-            &:hover{
-                cursor: pointer;
-                background-color: darken($mainColor, 5);
-            }
-        }
+       
+      
     }
-    .buttonsWrapper{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+
+    .selectedDetailsMenu {
+        font-size: 20px !important;
+        background-color: white !important;
+        color: black !important;
     }
-  
-    #deleteButton{
-        background-color: $oposite ;
-        &:hover{
-            background-color: darken($oposite, 5);
-        }
-    }
-  
-}
-
-
-.selectedDetailsMenu {
-    font-size: 24px !important;
-    background-color: white !important;
-    color: black !important;
-}
-
 } //END
 
-#mapContainer{
+#mapContainer {
     margin: 0px;
     background-color: white;
     width: 90%;

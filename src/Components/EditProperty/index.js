@@ -6,9 +6,9 @@ import BedroomCount from '../../Components/FormElements/Properties/Bedrooms'
 import BathroomCount from '../../Components/FormElements/Properties/Bathrooms'
 import CheckboxContainer from '../../Components/FormElements/Checkbox'
 import {close, closeX, detailHendler, open} from '../../Utils/eventHandlers'
-import UpdateProfile from '../../Services/updateProperty';
+import {updateProperty} from '../../Services/propertiesServices';
 
-const EditProperty = ({properties}) => {
+const EditProperty = ({properties, setUpdate}) => {
 const initialState=properties.details
 const {bedrooms,bathroom,description}=properties
 const [arr,setArr]=useState([]);
@@ -49,14 +49,16 @@ setEdit({
             details: arr,
         });
         
-        UpdateProfile(edit)
+        updateProperty(edit)
         .then(()=> {
         close('editDetailsContainer');
         close('newImageWrapper');
         open('detailsContainer', 'block');
         closeX()
+        setUpdate(true);
         } )
-        .catch((err)=>console.log(err))
+        .catch((err)=>console.log(err));
+        setUpdate(false)
     }
     return ( 
         <div id="editDetailsContainer">

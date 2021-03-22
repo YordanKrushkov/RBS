@@ -4,19 +4,32 @@
 #submitPropertie {
     display: flex;
     flex-direction: column;
-    width: 60vw;
+    width: 50%;
     height:auto;
     background-color: white;
     margin: 40px auto;
     justify-content: flex-start;
     border-radius: 10px;
-
+   @include shadows;
+    h1{
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 600;
+        margin:30px 0 10px 0;
+        padding:0;
+    }
     @include formHeader;
 
     main {
         width: 80%;
-        margin: 30px auto;
-
+        margin: 20px auto;
+        p{
+            font-size: 14px;
+            padding: 0;
+            margin:10px;
+            font-weight: 600;
+            color: $orange;
+        }
         section {
             display: flex;
             justify-content: space-between;
@@ -42,6 +55,8 @@
             }
             h2 {
                 margin: 0;
+                font-size: 16px;
+                font-weight: 600;
             }
         }
         .addressStreet {
@@ -65,6 +80,7 @@
 
         h2 {
             font-size: 16px;
+            font-weight: 600;
         }
         .secondRow {
             width: (100% / 4);
@@ -96,6 +112,7 @@
     height: 100px;
     h2 {
         font-size: 16px;
+        font-weight: 600;
     }
     textarea{
         width: 100%;
@@ -122,6 +139,8 @@
         list-style: none;
         display: flex;
         flex-wrap: wrap;
+        display: none;
+
         li{
             text-decoration: none;
             margin: 0 5px;
@@ -133,10 +152,19 @@
     }
     span{
         @include buttons;
+        background-color: $orange;
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 10px auto;
+        font-size: 16px;
+        font-weight: 600;
+        width: 400px;
+        border-radius:10px;
+
+        &:hover{
+            background-color: darken($orange, 5);
+        }
     }
     input {
         display: none;
@@ -146,5 +174,18 @@
 
     button {
   @include buttons;
+  height: 60px;
+  margin: 40px 0 0 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }///end of the container
+}
+
+#wrongInput{
+    color: red;
+    font-size: 12px;
+    font-weight: 600;
+    padding: none;
+    margin: 5px;
+    display: none;
 }

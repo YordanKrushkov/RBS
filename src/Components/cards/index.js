@@ -4,7 +4,7 @@ import { Image, Transformation } from 'cloudinary-react'
 import { AuthContext } from '../../Context';
 import { ActionContext } from '../../Context/actionContext';
 
-import likePropertie from '../../Services/likeProperties'
+import { likeProperty } from '../../Services/propertiesServices'
 import charHandler from '../../Utils/charHandler'
 import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
@@ -17,60 +17,58 @@ const CardElement = (props) => {
     const { userID } = useContext(AuthContext);
     const { like, dislike, liked } = useContext(ActionContext);
     const history = useHistory();
-
     let propertie = props.data;
     const id = propertie._id;
-
-    useEffect(() => {    
-        if(propertie.ownerId&&propertie.ownerId._id===userID || !userID){
+    let rent=propertie.sellOrRent==="RENT";
+    useEffect(() => {
+        if (propertie.ownerId && propertie.ownerId._id === userID || !userID) {
             setStyle(false)
         }
-        if(propertie.ownerId&&propertie.ownerId===userID){
+        if (propertie.ownerId && propertie.ownerId === userID) {
             setStyle(false)
         }
         if (liked && liked.includes(id)) {
             setLiked(true)
         }
-        if(propertie.liked.includes(userID)){
+        if (propertie.liked&&propertie.liked.includes(userID)) {
             setLiked(true)
         }
-        console.log(userID);
     }, [lik, userID])
 
 
-    const {char, bath}=charHandler(propertie)
+    const { char, bath } = charHandler(propertie);
     const handleClick = (e) => {
-        e.preventDefault()
-        history.push(id)
+        e.preventDefault();
+        history.push(id);
     }
     const likeHandler = (e) => {
         let key = '';
 
         if (lik) {
-            key = "dislike"
-            setLiked(false)
-            dislike(id)
+            key = "dislike";
+            setLiked(false);
+            dislike(id);
         }
         else {
-            key = 'like'
-            setLiked(true)
-            like(id)
+            key = 'like';
+            setLiked(true);
+            like(id);
         }
-        likePropertie(key, id)
+        likeProperty(key, id);
     }
 
     return (
         <div className="parent">
-          <header>
+            <header>
                 <div className="propImage">
-                    { style ? !lik ? <FaRegHeart id="like" onClick={ likeHandler } /> 
-                    : <FaHeart id="liked" onClick={ likeHandler } /> : null }
+                    { style ? !lik ? <FaRegHeart id="like" onClick={ likeHandler } />
+                        : <FaHeart id="liked" onClick={ likeHandler } /> : null }
                     <Image publicId={ propertie.img } cloudName="zltgrd">
                         <Transformation width="150" height="150" />
                     </Image>
                 </div>
                 <div className="cardImgInfo">
-                    <h2>{ propertie.price }</h2>
+                    <h2>{`£ ${propertie.price} ${rent? 'p.m' :''}`}</h2>
                     <div className="iconWrapper">
                         <div><IoIosBed className="icon" /> { char } </div>
                         <div><GiBathtub className="icon" /> { bath } </div>

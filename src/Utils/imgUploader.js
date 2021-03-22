@@ -1,16 +1,13 @@
-
-const uploadSingleImage=(e,setIMG)=>{
-    console.log(e.target);
+//UPLOAD SINGLE IMG
+const uploadSingleImage = (e, setIMG) => {
     const file = e.target.files[0];
-    console.log(file);
-    const reader = new FileReader(); 
+    const reader = new FileReader();
     reader.readAsDataURL(file);
-    console.log(reader.result);
     reader.onloadend = () => {
-        setIMG({img:reader.result})
+        setIMG({ img: reader.result })
     }
 };
-
+//UPLOAD IMGS
 const uploadImage = (e, setIMG, id) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -20,7 +17,7 @@ const uploadImage = (e, setIMG, id) => {
         setIMG((img) => [...img, reader.result])
     }
 };
-
+//APEND LIST
 const appendList = (id, sorce) => {
     let container = document.getElementById(id);
     container.style.display = "flex"
@@ -32,7 +29,6 @@ const appendList = (id, sorce) => {
     container.appendChild(el);
 }
 
-
 export {
- appendList, uploadImage,uploadSingleImage
+    appendList, uploadImage, uploadSingleImage
 }

@@ -4,12 +4,10 @@ import { MdAddAPhoto } from "react-icons/md";
 import {openImgInput,close,closeX} from '../../Utils/eventHandlers';
 import {uploadImage} from '../../Utils/imgUploader'
 import submitData from '../../Services/submitData'
-import Confirm from '../../Components/ConfirmAction'
 
 const AddMoreImages = ({properties, setUpdate}) => {
     const [img,setIMG] = useState([])
 
-    console.log(properties._id);
     const submitHandler=(e)=>{
 
         submitData(img,properties._id,'/properties/update')

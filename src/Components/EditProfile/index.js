@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 import { getUser } from '../../Services/Users'
 import { openImgInput, close,open } from '../../Utils/eventHandlers'
 import { uploadSingleImage } from '../../Utils/imgUploader';

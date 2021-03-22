@@ -1,5 +1,5 @@
 import getCookie from './cookies'
-import {getuser} from './API'
+import { getuser, verify } from './API'
 
 const getUser = async () => {
 
@@ -10,10 +10,23 @@ const getUser = async () => {
             'Authorization': getCookie('x-auth-token'),
         },
     })
-    let extra = await promise.json()
-    return extra
+    let res = await promise.json()
+    return res
 };
+//Verify User
 
+const userVerify = async () => {
+    let promise = await fetch(verify, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': getCookie('x-auth-token')
+        },
+    })
+    let res = await promise.json()
+    return res
+}
 export {
     getUser,
+    userVerify
 }

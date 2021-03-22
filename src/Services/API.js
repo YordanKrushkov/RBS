@@ -1,15 +1,22 @@
-const likePriperties='http://localhost:4000/api/likeprop';
-const getuser='http://localhost:4000/api/getuser'
-const sendEmail="http://localhost:4000/api/email"
+//PROPERTIES
 const deleteAPI="http://localhost:4000/properties/delete"
-const updateProperty ='http://localhost:4000/properties/update';
+const updatePropertyURL ='http://localhost:4000/properties/update';
 const deletImg='http://localhost:4000/properties/updateImages';
+const baseUrl='http://localhost:4000/properties/';
+//EMAIL
+const sendEmail="http://localhost:4000/api/email"
+//USER
+const getuser='http://localhost:4000/api/getuser'
+const likePriperties='http://localhost:4000/api/likeprop';
+const verify='http://localhost:4000/api/verify';
 
 export {
     likePriperties,
     getuser,
     sendEmail,
     deleteAPI,
-    updateProperty,
-    deletImg
+    updatePropertyURL,
+    deletImg,
+    baseUrl,
+    verify
 }

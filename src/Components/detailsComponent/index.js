@@ -1,4 +1,3 @@
-import {useEffect} from 'react'
 import './index.scss'
 import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";

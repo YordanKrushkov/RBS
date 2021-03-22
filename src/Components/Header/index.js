@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../Context';
-import logo from '../../Assets/images/Logo.svg'
+import logo from '../../Assets/images/Logo.svg';
+import { FiLogOut } from "react-icons/fi";
+
 import './index.scss'
 const Header = () => {
 
@@ -20,7 +22,7 @@ const Header = () => {
                 <li><Link to="/rent">Rent</Link></li>
                 <li><Link to="/sale">Buy</Link></li>
                 { isAuth
-                    ? <li onClick={ onLogout }><Link to="/">LOGOUT</Link> </li>
+                    ? <li onClick={ onLogout }><Link to="/">Logout</Link> </li>
                     : <li> <Link to="/login">LOGIN</Link> </li>
                 }
             </ul>

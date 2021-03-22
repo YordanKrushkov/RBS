@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './index.scss'
 import Filter from "../../Components/FilterBar";
-import getPropertiesService from '../../Services/getData'
+import {searchProperty,getSome} from '../../Services/propertiesServices'
 import CardElement from '../../Components/Cards'
 
 
@@ -36,9 +36,9 @@ const Properties = (prop) => {
     
     useEffect(() => {
         if(offer==="PROPERTIES"){
-            getPropertiesService.SearchItem(filter).then(res => takeProperties(res)).catch(err => console.log("error", err))
+            searchProperty(filter).then(res => takeProperties(res)).catch(err => console.log("error", err))
         }else{
-            getPropertiesService.getSome(filter).then(res => takeProperties(res)).catch(err => console.log("error", err))
+            getSome(filter).then(res => takeProperties(res)).catch(err => console.log("error", err))
         }
     }, [filter])
     const ChangeHandler = (e) => {

@@ -8,24 +8,29 @@
     width: 95%;
     height: 50px;
     align-self: center;
-    border: 2px solid $mainColor;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     margin: 0 auto;
+    @include shadows;
+
+    #filterText{
+        padding-left: 10px;
+    }
 }
 .filterButton{
-    width: (100% /7);
+    width: (100% /6);
 }
 
 .filterSpan{
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 5px;
 }
 .searchInput{
     width: 120px;
     height: 30px;
     border: none;
-    font-size: 18px;
+    font-size: 14px;
     padding: 2px;
     border: 2px solid $mainColor;
     font-size: 14px;

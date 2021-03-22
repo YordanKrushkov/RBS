@@ -1,7 +1,7 @@
 import {useState,useEffect, Fragment} from 'react'
 import './index.scss'
-import pic from '../../Assets/images/britishHouse2.jpg'
-import getPropertiesService from '../../Services/getData'
+import pic from '../../Assets/images/key.jpg'
+import {getData} from '../../Services/propertiesServices'
 import CardElement from '../../Components/Cards'
 import Search from '../../Components/SearchForm'
 // import notification from '../../components/notifications'
@@ -13,7 +13,7 @@ const Body = (props) => {
     // }
     const [properties, setProperties]=useState([]) 
     useEffect(()=>{
-        getPropertiesService.getData().then(x=>setProperties(x))
+        getData().then(x=>setProperties(x))
         .catch(err=>console.log("error",err))
     },[])
     return (
@@ -21,14 +21,9 @@ const Body = (props) => {
         <div className="homeContainer" style={{backgroundImage:`url(${pic})`}}>
             {/* {message ? notification(message) : null } */}
             <div className="homeTitle">
-                <h1>
+                {/* <h1>
                     Find your new home
-            </h1>
-                <ul className="homeLabel">
-                    <li>Rent</li>
-                    <li>Buy</li>
-                    <li>Sell</li>
-                </ul>
+            </h1> */}
             </div>
             <Search />
         </div>

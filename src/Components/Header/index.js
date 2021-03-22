@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom'
+import { Link,useHistory } from 'react-router-dom'
 import { AuthContext } from '../../Context';
 import logo from '../../Assets/images/Logo.svg';
 import { FiLogOut } from "react-icons/fi";
@@ -9,8 +9,10 @@ const Header = () => {
 
     const {isAuthenticated, logout} = useContext(AuthContext);
     const isAuth = isAuthenticated;
+    const history=useHistory();
     const onLogout = () => { 
         logout(); 
+        history.push('/')
     };
     
     return (

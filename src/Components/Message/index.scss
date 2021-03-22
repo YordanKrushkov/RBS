@@ -2,30 +2,35 @@
 @import '../../Desing/mixin.scss';
 
 #messageContainer{
-    position: absolute;
+    position: fixed;
     background-color: $white;
-    width: 600px;
+    width: 500px;
     border-radius: 10px;
     right: 35%;
     top:20%;
     display: flex;
     flex-direction: column;
     display: none;
+    @include shadows;
     header{
-        background-color: $mainColor;
+        // background-color: $mainColor;
         border-top-left-radius:10px;
+        height: 50px;
             border-top-right-radius:10px;
+            border-bottom:2px solid $mainColor;
         h1{
-            font-size: 18px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: capitalize;
             text-align: start;
-            margin: 5px;
+            padding-top: 10px;
             padding-left: 20px;
-            color: $white;
+            color: #000000;
         }
 
         #closeMessage{
             position: absolute;
-            font-size: 20px;
+            font-size: 28px;
             color: $white;
             top: 5px;
             right:5px;
@@ -33,14 +38,13 @@
             &:hover{
                 cursor: pointer;
                 color: darken($white, 8);
-                font-size: 21px;
             }
         }
     }
 
      main {
          width: 100%;
-         max-width: 100%;
+         max-width: 100% !important;
          min-height: 200px;
          textarea{
              width: 100%;

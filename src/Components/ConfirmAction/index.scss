@@ -3,16 +3,18 @@
 
 
 #confirm{
-    position: absolute;
+    position: fixed;
     background-color: $white;
     border-radius: 10px;
     height: 200px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    left: 30%;
+    left: 35%;
     top: 30%;
     display: none;
+    @include shadows;
     header{
         h1{
             font-weight: 600
@@ -31,10 +33,10 @@
             }
         }
         button:nth-child(1){
-            background-color: $oposite;
+            background-color: $orange;
             &:hover{
                 cursor: pointer;
-                background-color: darken($oposite, 5);
+                background-color: darken($orange, 5);
             }
         }
     }

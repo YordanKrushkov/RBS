@@ -41,7 +41,7 @@ const changeHandler=(e)=>{
         <form id="messageContainer" onSubmit={sendEmail}>
             <header>
                 <h1>To: <span name="to_name" id="to_name">{ownerName&&ownerName}</span></h1> 
-                <h1>from: <span name="from_name" id="from_name">{name&&name}</span></h1>
+                {/* <h1>from: <span name="from_name" id="from_name">{name&&name}</span></h1> */}
                 <IoIosCloseCircle id="closeMessage" onClick={()=>close('messageContainer')}/>
             </header>
             <main>

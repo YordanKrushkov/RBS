@@ -21,12 +21,18 @@ const Profile = () => {
             .catch(err => console.error(err))
     }, [liked, update])
 
-    const context = useContext(AuthContext)
+    const {logout} = useContext(AuthContext)
     const history = useHistory()
     const { properties, likedProperties } = user;
-
+    if(likedProperties&&likedProperties.length===0){
+        close('likedProps')
+    }
+    if(properties&&properties.length===0){
+        close('ownedProperties')
+    }
+    
     const logOut = (e) => {
-        context.logout()
+        logout()
         history.push('/')
     }
 
@@ -74,6 +80,7 @@ const Profile = () => {
                 </div>
             </header>
             <main>
+            <div id="ownedProperties"> 
                 <h1 className="propsH1 top">My properties</h1>
                 <div className="myProperties">
                     { properties ? properties.map(x =>
@@ -83,14 +90,16 @@ const Profile = () => {
                     ) : null }
 
                 </div>
-                <h1 className="propsH1">Liked properties</h1>
+                </div>
+                <div id="likedProps"> 
+                <h1 className="propsH1 ">Liked properties</h1>
                 <div className="myProperties">
                     { likedProperties ? likedProperties.map(x =>
                         <div className="myProf" key={ x._id }>
                             <CardElement data={ x } />
                         </div>
                     ) : null }
-
+                </div>
                 </div>
 
             </main>

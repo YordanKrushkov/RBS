@@ -31,32 +31,49 @@ const verifySubmit=(propertie,img)=>{
 }
 
 
-const verifyRegister = (user) => {
+const verifyRegister = (user, setErr) => {
     const { name, surname, email, password, repassword } = user
-
     if (!email){
-        verifyData('wrong', 'Please, insert your email!','email');
+        setErr({
+            err:'Please, insert your email!',
+            input:'email'
+        })
         return
     }
     if (!name) {
-        verifyData('wrong', 'Please, insert your name!','name');
+        setErr({
+            err:'Please, insert your name!',
+            input:'name'
+        })
         return
     }
     if (!surname) {
-        verifyData('wrong', 'Please, insert your surname!','surname');
+        setErr({
+            err:'Please, insert your surname!',
+            input:'surname'
+        })
         return
     }
 
     if (!/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(email)) {
-        verifyData('wrong', 'Please, insert valid email!',"email");
+        setErr({
+            err:'Please, insert a valid email!',
+            input:'email'
+        })
         return;
     }
 
     if (password !== repassword) {
-        verifyData('wrong', 'The password does\'t match!','password')
+        setErr({
+            err:'The password does\'t match!',
+            input:'password',
+        })
         return;
-    } else if (password.length < 6) {
-        verifyData('wrong', 'The password must be at least 6 characters!','password')
+    } else if (password.length < 6) {  
+        setErr({
+            err:'The password must be at least 6 characters!',
+            input:'password'
+        })
         return;
     }
 }
@@ -82,8 +99,17 @@ const verifyData = (id, text, input) => {
     return;
 }
 
+const hideError=(state,setState,value)=>{
+    if(state){
+        setTimeout(()=>{
+            setState(value)
+        },2000)
+    }
+}
+
 export {
     verifyData,
     verifyRegister,
-    verifySubmit
+    verifySubmit,
+    hideError
 }

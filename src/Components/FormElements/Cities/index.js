@@ -1,9 +1,10 @@
 
 const AllCities = (props) => {
-
     let {className, func,value}=props.children
+console.log(className);
+
     return (
-        <select name="town" id="city" defaultValue="0" className={className} onChange={func}  required>
+        <select name="town" name="city" id="city" defaultValue="0" className={className} onChange={func}  required>
              {value?<option value={value}>{value}</option>:  <option value="0">Select...</option>}
             <option id="city" value="London">London</option>
             <option id="city" value="Greater Manchester">Greater Manchester</option>

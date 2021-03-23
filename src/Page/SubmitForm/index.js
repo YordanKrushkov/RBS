@@ -14,7 +14,10 @@ const SubmitForm = () => {
     const [arr, setArr] = useState([]);
     const [img, setIMG] = useState([]);
     const [offer, changeOffer] = useState('RENT');
-
+    const [error, setErr]=useState({
+        err:'',
+        input:''
+    })
     const [properties, getData] = useState({
         type: '',
         price: '',
@@ -50,21 +53,22 @@ const SubmitForm = () => {
     }, [offer])
     const submitHandler = (e) => {
         e.preventDefault();
-        verifySubmit(properties,img)
+        verifySubmit(properties,img, setErr)
         getData({
             ...properties,
             sellOrRent: offer,
             details: arr,
         });
-        submitData(img, properties, '/properties/create')
-            .then((res) => {
-                if(res){
-                    history.push('/')
-                }else if(res.error){
-                  return
-                }
-            })
-            .catch(err => console.error(err))
+        console.log(error);
+        // submitData(img, properties, '/properties/create')
+        //     .then((res) => {
+        //         if(res){
+        //             history.push('/')
+        //         }else if(res.error){
+        //           return
+        //         }
+        //     })
+        //     .catch(err => console.error(err))
     };
     return (
         <div id="submitPropertie">
@@ -80,16 +84,18 @@ const SubmitForm = () => {
                     <section>
                         <div className="submitInputWrapper">
                             <h2>City *</h2>
-                            <AllCities>{ { className: "optionMenu", func: onChangeHandler } }</AllCities>
+                            <AllCities>{ { className: error.input!=='city'?"optionMenu":"optionMenu errors", func: onChangeHandler } }</AllCities>
                         </div>
                         <div className="submitInputWrapper addressStreet">
                             <h2>Address *</h2>
-                            <input type="text" id="street" onChange={ onChangeHandler } />
+                            <input type="text" className={error.input==="street"? "errors":''} id="street" onChange={ onChangeHandler } />
                         </div>
                     </section>
-                    <OptionsSection onChangeHandler={onChangeHandler} />
-                    <p>All fields marked with <b>*</b> are required and must be filled.</p>
-                    <p id="wrongInput"></p>
+                    <OptionsSection error={error} onChangeHandler={onChangeHandler} />
+                    {error.err
+                    ? <p id="wrongInput">{error.err}</p>
+                    :<p>All fields marked with <b>*</b> are required and must be filled.</p>
+                    }
                 </main>
                 <CheckboxContainer className="checkboxContainer" detailHendler={ detailHendler } arr={ arr } setArr={ setArr } />
                 <section className="addImages">

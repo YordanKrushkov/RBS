@@ -49,7 +49,7 @@ const Register = () => {
     return (
         <div className="registerContainer">
             <h1>Register</h1>
-            {error.err ? <p id="wrong">{ error.err }</p>
+            {error.err ? <p className="wrong">{ error.err }</p>
                 : <p>Sign in for your favourite properties and more.</p>
             }
             <form action="" onSubmit={ submitHandler }>

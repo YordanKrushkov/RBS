@@ -19,7 +19,8 @@ const SingleCard = () => {
     const [properties, setProperties] = useState('');
     const [info, setInfo] = useState(true);
     const [update, setUpdate]=useState(false)
-    const [location, setLocation]=useState('')
+    const [location, setLocation]=useState('');
+    const [profile,setProfile]=useState('');
     const [mine,isMine]=useState(false) 
     const {isAuthenticated, userEmail, name, surname, userID }=useContext(AuthContext)
     const isAuth =isAuthenticated
@@ -49,8 +50,7 @@ const SingleCard = () => {
     },[properties])
 
     const changePicture=(e)=>{
-        let profile=document.getElementById('detailsProfilePicture');
-        profile.src=e.target.src
+        setProfile(e.target.src)
     }
     const clickHandler=(e)=>{
         let res=confirm(e);
@@ -64,7 +64,7 @@ const SingleCard = () => {
     return (
         <div id="detailsPage">
             <div  id="propertyInfo">
-                <Image publicId={properties.img} id="detailsProfilePicture" cloudName="zltgrd">
+                <Image publicId={profile||properties.img} id="detailsProfilePicture" cloudName="zltgrd">
                 <Transformation width="150" height="150"/>
                 </Image>
                 <div>

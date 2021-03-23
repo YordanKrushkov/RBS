@@ -1,83 +1,71 @@
-import React, { useState, useContext } from 'react';
-import styles from './index.scss'
+import { useState, useContext,useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 import { AuthContext } from '../../Context';
 import authenticate from '../../Services/auth'
-import {verifyRegister} from '../../Utils/verifyData'
-// import notify from '../../utils/notification'
-const url = 'http://localhost:4000/api/register'
+import { registerURL } from '../../Services/API'
+import { verifyRegister, hideError } from '../../Utils/verifyData'
+import RegisterInput from '../../Components/RegisterComponent'
+import './index.scss'
 
 const Register = () => {
+    const [error, setErr] = useState({
+        err: '',
+        input: '',
+    });
 
-    const [user, getUser] = useState({
-        name: '',
-        surname: '',
-        email: '',
-        password: '',
-        repassword: '',
-    })
-    const context = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
     const history = useHistory();
-    const chnageHendler = (e) => {
-        getUser({
-            ...user,
-            [e.target.id]: e.target.value
-        });
-    }
-
+ 
     const submitHandler = async (e) => {
         e.preventDefault();
-        verifyRegister(user);
-        const { name, surname, email, password} = user
-        await authenticate(url, {
-            name, surname, email, password
-        }, (user) => {
-            const { email, properties, likedProperties, name, surname } = user
-            context.login(email, properties, likedProperties, name, surname);
-            localStorage.setItem("user", email);
-            history.push('/');
-        }, (e) => {
-            console.log(e);
-            history.push('/register')
-        })
+
+        const user = {
+            email: e.target.email.value,
+            name: e.target.name.value,
+            surname: e.target.surname.value,
+            password: e.target.password.value,
+            repassword: e.target.repasword.value,
+        }
+        verifyRegister(user, setErr);
+        if(!error.err){
+            await authenticate(registerURL, user, 
+                (user) => {
+                if(!user){
+                    setErr({err:'Something went wrong, please try again!'});
+                }
+                login(user);
+                localStorage.setItem("user", user.email);
+                history.push('/');
+            }, (e) => {
+                console.log(e);
+                history.push('/register')
+            })
+        }
     };
+    console.log(error);
+
+        hideError(error.err, setErr, {err:'', input:''});
+    
     return (
         <div className="registerContainer">
             <h1>Register</h1>
-            <p>Sign in for your favourite properties and more.</p>
+            {error.err ? <p id="wrong">{ error.err }</p>
+                : <p>Sign in for your favourite properties and more.</p>
+            }
             <form action="" onSubmit={ submitHandler }>
                 <div id="regformWrapper">
                     <div id="regInputsWrapper">
-                        <div className="regInputWrapper email">
-                            <label htmlFor="email">Email</label>
-                            <input type="email" name="" id="email" onChange={ chnageHendler } />
+                        <RegisterInput type="text" name="email" label="Email" error={ error } />
+                        <div id="regName">
+                            <RegisterInput type="text" name="name" label="Name" error={ error } />
+                            <RegisterInput type="text" name="surname" label="Surname" error={ error } />
                         </div>
                         <div id="regName">
-                            <div className="regInputWrapper">
-                                <label htmlFor="name">Name</label>
-                                <input type="text" name="" id="name" onChange={ chnageHendler } />
-                            </div>
-                            <div className="regInputWrapper">
-                                <label htmlFor="surname">Surname</label>
-                                <input type="text" name="" id="surname" onChange={ chnageHendler } />
-                            </div>
+                            <RegisterInput type="password" name="password" label="Password" error={ error } />
+                            <RegisterInput type="password" name="repasword" label="Re-Password" error={ error } />
                         </div>
-
-                        <div id="regName">
-                            <div className="regInputWrapper">
-                                <label htmlFor="password">Password</label>
-                                <input type="password" name="" id="password" onChange={ chnageHendler } />
-                            </div>
-
-                            <div className="regInputWrapper">
-                                <label htmlFor="repassword">Re-Password</label>
-                                <input type="password" name="" id="repassword" onChange={ chnageHendler } />
-                            </div>
-                        </div>
-                        <p id="wrong"></p>
                     </div>
                 </div>
-
                 <button>Register</button>
             </form>
             <div id="alreadyReg">

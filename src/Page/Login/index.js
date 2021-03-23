@@ -1,48 +1,48 @@
 import { useState, useContext } from 'react';
-import  './index.scss'
 import { Link, useHistory } from 'react-router-dom'
-import {AuthContext} from '../../Context';
+import { AuthContext } from '../../Context';
 import authenticate from '../../Services/auth'
-// import notify from '../../utils/notification'
-const url = 'http://localhost:4000/api/login'
+import { loginURL } from '../../Services/API'
+import {hideError} from '../../Utils/verifyData'
+import './index.scss'
 
 const Login = () => {
-    const [user, getUser] = useState({
-        email: '',
-        password: '',
-    })
-    const context = useContext(AuthContext);
+    
+    const [error, setErr] = useState(false);
+    const {login} = useContext(AuthContext);
     const history = useHistory();
-    const chnageHendler = (e) => {
-        getUser({
-            ...user,
-            [e.target.id]: e.target.value
-        })        
-    };
+
     const submitHandler = async (e) => {
         e.preventDefault();
-        const { email, password } = user;
-        await authenticate(url, {
-            email, password
-        }, (user) => {
-            context.login(user);
+        const user = {
+            email: e.target.email.value,
+            password: e.target.password.value,
+        }
+        await authenticate(loginURL, user, (user) => {
+            login(user);
             localStorage.setItem("user", user.email);
             history.push('/');
         }, (err) => {
-            console.log('wrong password or email:',err);
-            document.getElementById('wrong').style.display='block'
+            setErr(true)
             history.push('/login')
         })
     };
+
+     hideError(error,setErr, false)
+
+
     return (
         <div className="loginContainer">
             <h1 >Sign in</h1>
-            <p >Sign in for your favourite properties and more.</p>
+            {error
+                ? <p id="wrongLogin">Wrong email or password! Please, try again!</p>
+                : <p >Sign in for your favourite properties and more.</p> 
+            }
             <form action="" className="loginForm" onSubmit={ submitHandler }>
                 <label htmlFor="email">Email</label>
-                <input type="email" name="" id="email"  onChange={ chnageHendler } />
+                <input className={ error ? "errors":'' } type="email" name="email" id="email" />
                 <label htmlFor="password">Password</label>
-                <input type="password" name="" id="password"  onChange={ chnageHendler } />
+                <input className={ error ? "errors":'' } type="password" name="password" id="password" />
                 <button>Login</button>
             </form>
             <a href="/forgot" id="forgot" >Forgot your password?</a>
@@ -50,9 +50,9 @@ const Login = () => {
                 <div > <p>You don't have an accout yet? </p>
                     <Link to="/register" id="join">Join us now</Link>
                 </div>
-                <p id="wrong">Wrong email or password! Please, try again!</p>
             </div>
         </div>
     )
-}
+};
+
 export default Login

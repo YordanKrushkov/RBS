@@ -18,7 +18,7 @@ class AuthContextProvider extends Component {
         })
     }
 
-    login = ({email,name,surname,likedProperties,id,_id}) => {
+    login = ({email,name,surname,likedProperties,id,}) => {
         this.setState({
             userID:id,
             isAuthenticated: true,

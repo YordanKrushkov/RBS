@@ -41,39 +41,7 @@
         align-items: center;
     }
 
-    .regInputWrapper{
-        display: flex;
-        flex-direction: column;
-        align-items:center;
-        margin:5px
-    }
-    .email{
-        width: 100%;
-        max-width: 100%;
-        justify-content: center;
-        
-        input{
-            width: 100% !important;
-            max-width: 100% !important;
-            box-sizing: content-box;
-            font-size: 14px;
-        }
-    }
-    label{
-        font-size: 16px;
-        font-weight: 600;
-        margin: 5px;
-    }
-    input{
-        @include inputField;
-        height: 40px ;
-        width: 100%;
-        max-width: 100%;
 
-        &:focus{
-            background-color: $color;
-        }
-    }
     #regInputsWrapper{
         display: flex;
         flex-direction: column;
@@ -106,7 +74,7 @@
             text-decoration: underline;
             font-weight: 900;
             font-size: 24px;
-            text-transform: uppercase;
+            text-transform: capitalize;
             padding:0 0 10px 10px;
             &:hover{
                 color: $orange;
@@ -118,7 +86,6 @@
 #wrong{
     color: red;
     font-size: 14px;
-    display: none;
     margin: 0;
     padding: 10px 0;
 }

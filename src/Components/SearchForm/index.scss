@@ -20,7 +20,7 @@
         right: 0;
     }
     @include formHeader;
-
+    
     button {
         justify-self: center;
         color: white;
@@ -95,7 +95,7 @@
     }
 }
 
-.new {
+.clicked{
     color: black !important;
     background-color: white !important;
 

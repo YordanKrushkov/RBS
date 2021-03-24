@@ -2,34 +2,12 @@ const openImgInput = (id) => {
     document.getElementById(id).click();
 };
 
+//SWITCH MENU
 const switchMenu = (e, changeOffer) => {
-    if (e.target.textContent === 'SALE') {
-        e.target.classList.add('new');
-        e.target.previousElementSibling.classList.remove('new')
-        changeOffer('SALE')
-    } else {
-        e.target.classList.add('new');
-        e.target.nextElementSibling.classList.remove('new')
-        changeOffer('RENT')
-    }
+        changeOffer(e.target.textContent)
 };
 
-const switchDetailsMenu = (e, setInfo) => {
-    const details = document.getElementById('details');
-    const map = document.getElementById('map');
-
-    if (e.target === details) {
-        details.classList.add('selectedDetailsMenu')
-        map.classList.remove('selectedDetailsMenu')
-        setInfo(true)
-
-    } else if (e.target === map) {
-        map.classList.add('selectedDetailsMenu')
-        details.classList.remove('selectedDetailsMenu')
-        setInfo(false)
-    }
-};
-
+//DETAIL HANDLED
 const detailHendler = (e, setArr, arr) => {
     let initialState = [];
     if (e.target.checked) {
@@ -45,11 +23,19 @@ const detailHendler = (e, setArr, arr) => {
     }
     return initialState
 };
-const open = (id, display) => {
-    let el = document.getElementById(id);
-    if (el.style.display !== display) {
-        el.style.display = display
+
+
+//NEXT!!!!
+const open = (updated,isUpdate) => {
+    if(updated){
+        isUpdate(false)
+    }else{
+        isUpdate(true)
     }
+    // let el = document.getElementById(id);
+    // if (el.style.display !== display) {
+    //     el.style.display = display
+    // }
 }
 const openX = () => {
     let element = document.querySelectorAll('.deleteImage');
@@ -87,7 +73,6 @@ export {
     openImgInput,
     switchMenu,
     detailHendler,
-    switchDetailsMenu,
     close,
     open,
     confirm,

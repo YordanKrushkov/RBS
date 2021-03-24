@@ -1,7 +1,6 @@
 
 const AllCities = (props) => {
     let {className, func,value}=props.children
-console.log(className);
 
     return (
         <select name="town" name="city" id="city" defaultValue="0" className={className} onChange={func}  required>

@@ -1,20 +1,19 @@
-import Checkbox from './checkbox'
-import {useEffect} from 'react'
+import './index.scss';
+import { detailHendler } from '../../../Utils/eventHandlers'
 
-const CheckboxContainer = ({detailHendler,initialState,setArr,arr,className}) => {
-    return ( 
-        <section className={className}>
-        <Checkbox>{{name:"Furnished",value:{initialState}, func:(e)=>{detailHendler(e,setArr,arr)}}}</Checkbox>
-        <Checkbox>{{name:"Balcony", value:{initialState},func:(e)=>{detailHendler(e,setArr,arr)}}}</Checkbox>
-        <Checkbox>{{name:"Easy transport",value:{initialState}, func:(e)=>{detailHendler(e,setArr,arr)}}}</Checkbox>
-        <Checkbox>{{name:"Garden",value:{initialState}, func:(e)=>{detailHendler(e,setArr,arr)}}}</Checkbox>
-        <Checkbox>{{name:"Swiming Pool",value:{initialState}, func:(e)=>{detailHendler(e,setArr,arr)}}}</Checkbox>
-        <Checkbox>{{name:"Parking",value:{initialState}, func:(e)=>{detailHendler(e,setArr,arr)}}}</Checkbox>
-        <Checkbox>{{name:"Garage",value:{initialState}, func:(e)=>{detailHendler(e,setArr,arr)}}}</Checkbox>
-        <Checkbox>{{name:"Pets Wellcome",value:{initialState}, func:(e)=>{detailHendler(e,setArr,arr)}}}</Checkbox>
-        <Checkbox>{{name:"Smocking allow",value:{initialState}, func:(e)=>{detailHendler(e,setArr,arr)}}}</Checkbox>
-         </section>
-     );
+const props = ["Furnished", "Balcony", "Easy transport", "Garden", "Swiming pool", "Parking", "Garage", "Pets welcome", "Smoking allow"]
+
+const CheckboxContainer = ({ initialState, setArr, arr, className }) => {
+    return (
+        <section className={ className }>
+            {props.map(x => (
+                <div className="checkbox" key={ x }>
+                    <h2>{ x }</h2>
+                    <input type="checkbox" defaultChecked={ initialState && initialState.includes(x) } name={ x } id={ x } onChange={ (e) => { detailHendler(e, setArr, arr) } } />
+                </div>)
+            ) }
+        </section>
+    );
 }
- 
+
 export default CheckboxContainer;

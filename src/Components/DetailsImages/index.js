@@ -18,8 +18,8 @@ const DetailImages = ({ images, id, changePicture, mine, setUpdate }) => {
     return (
         <section className="detailImages">
             {images && images.map(x =>
-                <div>
-                    <Image publicId={ x } key={ x } cloudName="zltgrd" onClick={ changePicture }>
+                <div key={ x }>
+                    <Image publicId={ x }  cloudName="zltgrd" onClick={ changePicture }>
                         <Transformation width="150" height="150" />
                     </Image>
                     { mine && edit && <AiOutlineCloseCircle className="deleteImage" onClick={ DeleteImages } /> }

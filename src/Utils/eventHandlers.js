@@ -9,8 +9,11 @@ const switchMenu = (e, changeOffer) => {
 
 //DETAIL HANDLED
 const detailHendler = (e, setArr, arr) => {
+    console.log('arr,set',arr);
+    console.log('setArr', setArr);
     let initialState = [];
     if (e.target.checked) {
+        console.log("there");
         initialState.push(e.target.name)
         setArr((arr) => [...arr, ...initialState])
     }
@@ -18,7 +21,8 @@ const detailHendler = (e, setArr, arr) => {
         initialState = arr
         let el = initialState.find(el => (el === e.target.name))
         let index = initialState.indexOf(el)
-        initialState.splice(index, 1)
+        initialState.splice(index, 1);
+        console.log(initialState);
         setArr(initialState)
     }
     return initialState

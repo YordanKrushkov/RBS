@@ -1,9 +1,9 @@
 import './index.scss';
-import {useState, useEffect} from 'react';
+import {useState, useEffect,useContext} from 'react';
+import {ActionContext} from '../../Context/actionContext'
 import Email from '../../Services/sendEmail'
-import {close} from '../../Utils/eventHandlers'
 import { IoIosCloseCircle } from "react-icons/io";
-const Message = ({ownerName,ownerEmail, email, name}) => {
+const Message = ({ownerName,ownerEmail, email, name,setMessage}) => {
 
 const [state, setState]=useState({
     to:'',
@@ -12,6 +12,7 @@ const [state, setState]=useState({
     to_name:'',
     message:'',
 });
+const {notify}=useContext(ActionContext)
 useEffect(()=>{
 
  setState({
@@ -34,15 +35,16 @@ const changeHandler=(e)=>{
     const sendEmail=(e)=>{
         e.preventDefault()
         Email(state)
-        .then(()=>close('messageContainer'))
-        .catch(err=>console.log("email",err))
+        .then(()=>setMessage(false),
+        notify(true, 'The message was sent')
+        )
+        .catch(err=>notify(true, 'Please, try again!'))
     }
     return ( 
         <form id="messageContainer" onSubmit={sendEmail}>
             <header>
                 <h1>To: <span name="to_name" id="to_name">{ownerName&&ownerName}</span></h1> 
-                {/* <h1>from: <span name="from_name" id="from_name">{name&&name}</span></h1> */}
-                <IoIosCloseCircle id="closeMessage" onClick={()=>close('messageContainer')}/>
+                <IoIosCloseCircle id="closeMessage" onClick={()=>setMessage(false)}/>
             </header>
             <main>
                 <textarea id="message" name="message" onChange={changeHandler} placeholder="Type your message here">

@@ -20,10 +20,12 @@ const SingleCard = () => {
     const [properties, setProperties] = useState('');
     const [menu, setMenu] = useState('Property Details');
     const [update, setUpdate] = useState(false)
+    const [deleteProp, setDelete] = useState(false)
+    const [message, setMessage] = useState(false)
     const [location, setLocation] = useState('');
     const [profile, setProfile] = useState('');
     const [mine, isMine] = useState(false)
-    const { isAuthenticated, userEmail, name, surname, userID } = useContext(AuthContext)
+    const { userEmail, name, surname, userID } = useContext(AuthContext)
     const { edit } = useContext(ActionContext)
     let images = properties.images
     const history = useHistory()
@@ -58,6 +60,7 @@ const SingleCard = () => {
         if (res) {
             deleteProperty(id)
                 .then(() => {
+                    setDelete(false);
                     history.push('/')
                 }).catch(err => console.log(err))
         }
@@ -81,12 +84,12 @@ const SingleCard = () => {
                 </div>
             </div>
             <main>
-                <Aside properties={ properties } mine={ mine } />
+                <Aside properties={ properties } setMessage={setMessage} setDelete={setDelete} mine={ mine } />
                 <DetailImages mine={ mine } setUpdate={setUpdate} images={ images } id={ properties._id } changePicture={ changePicture } />
                 { mine && edit && <AddMoreImages setUpdate={setUpdate} properties={ properties } /> }
             </main>
-            <Confirm func={ clickHandler } />
-            <Message ownerName={ `${firstName} ${LastName}` } ownerEmail={ ownerEmail } email={ userEmail } name={ `${name} ${surname}` } />
+            {deleteProp&&<Confirm func={ clickHandler } />}
+            {message&&<Message ownerName={ `${firstName} ${LastName}` } setMessage={setMessage} ownerEmail={ ownerEmail } email={ userEmail } name={ `${name} ${surname}` } />}
         </div>
     )
 }

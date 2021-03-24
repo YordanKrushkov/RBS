@@ -1,11 +1,10 @@
 import {useContext} from 'react';
 import {ActionContext} from '../../Context/actionContext'
-import { open} from '../../Utils/eventHandlers'
 import {Image, Transformation} from 'cloudinary-react'
 import './index.scss'
 
 
-const Aside = ({ properties, mine }) => {
+const Aside = ({ properties, mine,setDelete,setMessage }) => {
     const {editProp,edit}=useContext(ActionContext)
     const rent = properties.sellOrRent === 'RENT';
     let img;
@@ -31,10 +30,10 @@ const Aside = ({ properties, mine }) => {
         </header>
         <div>
             { !mine
-                ? <button onClick={ () => open('messageContainer', 'flex') }>Contact</button>
+                ? <button onClick={ () => setMessage(true)}>Contact</button>
                 : (<div className="buttonsWrapper">
-                    <button onClick={ () => { editProp(!edit)}} id="editPropButton">{!edit?"Edit" : "Close edit"}</button>
-                    <button onClick={ () => open('confirm', 'flex') } id="deleteButton">Delete</button>
+                    <button onClick={ () => { editProp(!edit)}} id="editPropButton">{!edit?"Edit" : "Close"}</button>
+                    <button onClick={ () => setDelete(true)} id="deleteButton">Delete</button>
                 </div>) }
         </div>
     </aside>);

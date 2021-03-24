@@ -20,6 +20,7 @@ const CardElement = (props) => {
     let propertie = props.data;
     const id = propertie._id;
     let rent=propertie.sellOrRent==="RENT";
+    console.log(userID);
     useEffect(() => {
         if (propertie.ownerId && propertie.ownerId._id === userID || !userID) {
             setStyle(false)

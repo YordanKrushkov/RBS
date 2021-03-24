@@ -32,40 +32,13 @@ const open = (updated,isUpdate) => {
     }else{
         isUpdate(true)
     }
-    // let el = document.getElementById(id);
-    // if (el.style.display !== display) {
-    //     el.style.display = display
-    // }
-}
-const openX = () => {
-    let element = document.querySelectorAll('.deleteImage');
-    if (element) {
-        Array.from(element).forEach(el => {
-            if (el.style.display !== 'block') {
-                el.style.display = 'block'
-            }
-        })
-    }
 
-}
-const close = (id) => {
-    let el = document.getElementById(id);
-    el.style.display = 'none'
-}
-const closeX = (id) => {
-    let element = document.querySelectorAll('.deleteImage');
-    if (element) {
-        Array.from(element).forEach(el => {
-            el.style.display = 'none'
-        })
-    }
 }
 
 const confirm = (e) => {
     if (e.target.innerHTML === 'Yes') {
         return true
     } else if (e.target.innerHTML === 'No') {
-        close('confirm')
         return false
     }
 }
@@ -73,9 +46,6 @@ export {
     openImgInput,
     switchMenu,
     detailHendler,
-    close,
     open,
     confirm,
-    openX,
-    closeX
 }

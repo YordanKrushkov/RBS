@@ -1,14 +1,13 @@
 import './index.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
+import BedroomCount from '../../Components/FormElements/Properties/Bedrooms';
+import BathroomCount from '../../Components/FormElements/Properties/Bathrooms';
+import CheckboxContainer from '../../Components/FormElements/Checkbox';
+import { updateProperty } from '../../Services/propertiesServices';
+import { ActionContext } from '../../Context/actionContext';
 import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
-import BedroomCount from '../../Components/FormElements/Properties/Bedrooms'
-import BathroomCount from '../../Components/FormElements/Properties/Bathrooms'
-import CheckboxContainer from '../../Components/FormElements/Checkbox'
-import { detailHendler } from '../../Utils/eventHandlers'
-import { updateProperty } from '../../Services/propertiesServices';
-import { useContext } from 'react'
-import { ActionContext } from '../../Context/actionContext';
+
 const EditProperty = ({ properties}) => {
     const initialState = properties.details
     const { bedrooms, bathroom, description } = properties
@@ -20,11 +19,14 @@ const EditProperty = ({ properties}) => {
         details: [],
         description: '',
     })
-    const { editProp,notify } = useContext(ActionContext)
+    const { editProp,notify } = useContext(ActionContext);
+
+    //Set INITIALSTATE
     useEffect(() => {
         setArr(initialState)
     }, [initialState]);
 
+    //Set INITAL EDITED PROPERTIE
     useEffect(() => {
         setEdit({
             id: properties._id,
@@ -33,15 +35,25 @@ const EditProperty = ({ properties}) => {
             description: description,
             details: arr
         })
-    }, [arr, properties])
+    }, [ properties]);
 
+    //UPDATE DETAILS
+    useEffect(() => {
+        setEdit({
+            ...editedPropertie,
+            details: arr
+        })
+    }, [ arr]);
+   
+    //UPDATE PROPERTY
     const onChangeHandler = (e) => {
         setEdit({
             ...editedPropertie,
             [e.target.id]: e.target.value,
-        })
+        });
     }
 
+    //SUBMIT
     const submitHandler = (e) => {
         e.preventDefault(e);
 
@@ -49,14 +61,14 @@ const EditProperty = ({ properties}) => {
             ...editedPropertie,
             details: arr,
         });
-
         updateProperty(editedPropertie)
             .then(() => {
                 editProp(false)
                 notify(true,"Updated successfully")
             })
             .catch((err) => notify(true,"Please, try again"));
-    }
+    };
+
     return (
         <div id="editDetailsContainer">
             <form id='detailsField' onSubmit={ submitHandler }>
@@ -74,7 +86,7 @@ const EditProperty = ({ properties}) => {
                     <div>
                         <h2>Details</h2>
                     </div>
-                    <CheckboxContainer className="editPropertyCheckbox" detailHendler={ detailHendler } initialState={ initialState } setArr={ setArr } arr={ arr } />
+                    <CheckboxContainer className="editPropertyCheckbox" initialState={ initialState } setArr={ setArr } arr={ arr } />
                 </div>
                 <div id="detailDescription">
                     <h2>Description</h2>

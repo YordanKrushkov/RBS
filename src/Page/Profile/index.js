@@ -1,107 +1,73 @@
-import './index.scss'
-import { useEffect, useState, useContext, Fragment } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useEffect, useState, useContext } from 'react';
+import { ActionContext } from '../../Context/actionContext';
+import CardElement from '../../Components/Cards';
+import ProfileHeader from '../../Components/ProfileHeader';
+import Edit from '../../Components/EditProfile';
+
 import { getUser } from '../../Services/Users'
 import { FaCog } from "react-icons/fa";
-import { AuthContext } from '../../Context'
-import { ActionContext } from '../../Context/actionContext'
-import CardElement from '../../Components/Cards'
-import { Image, Transformation } from 'cloudinary-react'
-import img from '../../Assets/images/profile.png'
-import { open, close } from '../../Utils/eventHandlers'
-import Edit from '../../Components/EditProfile'
+import { open } from '../../Utils/eventHandlers'
+import './index.scss';
+
 const Profile = () => {
     const [user, setUser] = useState('')
     const { liked } = useContext(ActionContext)
     const [update, isUpdate] = useState(false)
-
+    const [prop, setProps] = useState({
+        liked: true,
+        owned: true
+    })
     useEffect(() => {
         getUser()
             .then(res => setUser(res))
             .catch(err => console.error(err))
     }, [liked, update])
 
-    const {logout} = useContext(AuthContext)
-    const history = useHistory()
     const { properties, likedProperties } = user;
-    if(likedProperties&&likedProperties.length===0){
-        close('likedProps')
-    }
-    if(properties&&properties.length===0){
-        close('ownedProperties')
-    }
-    
-    const logOut = (e) => {
-        logout()
-        history.push('/')
-    }
+    useEffect(() => {
+        if (likedProperties && likedProperties.length === 0) {
+            setProps({
+                ...prop,
+                liked: false
+            })
+        };
+        if (properties && properties.length === 0) {
+            setProps({
+                ...prop,
+                owned: false
+            })
+        }
+    }, [user]);
 
     return (
         <div id="profileWrapper">
-            <Edit isUpdate={ isUpdate } />
-            <header id="hidde">
-                <div id="profilePicture">
-                    { user.profilephoto ? <Image publicId={ user.profilephoto } id="detailsProfilePicture" cloudName="zltgrd">
-                        <Transformation width="150" height="150" />
-                    </Image>
-                        : <img src={ img } alt="" /> }
-                </div>
-                <div id="profileInfo">
-                    <h1>My Profile</h1>
-                    <div>
-                        <div>
-                            <h6>Name:</h6>
-                            <h6>{ user ? `${user.name} ${user.surname}` : null }</h6>
-                        </div>
-                        <div>
-                            <h6>Email:</h6>
-                            <h6>{ user.email }</h6>
-                        </div>
-
-                        { user.phone ?
-                            <div>
-                                <h6>Phone:</h6>
-                                <h6>{ user.phone }</h6>
-                            </div> : null }
-
-                        { user.address ?
-                            <div>
-                                <h6>Live in:</h6>
-                                <h6>{ user.address }</h6>
-                            </div> : null }
+            {update ? <Edit isUpdate={ isUpdate } />
+                : <ProfileHeader user={ user } />
+            }
+            <div className="profileMenu" onClick={ (e) => { open(update, isUpdate) } }><FaCog /></div>
+            <main>
+                { prop.owned && <div id="ownedProperties">
+                    <h1 className="propsH1 top">My properties</h1>
+                    <div className="myProperties">
+                        { properties ? properties.map(x =>
+                            <div className="myProf" key={ x._id }>
+                                <CardElement data={ x } />
+                            </div>
+                        ) : null }
                     </div>
                 </div>
-                <div className="profileMenu" onClick={ (e) => { close('hidde'); open('editFormWrapper', 'block') } }><FaCog /></div>
-                <div id="profileMenuWrapper">
-                    <ul>
-                        <li><Link to="#">Messeges</Link></li>
-                        <li onClick={ logOut }>SignOut</li>
-                    </ul>
+                }
+                { prop.liked && <div id="likedProps">
+                    <h1 className="propsH1 ">Liked properties</h1>
+                    <div className="myProperties">
+                        { likedProperties ? likedProperties.map(x =>
+                            <div className="myProf" key={ x._id }>
+                                <CardElement data={ x } />
+                            </div>
+                        ) : null }
+                    </div>
                 </div>
-            </header>
-            <main>
-            <div id="ownedProperties"> 
-                <h1 className="propsH1 top">My properties</h1>
-                <div className="myProperties">
-                    { properties ? properties.map(x =>
-                        <div className="myProf" key={ x._id }>
-                            <CardElement data={ x } />
-                        </div>
-                    ) : null }
-
-                </div>
-                </div>
-                <div id="likedProps"> 
-                <h1 className="propsH1 ">Liked properties</h1>
-                <div className="myProperties">
-                    { likedProperties ? likedProperties.map(x =>
-                        <div className="myProf" key={ x._id }>
-                            <CardElement data={ x } />
-                        </div>
-                    ) : null }
-                </div>
-                </div>
-
+                }
             </main>
         </div>
     );

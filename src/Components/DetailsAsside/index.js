@@ -1,16 +1,17 @@
-import { open, close, openX } from '../../Utils/eventHandlers'
+import {useContext} from 'react';
+import {ActionContext} from '../../Context/actionContext'
+import { open} from '../../Utils/eventHandlers'
 import {Image, Transformation} from 'cloudinary-react'
 import './index.scss'
 
 
 const Aside = ({ properties, mine }) => {
-    console.log('properties', properties);
+    const {editProp,edit}=useContext(ActionContext)
     const rent = properties.sellOrRent === 'RENT';
     let img;
     if(properties.ownerId){
          img=properties.ownerId.profilephoto;
     }
-    console.log(img);
     return (<aside id="detailAsside">
         <header>
             <section>
@@ -32,7 +33,7 @@ const Aside = ({ properties, mine }) => {
             { !mine
                 ? <button onClick={ () => open('messageContainer', 'flex') }>Contact</button>
                 : (<div className="buttonsWrapper">
-                    <button onClick={ () => { open('editDetailsContainer', 'block'); open('newImageWrapper', 'block'); openX(); close('detailsContainer') } } id="editPropButton">Edit</button>
+                    <button onClick={ () => { editProp(!edit)}} id="editPropButton">{!edit?"Edit" : "Close edit"}</button>
                     <button onClick={ () => open('confirm', 'flex') } id="deleteButton">Delete</button>
                 </div>) }
         </div>

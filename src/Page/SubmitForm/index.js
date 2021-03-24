@@ -5,7 +5,7 @@ import { openImgInput, switchMenu, detailHendler } from '../../Utils/eventHandle
 import { uploadImage } from '../../Utils/imgUploader';
 import submitData from '../../Services/submitData';
 import {userVerify} from '../../Services/Users';
-import {verifySubmit} from '../../Utils/verifyData'
+import {verifySubmit,hideError} from '../../Utils/formsValidator'
 import CheckboxContainer from '../../Components/FormElements/Checkbox';
 import OptionsSection from '../../Components/FormElements/OptionsSection';
 import './index.scss';
@@ -59,17 +59,21 @@ const SubmitForm = () => {
             sellOrRent: offer,
             details: arr,
         });
-        console.log(error);
-        // submitData(img, properties, '/properties/create')
-        //     .then((res) => {
-        //         if(res){
-        //             history.push('/')
-        //         }else if(res.error){
-        //           return
-        //         }
-        //     })
-        //     .catch(err => console.error(err))
+       if(!error.err){
+     submitData(img, properties, '/properties/create')
+            .then((res) => {
+                if(res){
+                    history.push('/')
+                }else if(res.error){
+                  return
+                }
+            })
+            .catch(err => console.error(err))
+       }
+   
     };
+    hideError(error.err,setErr)
+
     return (
         <div id="submitPropertie">
             <header>
@@ -104,7 +108,7 @@ const SubmitForm = () => {
                         </ul>
                     </div>
                     <section>
-                        <span id="imageButton" onClick={ () => { openImgInput('fileImg') } }>{ img.length == 0 ? "Add Profile Picture *" : "Add More Images" }</span>
+                        <span id="imageButton" className={error.input==="imageButton"? "errors":''} onClick={ () => { openImgInput('fileImg') } }>{ img.length == 0 ? "Add Profile Picture *" : "Add More Images" }</span>
                         <input id="fileImg" type="file" multiple onChange={ (e) => { uploadImage(e, setIMG, 'imgContainer') } } />
                     </section>
 

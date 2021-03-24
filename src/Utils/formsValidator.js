@@ -6,7 +6,6 @@ const verifySubmit = (propertie, img, setErr) => {
             err: 'Please, select city!',
             input: "city"
         });
-        // verifyData('wrongInput', 'Please, select city!', 'city');
         return;
     }
     if (!street) {
@@ -14,7 +13,6 @@ const verifySubmit = (propertie, img, setErr) => {
             err: 'Please, fill the address!',
             input: "street"
         });
-        // verifyData('wrongInput', 'Please, fill the address!', 'street');
         return;
     }
     if (!type) {
@@ -22,7 +20,6 @@ const verifySubmit = (propertie, img, setErr) => {
             err: 'Please, select type!',
             input: "type"
         });
-        // verifyData('wrongInput', 'Please, select type!', 'type');
         return;
     }
     if (!bedrooms) {
@@ -30,7 +27,6 @@ const verifySubmit = (propertie, img, setErr) => {
             err: 'Please, select bedrooms!',
             input: "bedrooms"
         });
-        // verifyData('wrongInput', 'Please, select bedrooms!', 'bedrooms');
         return;
     }
     if (!bathroom) {
@@ -38,7 +34,6 @@ const verifySubmit = (propertie, img, setErr) => {
             err: 'Please, select bathrooms!',
             input: "bathroom"
         });
-        // verifyData('wrongInput', 'Please, select bathroom!', 'bathroom');
         return;
     }
     if (!price) {
@@ -46,7 +41,6 @@ const verifySubmit = (propertie, img, setErr) => {
             err: 'Please, select price!',
             input: "price"
         });
-        // verifyData('wrongInput', 'Please, select price!', 'price');
         return;
     }
     if (img.length === 0) {
@@ -54,7 +48,6 @@ const verifySubmit = (propertie, img, setErr) => {
             err: 'It must have at least one picture!',
             input: 'imageButton'
         });
-        // verifyData('wrongInput', 'It must have at least one picture!', 'imageButton');
         return
     }
 }
@@ -107,37 +100,16 @@ const verifyRegister = (user, setErr) => {
     };
 };
 
-const verifyData = (id, text, input) => {
-    const element = document.getElementById(id)
-    element.innerHTML = text
-    element.style.display = 'block';
 
-    let extraEl;
-    if (input === 'password') {
-        extraEl = document.getElementById('repassword')
-    }
-    const inputElement = document.getElementById(input);
-    inputElement && inputElement.classList.add('border');
-    extraEl && extraEl.classList.add('border');
-    setTimeout(() => {
-        element.style.display = 'none';
-        inputElement && inputElement.classList.remove('border');
-        extraEl && extraEl.classList.remove('border');
-
-    }, 2000)
-    return;
-}
-
-const hideError = (state, setState, value) => {
+const hideError = (state, setState) => {
     if (state) {
         setTimeout(() => {
-            setState(value)
+            setState({err:'',input:''})
         }, 2000)
     }
 }
 
 export {
-    verifyData,
     verifyRegister,
     verifySubmit,
     hideError

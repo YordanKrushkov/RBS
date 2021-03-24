@@ -1,91 +1,92 @@
-import { useState, useEffect,useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom'
-import {deleteProperty,getSingleProp} from '../../Services/propertiesServices'
+import { deleteProperty, getSingleProp } from '../../Services/propertiesServices'
 import DetailsContainer from '../../Components/DetailsComponent';
 import DetailImages from '../../Components/DetailsImages'
 import Message from '../../Components/Message';
 import Confirm from '../../Components/ConfirmAction'
-import {switchDetailsMenu,confirm} from '../../Utils/eventHandlers'
-import {Image,Transformation} from 'cloudinary-react'
+import { switchMenu, confirm } from '../../Utils/eventHandlers'
+import { Image, Transformation } from 'cloudinary-react'
 import GoogleMap from '../../Components/GoogleMap'
 import getLocation from '../../Utils/getLocation';
 import EditProperty from '../../Components/EditProperty'
-import {AuthContext} from '../../Context'
+import { AuthContext } from '../../Context'
+import { ActionContext } from '../../Context/actionContext'
 import AddMoreImages from '../../Components/AddMoreImages'
 import Aside from '../../Components/DetailsAsside'
 import './index.scss';
 
 const SingleCard = () => {
     const [properties, setProperties] = useState('');
-    const [info, setInfo] = useState(true);
-    const [update, setUpdate]=useState(false)
-    const [location, setLocation]=useState('');
-    const [profile,setProfile]=useState('');
-    const [mine,isMine]=useState(false) 
-    const {isAuthenticated, userEmail, name, surname, userID }=useContext(AuthContext)
-    const isAuth =isAuthenticated
-    let images=properties.images
+    const [menu, setMenu] = useState('Property Details');
+    const [update, setUpdate] = useState(false)
+    const [location, setLocation] = useState('');
+    const [profile, setProfile] = useState('');
+    const [mine, isMine] = useState(false)
+    const { isAuthenticated, userEmail, name, surname, userID } = useContext(AuthContext)
+    const { edit } = useContext(ActionContext)
+    let images = properties.images
     const history = useHistory()
     const id = history.location.pathname
-    let ownerEmail,firstName, LastName='';
-    if(properties){
-         ownerEmail=properties.ownerId.email;
-         firstName=properties.ownerId.name;
-         LastName=properties.ownerId.surname;
+    let ownerEmail, firstName, LastName = '';
+    if (properties) {
+        ownerEmail = properties.ownerId.email;
+        firstName = properties.ownerId.name;
+        LastName = properties.ownerId.surname;
     }
-    useEffect(()=>{
-        if(properties&&properties.ownerId._id===userID){
+    useEffect(() => {
+        if (properties && properties.ownerId._id === userID) {
             isMine(true)
         }
-    },[properties])
+    }, [properties])
     useEffect(() => {
         getSingleProp(id)
-        .then(res=>setProperties(res))
-        .catch(err=>console.error(err))
-    }, [update])
-    useEffect(()=>{
+            .then(res => setProperties(res))
+            .catch(err => console.error(err))
+    }, [edit,update])
+    useEffect(() => {
         getLocation(properties.street, properties.city)
-        .then(res=>setLocation(res))
-        .catch(err=>console.error(err))
-    },[properties])
+            .then(res => setLocation(res))
+            .catch(err => console.error(err))
+    }, [properties])
 
-    const changePicture=(e)=>{
+    const changePicture = (e) => {
         setProfile(e.target.src)
     }
-    const clickHandler=(e)=>{
-        let res=confirm(e);
-        if(res){
+    const clickHandler = (e) => {
+        let res = confirm(e);
+        if (res) {
             deleteProperty(id)
-            .then(()=>{
-            history.push('/')
-            }).catch(err=>console.log(err))
+                .then(() => {
+                    history.push('/')
+                }).catch(err => console.log(err))
         }
     }
     return (
         <div id="detailsPage">
-            <div  id="propertyInfo">
-                <Image publicId={profile||properties.img} id="detailsProfilePicture" cloudName="zltgrd">
-                <Transformation width="150" height="150"/>
+            <div id="propertyInfo">
+                <Image publicId={ profile || properties.img } id="detailsProfilePicture" cloudName="zltgrd">
+                    <Transformation width="150" height="150" />
                 </Image>
                 <div>
                     <header>
                         <ul>
-                            <li id='details' className="selectedDetailsMenu" onClick={(e)=>switchDetailsMenu(e,setInfo)} >Property Details</li>
-                            <li id='map' onClick={(e)=>switchDetailsMenu(e,setInfo)} >Map</li>
+                            <li id='details' className={ menu === "Property Details" ? "selectedDetailsMenu" : "" } onClick={ (e) => switchMenu(e, setMenu) } >Property Details</li>
+                            <li id='map' className={ menu === "Map" ? "selectedDetailsMenu" : "" } onClick={ (e) => switchMenu(e, setMenu) } >Map</li>
                         </ul>
                     </header>
-                    <EditProperty setUpdate={setUpdate} properties={properties}/>
-                    { info? <DetailsContainer properties={properties}/>
-                    :<div id="mapContainer"><GoogleMap location={location}/></div>}
+                    { edit ? <EditProperty properties={ properties } />
+                        : menu === "Property Details" ? <DetailsContainer properties={ properties } />
+                            : <div id="mapContainer"><GoogleMap location={ location } /></div> }
                 </div>
             </div>
             <main>
-            <Aside properties={properties} mine={mine} />
-            <DetailImages setUpdate={setUpdate} mine={mine} images={images} id={properties._id} changePicture={changePicture}/>
-            {mine &&<AddMoreImages setUpdate={setUpdate} properties={properties}/>}
+                <Aside properties={ properties } mine={ mine } />
+                <DetailImages mine={ mine } setUpdate={setUpdate} images={ images } id={ properties._id } changePicture={ changePicture } />
+                { mine && edit && <AddMoreImages setUpdate={setUpdate} properties={ properties } /> }
             </main>
-            <Confirm func={clickHandler}/>
-            <Message ownerName={`${firstName} ${LastName}`} ownerEmail={ownerEmail} email={userEmail} name={`${name} ${surname}`}/>
+            <Confirm func={ clickHandler } />
+            <Message ownerName={ `${firstName} ${LastName}` } ownerEmail={ ownerEmail } email={ userEmail } name={ `${name} ${surname}` } />
         </div>
     )
 }

@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { AuthContext } from '../../Context';
 import authenticate from '../../Services/auth'
 import { registerURL } from '../../Services/API'
-import { verifyRegister, hideError } from '../../Utils/verifyData'
+import { verifyRegister, hideError } from '../../Utils/formsValidator'
 import RegisterInput from '../../Components/RegisterComponent'
 import './index.scss'
 
@@ -42,9 +42,8 @@ const Register = () => {
             })
         }
     };
-    console.log(error);
 
-        hideError(error.err, setErr, {err:'', input:''});
+        hideError(error.err, setErr);
     
     return (
         <div className="registerContainer">

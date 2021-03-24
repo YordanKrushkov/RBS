@@ -10,7 +10,7 @@ import { switchMenu } from '../../Utils/eventHandlers'
 
 const Search = () => {
     const [offer, changeOffer] = useState('RENT');
-    const [search, changeSearch] = useState({ offer: offer })
+    const [search, changeSearch] = useState({ offer: offer });
     const history = useHistory()
     const changeHandler = (e) => {
         changeSearch({
@@ -39,8 +39,8 @@ const Search = () => {
             <div className="formWrapper">
                 <header>
                     <ul>
-                        <li onClick={ (e) => { switchMenu(e, changeOffer) } } value='RENT' style={ { borderTopLeftRadius: 10 } } className="new" >RENT</li>
-                        <li onClick={ (e) => { switchMenu(e, changeOffer) } } value='SELL' style={ { borderTopRightRadius: 10 } }>SALE</li>
+                        <li onClick={ (e) => { switchMenu(e, changeOffer) } } value='RENT'  className={offer==="RENT"?'clicked':''} >RENT</li>
+                        <li onClick={ (e) => { switchMenu(e, changeOffer) } } value='SELL'  className={offer==="SALE"?'clicked':''}>SALE</li>
                     </ul>
                 </header>
                 <main className="searchFormBody">

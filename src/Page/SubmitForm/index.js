@@ -9,6 +9,7 @@ import {verifySubmit,hideError} from '../../Utils/formsValidator'
 import CheckboxContainer from '../../Components/FormElements/Checkbox';
 import OptionsSection from '../../Components/FormElements/OptionsSection';
 import { ActionContext } from '../../Context/actionContext'
+import Loader from '../../Components/Loader';
 import './index.scss';
 
 const SubmitForm = () => {
@@ -31,6 +32,8 @@ const SubmitForm = () => {
         description: '',
         ownerId: '',
     });
+    const [loading,setLoading]=useState(false)
+
     const history = useHistory();
     const { notify } = useContext(ActionContext)
     useEffect(() => {
@@ -55,6 +58,7 @@ const SubmitForm = () => {
     }, [offer])
     const submitHandler = (e) => {
         e.preventDefault();
+        setLoading(true)
         verifySubmit(properties,img, setErr)
         getData({
             ...properties,
@@ -65,7 +69,8 @@ const SubmitForm = () => {
      submitData(img, properties, '/properties/create')
             .then((res) => {
                 if(res){
-                    notify(true,'Submitted successfully')
+                    notify(true,'Submitted successfully');
+                    setLoading(false)
                     history.push('/');
                 }else if(res.error){
                   return
@@ -79,6 +84,7 @@ const SubmitForm = () => {
 
     return (
         <div id="submitPropertie">
+          {loading&&<Loader id="postLoader"/>}  
             <header>
                 <ul >
                     <li onClick={ (e) => { switchMenu(e, changeOffer) } } value='RENT' style={ { borderTopLeftRadius: 10 } } className="new">RENT</li>

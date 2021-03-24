@@ -1,11 +1,13 @@
-import './index.scss'
+import Loader from '../Loader';
 import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
+import './index.scss'
 
-const DetailsContainer = ({ properties }) => {
+const DetailsContainer = ({ properties, loading }) => {
 
     return (
         <div id="detailsContainer">
+            {loading && <Loader id="detailsContainerLoader" /> }
             <div id='detailsField'>
                 <div id="detailsIconWrapper">
                     <div>

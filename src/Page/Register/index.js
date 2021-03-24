@@ -1,5 +1,6 @@
 import { useState, useContext} from 'react';
 import { Link, useHistory } from 'react-router-dom'
+import Loader from '../../Components/Loader';
 import { AuthContext } from '../../Context';
 import authenticate from '../../Services/auth'
 import { registerURL } from '../../Services/API'
@@ -13,6 +14,7 @@ const Register = () => {
         err: '',
         input: '',
     });
+    const [loading,setLoading]=useState(false)
 
     const { login } = useContext(AuthContext);
     const history = useHistory();
@@ -28,17 +30,18 @@ const Register = () => {
             repassword: e.target.repasword.value,
         }
         verifyRegister(user, setErr);
+        setLoading(true)
         if(!error.err){
             await authenticate(registerURL, user, 
                 (user) => {
                 if(!user){
                     setErr({err:'Something went wrong, please try again!'});
                     notify(true,`Sorry, please try again!`);
-
                 }
                 login(user);
                 localStorage.setItem("user", user.email);
-                notify(true,`Welcome, ${user.name} ${user.surname}`)
+                notify(true,`Welcome, ${user.name} ${user.surname}`);
+                setLoading(false)
                 history.push('/');
             }, (e) => {
                 console.log(e);
@@ -52,6 +55,7 @@ const Register = () => {
     
     return (
         <div className="registerContainer">
+        {loading&&<Loader id="loginLoader"/>}  
             <h1>Register</h1>
             {error.err ? <p className="wrong">{ error.err }</p>
                 : <p>Sign in for your favourite properties and more.</p>

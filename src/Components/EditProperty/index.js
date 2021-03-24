@@ -8,7 +8,7 @@ import { ActionContext } from '../../Context/actionContext';
 import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
 
-const EditProperty = ({ properties}) => {
+const EditProperty = ({ properties,setLoading}) => {
     const initialState = properties.details
     const { bedrooms, bathroom, description } = properties
     const [arr, setArr] = useState([]);
@@ -56,7 +56,7 @@ const EditProperty = ({ properties}) => {
     //SUBMIT
     const submitHandler = (e) => {
         e.preventDefault(e);
-
+        setLoading(true)
         setEdit({
             ...editedPropertie,
             details: arr,
@@ -64,7 +64,8 @@ const EditProperty = ({ properties}) => {
         updateProperty(editedPropertie)
             .then(() => {
                 editProp(false)
-                notify(true,"Updated successfully")
+                notify(true,"Updated successfully");
+                setLoading(false)
             })
             .catch((err) => notify(true,"Please, try again"));
     };

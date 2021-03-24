@@ -10,16 +10,18 @@ import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import './index.scss'
+import Loader from '../Loader';
 
-const CardElement = (props) => {
+const CardElement = ({data,loading}) => {
     const [style, setStyle] = useState(true);
     const [lik, setLiked] = useState(false);
     const { userID } = useContext(AuthContext);
     const { like, dislike, liked } = useContext(ActionContext);
     const history = useHistory();
-    let propertie = props.data;
+    let propertie = data;
+    console.log(loading);
     const id = propertie._id;
-    let rent=propertie.sellOrRent==="RENT";
+    let rent = propertie.sellOrRent === "RENT";
     console.log(userID);
     useEffect(() => {
         if (propertie.ownerId && propertie.ownerId._id === userID || !userID) {
@@ -31,7 +33,7 @@ const CardElement = (props) => {
         if (liked && liked.includes(id)) {
             setLiked(true)
         }
-        if (propertie.liked&&propertie.liked.includes(userID)) {
+        if (propertie.liked && propertie.liked.includes(userID)) {
             setLiked(true)
         }
     }, [lik, userID])
@@ -60,6 +62,7 @@ const CardElement = (props) => {
 
     return (
         <div className="parent">
+       {loading && <Loader id="cardLoader"/>}
             <header>
                 <div className="propImage">
                     { style ? !lik ? <FaRegHeart id="like" onClick={ likeHandler } />
@@ -69,7 +72,7 @@ const CardElement = (props) => {
                     </Image>
                 </div>
                 <div className="cardImgInfo">
-                    <h2>{`£ ${propertie.price} ${rent? 'p.m' :''}`}</h2>
+                    <h2>{ `£ ${propertie.price} ${rent ? 'p.m' : ''}` }</h2>
                     <div className="iconWrapper">
                         <div><IoIosBed className="icon" /> { char } </div>
                         <div><GiBathtub className="icon" /> { bath } </div>

@@ -6,6 +6,7 @@ import { loginURL } from '../../Services/API'
 import {hideError} from '../../Utils/formsValidator'
 import { ActionContext } from '../../Context/actionContext'
 import './index.scss'
+import Loader from '../../Components/Loader';
 
 const Login = () => {
     const [error, setErr] = useState({
@@ -13,11 +14,13 @@ const Login = () => {
         input:''
     });
     const {login} = useContext(AuthContext);
+    const [loading,setLoading]=useState(false)
     const history = useHistory();
     const { notify } = useContext(ActionContext)
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const user = {
             email: e.target.email.value,
             password: e.target.password.value,
@@ -26,6 +29,7 @@ const Login = () => {
             login(user);
             localStorage.setItem("user", user.email);
             notify(true,`Welcome, ${user.name} ${user.surname}`);
+            setLoading(false);
             history.push('/');
         }, (err) => {
             setErr({err:true});
@@ -40,6 +44,7 @@ const Login = () => {
     return (
         <div className="loginContainer">
             <h1 >Sign in</h1>
+          {loading&&<Loader id="loginLoader"/>}  
             {error.err
                 ? <p id="wrongLogin">Wrong email or password! Please, try again!</p>
                 : <p >Sign in for your favourite properties and more.</p> 

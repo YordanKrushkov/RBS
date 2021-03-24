@@ -7,7 +7,7 @@ import { Image, Transformation } from 'cloudinary-react';
 import { ActionContext } from '../../Context/actionContext'
 import './index.scss'
 import img from '../../Assets/images/profile.png'
-const Edit = ({isUpdate}) => {
+const Edit = ({isUpdate,setLoading}) => {
     const [user, setUser] = useState('')
     const [IMG, setImg] = useState('');
     const {notify}=useContext(ActionContext)
@@ -26,15 +26,15 @@ const Edit = ({isUpdate}) => {
     };
     const submitHandler = async (e) => {
         e.preventDefault();
+        setLoading(true)
         submitData(IMG.img, user, "/api/updateuser")
         .then((res) =>{ 
-            isUpdate(true);
             setImg('');
             notify(true,'Submitted successfully')
-
+            setLoading(false);
+            isUpdate(true)
             })
             .catch(err => notify(true,'Please, try again!'))
-            isUpdate(false)
 
     };
 

@@ -1,7 +1,6 @@
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
-const GoogleMap = (props) => {
-    const {location}= props
+const GoogleMap = (props,{location}) => {
     const mapStyles = {
         width: '95%',
         height: '95%',

@@ -17,6 +17,7 @@ import Aside from '../../Components/DetailsAsside'
 import './index.scss';
 
 const SingleCard = () => {
+    const [loading,setLoading]=useState(true)
     const [properties, setProperties] = useState('');
     const [menu, setMenu] = useState('Property Details');
     const [update, setUpdate] = useState(false)
@@ -43,7 +44,10 @@ const SingleCard = () => {
     }, [properties])
     useEffect(() => {
         getSingleProp(id)
-            .then(res => setProperties(res))
+            .then(res => {
+                setProperties(res);
+                setLoading(false)
+            })
             .catch(err => console.error(err))
     }, [edit,update])
     useEffect(() => {
@@ -78,14 +82,14 @@ const SingleCard = () => {
                             <li id='map' className={ menu === "Map" ? "selectedDetailsMenu" : "" } onClick={ (e) => switchMenu(e, setMenu) } >Map</li>
                         </ul>
                     </header>
-                    { edit ? <EditProperty properties={ properties } />
-                        : menu === "Property Details" ? <DetailsContainer properties={ properties } />
+                    { edit ? <EditProperty setLoading={setLoading} properties={ properties } />
+                        : menu === "Property Details" ? <DetailsContainer loading={loading} properties={ properties } />
                             : <div id="mapContainer"><GoogleMap location={ location } /></div> }
                 </div>
             </div>
             <main>
                 <Aside properties={ properties } setMessage={setMessage} setDelete={setDelete} mine={ mine } />
-                <DetailImages mine={ mine } setUpdate={setUpdate} images={ images } id={ properties._id } changePicture={ changePicture } />
+                <DetailImages mine={ mine } loading={loading} setLoading={setLoading} setUpdate={setUpdate} images={ images } id={ properties._id } changePicture={ changePicture } />
                 { mine && edit && <AddMoreImages setUpdate={setUpdate} properties={ properties } /> }
             </main>
             {deleteProp&&<Confirm func={ clickHandler } />}

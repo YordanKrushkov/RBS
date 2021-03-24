@@ -39,6 +39,7 @@ const open = (updated,isUpdate) => {
 
 }
 
+//CONFIRM
 const confirm = (e) => {
     if (e.target.innerHTML === 'Yes') {
         return true

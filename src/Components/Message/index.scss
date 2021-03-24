@@ -10,7 +10,6 @@
     top:20%;
     display: flex;
     flex-direction: column;
-    display: none;
     @include shadows;
     header{
         // background-color: $mainColor;
@@ -31,13 +30,13 @@
         #closeMessage{
             position: absolute;
             font-size: 28px;
-            color: $white;
+            color: $mainColor;
             top: 5px;
             right:5px;
 
             &:hover{
                 cursor: pointer;
-                color: darken($white, 8);
+                color: darken($mainColor, 8);
             }
         }
     }

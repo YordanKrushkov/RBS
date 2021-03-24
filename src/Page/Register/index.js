@@ -1,10 +1,11 @@
-import { useState, useContext,useEffect } from 'react';
+import { useState, useContext} from 'react';
 import { Link, useHistory } from 'react-router-dom'
 import { AuthContext } from '../../Context';
 import authenticate from '../../Services/auth'
 import { registerURL } from '../../Services/API'
 import { verifyRegister, hideError } from '../../Utils/formsValidator'
-import RegisterInput from '../../Components/RegisterComponent'
+import RegisterInput from '../../Components/RegisterComponent';
+import { ActionContext } from '../../Context/actionContext'
 import './index.scss'
 
 const Register = () => {
@@ -15,7 +16,7 @@ const Register = () => {
 
     const { login } = useContext(AuthContext);
     const history = useHistory();
- 
+    const { notify } = useContext(ActionContext)
     const submitHandler = async (e) => {
         e.preventDefault();
 
@@ -32,12 +33,16 @@ const Register = () => {
                 (user) => {
                 if(!user){
                     setErr({err:'Something went wrong, please try again!'});
+                    notify(true,`Sorry, please try again!`);
+
                 }
                 login(user);
                 localStorage.setItem("user", user.email);
+                notify(true,`Welcome, ${user.name} ${user.surname}`)
                 history.push('/');
             }, (e) => {
                 console.log(e);
+                notify(true,`Sorry, please try again!`);
                 history.push('/register')
             })
         }

@@ -1,20 +1,21 @@
 import './index.scss'
-import { useState,useContext } from 'react'
+import { useState, useContext } from 'react'
 import { MdAddAPhoto } from "react-icons/md";
 import { openImgInput } from '../../Utils/eventHandlers';
 import { uploadImage } from '../../Utils/imgUploader'
 import submitData from '../../Services/submitData'
 import { ActionContext } from '../../Context/actionContext';
-const AddMoreImages = ({ properties}) => {
+const AddMoreImages = ({ properties }) => {
     const [img, setIMG] = useState([])
-    const {editProp} =useContext(ActionContext)
+    const { editProp, notify } = useContext(ActionContext)
     const submitHandler = (e) => {
 
         submitData(img, properties._id, '/properties/update')
             .then(res => {
                 editProp(false)
+                notify(true, 'Submitted successfully')
             })
-            .catch(err => console.log(err));
+            .catch(err => notify(true, 'Please, try again!'));
     }
 
     return (

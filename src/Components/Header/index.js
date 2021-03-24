@@ -1,20 +1,22 @@
-import React, { useContext } from 'react';
-import { Link,useHistory } from 'react-router-dom'
+import React, { Fragment, useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom'
 import { AuthContext } from '../../Context';
 import logo from '../../Assets/images/Logo.svg';
-import { FiLogOut } from "react-icons/fi";
+import { ActionContext } from '../../Context/actionContext'
 
 import './index.scss'
 const Header = () => {
 
-    const {isAuthenticated, logout} = useContext(AuthContext);
+    const { isAuthenticated, logout } = useContext(AuthContext);
+    const { notify } = useContext(ActionContext);
     const isAuth = isAuthenticated;
-    const history=useHistory();
-    const onLogout = () => { 
-        logout(); 
-        history.push('/')
+    const history = useHistory();
+    const onLogout = () => {
+        logout();
+        history.push('/');
+        notify(true, 'Goodbye')
     };
-    
+
     return (
         <div className="navigation">
             <Link to="/"><img className="logo" src={ logo } alt="this is the logo" /></Link>
@@ -25,7 +27,10 @@ const Header = () => {
                 <li><Link to="/sale">Buy</Link></li>
                 { isAuth
                     ? <li onClick={ onLogout }><Link to="/">Logout</Link> </li>
-                    : <li> <Link to="/login">LOGIN</Link> </li>
+                    : <Fragment>
+                        <li> <Link to="/register">Register</Link> </li>
+                        <li> <Link to="/login">LOGIN</Link> </li>
+                    </Fragment>
                 }
             </ul>
         </div>

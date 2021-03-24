@@ -6,8 +6,8 @@ class ActionContextProvider extends Component {
     state = {
         liked: [],
         edit: false,
-        delete:false,
-        deleteImg:false,
+        action:false,
+        message:''
     }
     like = (id) => {
         this.setState({ liked: [...this.state.liked, id] });
@@ -21,24 +21,25 @@ class ActionContextProvider extends Component {
         }
     }
 
-    editProp =(value)=>{
-        this.setState({ edit:value })
+    editProp = (value) => {
+        this.setState({ edit: value })
     }
-    deleteProp=(value)=>{
-        this.setState({ delete:value })
-    }
-    deleteImage=(value)=>{
-        this.setState({ deleteImg:value })
+    notify=(action,message)=>{
+        this.setState({ 
+            action:action,
+            message:message 
+        })
     }
 
     render() {
         return (
-            <ActionContext.Provider value={ { ...this.state, 
-                    like: this.like, 
-                    dislike: this.dislike, 
-                    editProp:this.editProp,
-                    deleteProp:this.deleteProp, 
-                    deleteImage:this.deleteImage} }>
+            <ActionContext.Provider value={ {
+                ...this.state,
+                like: this.like,
+                dislike: this.dislike,
+                editProp: this.editProp,
+                notify:this.notify
+            } }>
                 {this.props.children }
             </ActionContext.Provider>
         )

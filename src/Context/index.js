@@ -34,6 +34,10 @@ class AuthContextProvider extends Component {
         this.setState({
             isAuthenticated: false,
             userEmail: '',
+            userID:'',
+            likedProperties:'',
+            name:'',
+            surname:''
         })
     }
     componentDidMount() {

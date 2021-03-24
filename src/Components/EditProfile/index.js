@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { getUser } from '../../Services/Users'
-import { openImgInput, close,open } from '../../Utils/eventHandlers'
+import { openImgInput } from '../../Utils/eventHandlers'
 import { uploadSingleImage } from '../../Utils/imgUploader';
 import submitData from '../../Services/submitData'
-import { Image, Transformation } from 'cloudinary-react'
+import { Image, Transformation } from 'cloudinary-react';
+import { ActionContext } from '../../Context/actionContext'
 import './index.scss'
 import img from '../../Assets/images/profile.png'
 const Edit = ({isUpdate}) => {
     const [user, setUser] = useState('')
-    const [IMG, setImg] = useState('')
+    const [IMG, setImg] = useState('');
+    const {notify}=useContext(ActionContext)
     useEffect(() => {
         getUser()
         .then(res => { setUser(res); 
@@ -26,12 +28,12 @@ const Edit = ({isUpdate}) => {
         e.preventDefault();
         submitData(IMG.img, user, "/api/updateuser")
         .then((res) =>{ 
-            close('editFormWrapper'); 
-            open('hidde','flex');
             isUpdate(true);
-            setImg('') 
+            setImg('');
+            notify(true,'Submitted successfully')
+
             })
-            .catch(err => console.log(err))
+            .catch(err => notify(true,'Please, try again!'))
             isUpdate(false)
 
     };

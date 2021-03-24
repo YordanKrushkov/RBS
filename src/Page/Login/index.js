@@ -4,16 +4,17 @@ import { AuthContext } from '../../Context';
 import authenticate from '../../Services/auth'
 import { loginURL } from '../../Services/API'
 import {hideError} from '../../Utils/formsValidator'
+import { ActionContext } from '../../Context/actionContext'
 import './index.scss'
 
 const Login = () => {
-    
     const [error, setErr] = useState({
         err:'',
         input:''
     });
     const {login} = useContext(AuthContext);
     const history = useHistory();
+    const { notify } = useContext(ActionContext)
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -24,9 +25,11 @@ const Login = () => {
         await authenticate(loginURL, user, (user) => {
             login(user);
             localStorage.setItem("user", user.email);
+            notify(true,`Welcome, ${user.name} ${user.surname}`);
             history.push('/');
         }, (err) => {
-            setErr({err:true})
+            setErr({err:true});
+            notify(true,`Sorry, please try again!`);
             history.push('/login')
         })
     };

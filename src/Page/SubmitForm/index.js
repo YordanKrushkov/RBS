@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import AllCities from '../../Components/FormElements/Cities';
 import { openImgInput, switchMenu, detailHendler } from '../../Utils/eventHandlers';
@@ -8,6 +8,7 @@ import {userVerify} from '../../Services/Users';
 import {verifySubmit,hideError} from '../../Utils/formsValidator'
 import CheckboxContainer from '../../Components/FormElements/Checkbox';
 import OptionsSection from '../../Components/FormElements/OptionsSection';
+import { ActionContext } from '../../Context/actionContext'
 import './index.scss';
 
 const SubmitForm = () => {
@@ -30,7 +31,8 @@ const SubmitForm = () => {
         description: '',
         ownerId: '',
     });
-    const history = useHistory()
+    const history = useHistory();
+    const { notify } = useContext(ActionContext)
     useEffect(() => {
         userVerify()
         .then((res) => { !res.auth && history.push('/login') })
@@ -63,7 +65,8 @@ const SubmitForm = () => {
      submitData(img, properties, '/properties/create')
             .then((res) => {
                 if(res){
-                    history.push('/')
+                    notify(true,'Submitted successfully')
+                    history.push('/');
                 }else if(res.error){
                   return
                 }

@@ -20,7 +20,7 @@ const EditProperty = ({ properties}) => {
         details: [],
         description: '',
     })
-    const { editProp } = useContext(ActionContext)
+    const { editProp,notify } = useContext(ActionContext)
     useEffect(() => {
         setArr(initialState)
     }, [initialState]);
@@ -53,8 +53,9 @@ const EditProperty = ({ properties}) => {
         updateProperty(editedPropertie)
             .then(() => {
                 editProp(false)
+                notify(true,"Updated successfully")
             })
-            .catch((err) => console.log(err));
+            .catch((err) => notify(true,"Please, try again"));
     }
     return (
         <div id="editDetailsContainer">

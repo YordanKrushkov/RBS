@@ -19,10 +19,8 @@ const CardElement = ({data,loading}) => {
     const { like, dislike, liked } = useContext(ActionContext);
     const history = useHistory();
     let propertie = data;
-    console.log(loading);
     const id = propertie._id;
     let rent = propertie.sellOrRent === "RENT";
-    console.log(userID);
     useEffect(() => {
         if (propertie.ownerId && propertie.ownerId._id === userID || !userID) {
             setStyle(false)

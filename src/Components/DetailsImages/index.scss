@@ -4,6 +4,10 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 40px;
+    
+    @include MQ(600px){
+        margin-top: 20px;
+    }
     div{
         width: 30%;
         margin: 5px 10px 5px 0;
@@ -16,6 +20,10 @@
             font-size: 20px;
             right: 2%;
             top: 1%;
+
+             @include MQ(600px){
+                font-size: 12px;
+             }
             &:hover{
                 cursor: pointer;
                 font-size: 21px;

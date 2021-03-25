@@ -10,17 +10,38 @@
     border-radius: 10px;
     margin: 40px auto;
     @include shadows;
+    @include MQ(1200px){
+        width: 50%;
+    }
+    @include MQ(1000px){
+        width: 60%;
+    }
+    @include MQ(850px){
+        width: 70%;
+    }
+    
+    @include MQ(600px){
+        width: 95%;
+        margin-top: 50px;
+    }
     h1{
         margin: 20px 2px 0 0;
         align-self:center;
         color: black;
         font-size: 24px;
         font-weight: 600;
+        @include MQ(600px){
+           font-size: 16px;
+        }
     }
     p{
         margin: 10px;
         padding: 0;
         font-size: 14px;
+        @include MQ(600px){
+            font-size: 10px;
+            margin:8px;
+         }
     }
 
     form{
@@ -49,9 +70,17 @@
         align-items: stretch;
         max-width: 500px;
         padding: 0;
+        @include MQ(600px){
+            font-size: 10px;
+            max-width: 300px
+         }
     }
     button{
      @include buttons;
+     @include MQ(600px){
+        font-size: 14px;
+        height: 35px;
+     }
 
     }
 
@@ -63,11 +92,20 @@
         justify-content: center;
         align-items: center;
         padding-bottom: 20px;
+        @include MQ(600px){
+            padding-bottom: 10px;
+         }
+      
     }
         p{
             text-align: center;
             margin-bottom:10px ;
             padding-bottom:10px ;
+            @include MQ(600px){
+                font-size: 10px;
+                margin-bottom: 5px;
+                padding-bottom: 5px;
+             }
         }
         a{
             color: $mainColor;
@@ -76,6 +114,9 @@
             font-size: 24px;
             text-transform: capitalize;
             padding:0 0 10px 10px;
+            @include MQ(600px){
+                font-size: 10px;
+             }
             &:hover{
                 color: $orange;
             }
@@ -88,6 +129,9 @@
     font-size: 14px;
     margin: 0;
     padding: 10px 0;
+    @include MQ(600px){
+        font-size: 10px;
+     }
 }
 
 .border{

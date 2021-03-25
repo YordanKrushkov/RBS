@@ -39,7 +39,10 @@ const searchProperty=async(filter)=>{
 };
 
 //Get single property
-const getSingleProp=async (id)=> {
+const getSingleProp=async (prop)=> {
+    console.log(prop);
+    let id=prop.split('property/')[1]
+    console.log(id);
     const promise = await fetch(`${baseUrl}${id}`,  {
         method:'GET',
         headers: {

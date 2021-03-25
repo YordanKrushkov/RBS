@@ -11,12 +11,20 @@
         font-size: 16px;
         font-weight: 600;
         margin: 5px;
+        @include MQ(600px){
+            font-size: 12px;
+            margin: 2px;
+         }
     }
     input{
         @include inputField;
         height: 40px ;
         width: 100%;
         max-width: 100%;
+        @include MQ(600px){
+            font-size: 10px;
+            margin: 5px;
+         }
     
         &:focus{
             background-color: $color;
@@ -27,11 +35,18 @@
     width: 100%;
     max-width: 100%;
     justify-content: center;
-    
+     
     input{
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: content-box;
         font-size: 14px;
+        @include MQ(600px){
+            font-size: 10px;
+            width: 97% !important;
+            margin: 5px;
+            margin-right: 12px;
+         }
+    
     }
 }

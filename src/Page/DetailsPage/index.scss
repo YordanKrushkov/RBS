@@ -6,21 +6,31 @@
     display: flex;
     justify-content: space-between;
     margin: 40px auto;
-
+     
+    @include MQ(600px){
+        width: 95%;
+        margin: 20px auto;
+    }
     #propertyInfo {
         width: 90%;
         display: flex;
         flex-direction: column;
-
+        @include MQ(600px){
+        }
         img {
             width: 90%;
+            @include MQ(600px){
+            width: 95%;
+            }
         }
 
         header {
             display: flex;
             justify-content: flex-start;
             max-width: 90%;
-
+            @include MQ(600px){
+                max-width: 95%;
+            }
             ul {
                 width: 100%;
                 height: 50px;
@@ -30,7 +40,9 @@
                 list-style-type: none;
                 padding: 0;
                 margin: 0px;
-
+                @include MQ(600px){
+                    height: 30px;
+                 }
                 li {
                     font-size: 20px;
                     font-weight: 600;
@@ -47,6 +59,9 @@
                         cursor: pointer;
                         background-color: darken($mainColor, 5);
                     }
+                     @include MQ(600px){
+                    font-size: 10px !important;
+                 }
                 }
             }
         } //HEADER
@@ -54,7 +69,9 @@
     main {
         max-width: 30%;
         width: 100%;
-       
+        @include MQ(600px){
+            max-width: 35%;
+        }
       
     }
 

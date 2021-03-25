@@ -40,7 +40,7 @@ const CardElement = ({data,loading}) => {
     const { char, bath } = charHandler(propertie);
     const handleClick = (e) => {
         e.preventDefault();
-        history.push(id);
+        history.push(`/property/${id}`);
     }
     const likeHandler = (e) => {
         let key = '';

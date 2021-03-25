@@ -67,6 +67,8 @@ const SingleCard = () => {
                     setDelete(false);
                     history.push('/')
                 }).catch(err => console.log(err))
+        }else{
+            setDelete(false)
         }
     }
     return (

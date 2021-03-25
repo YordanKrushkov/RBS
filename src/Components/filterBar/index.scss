@@ -11,28 +11,58 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     margin: 0 auto;
+    @include MQ(600px){
+        width: 100%;
+        height: 40px;
+        border-radius: 0;
+    }
     @include shadows;
 
     #filterText{
         padding-left: 10px;
+        @include MQ(600px){
+         display: none;
+        }
     }
 }
 .filterButton{
     width: (100% /6);
-}
+    @include MQ(1300px){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2px 0;
+         box-sizing: border-box;
+     height: 100%;
 
+
+    }
+   
+
+}
 .filterSpan{
     font-size: 14px;
     font-weight: 600;
     margin-right: 5px;
+    @include MQ(600px){
+        font-size: 8px;  
+        padding: 0;
+        margin: 0;   
+    }
 }
 .searchInput{
     width: 120px;
     height: 30px;
     border: none;
-    font-size: 14px;
     padding: 2px;
     border: 2px solid $mainColor;
     font-size: 14px;
+    @include MQ(600px){
+        font-size: 8px;
+        padding: 1px;
+        width: 50px;
+        height: 20px;
+    }
 }
 

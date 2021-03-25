@@ -19,6 +19,7 @@ const Profile = () => {
         liked: true,
         owned: true
     })
+
     useEffect(() => {
         getUser()
             .then(res => {
@@ -57,7 +58,7 @@ const Profile = () => {
                     <div className="myProperties">
                         { properties ? properties.map(x =>
                             <div className="myProf" key={ x._id }>
-                                <CardElement data={ x } />
+                                <CardElement loading={loading} data={ x } />
                             </div>
                         ) : null }
                     </div>
@@ -69,7 +70,7 @@ const Profile = () => {
                     <div className="myProperties">
                         { likedProperties ? likedProperties.map(x =>
                             <div className="myProf" key={ x._id }>
-                                <CardElement data={ x } />
+                                <CardElement loading={loading} data={ x } />
                             </div>
                         ) : null }
                     </div>

@@ -11,15 +11,15 @@ const Filter = (props) => {
         <div id='filterBar' className="filterBar" >
             <span className="filterSpan" id="filterText">Filter:</span>
             <div className="filterButton">
-                <label htmlFor="city" ><span className="filterSpan">City: </span> </label>
+                <label htmlFor="city" className="filterSpan">City: </label>
                 <AllCities>{ { className: "searchInput", func: ChangeHandler } }</AllCities>
             </div>
             <div className="filterButton">
-                <label htmlFor="type" ><span className="filterSpan">Type: </span></label>
+                <label htmlFor="type" className="filterSpan">Type:</label>
                 <TypeSelect>{ { className: "searchInput", func: ChangeHandler } }</TypeSelect>
             </div>
             <div className="filterButton">
-                <label htmlFor="bedrooms"><span className="filterSpan">Bedrooms: </span> </label>
+                <label htmlFor="bedrooms" className="filterSpan">Bedrooms:</label>
                 <BedroomCount>{ { className: "searchInput", func: ChangeHandler } }</BedroomCount>
             </div>
             <div className="filterButton" >

@@ -17,7 +17,7 @@ import Aside from '../../Components/DetailsAsside'
 import './index.scss';
 
 const SingleCard = () => {
-    const [loading,setLoading]=useState(true)
+    const [loading, setLoading] = useState(true)
     const [properties, setProperties] = useState('');
     const [menu, setMenu] = useState('Property Details');
     const [update, setUpdate] = useState(false)
@@ -49,7 +49,7 @@ const SingleCard = () => {
                 setLoading(false)
             })
             .catch(err => console.error(err))
-    }, [edit,update])
+    }, [edit, update])
     useEffect(() => {
         getLocation(properties.street, properties.city)
             .then(res => setLocation(res))
@@ -67,7 +67,7 @@ const SingleCard = () => {
                     setDelete(false);
                     history.push('/')
                 }).catch(err => console.log(err))
-        }else{
+        } else {
             setDelete(false)
         }
     }
@@ -84,18 +84,18 @@ const SingleCard = () => {
                             <li id='map' className={ menu === "Map" ? "selectedDetailsMenu" : "" } onClick={ (e) => switchMenu(e, setMenu) } >Map</li>
                         </ul>
                     </header>
-                    { edit ? <EditProperty setLoading={setLoading} properties={ properties } />
-                        : menu === "Property Details" ? <DetailsContainer loading={loading} properties={ properties } />
+                    { edit ? <EditProperty setLoading={ setLoading } properties={ properties } />
+                        : menu === "Property Details" ? <DetailsContainer loading={ loading } properties={ properties } />
                             : <div id="mapContainer"><GoogleMap location={ location } /></div> }
                 </div>
             </div>
             <main>
-                <Aside properties={ properties } setMessage={setMessage} setDelete={setDelete} mine={ mine } />
-                <DetailImages mine={ mine } loading={loading} setLoading={setLoading} setUpdate={setUpdate} images={ images } id={ properties._id } changePicture={ changePicture } />
-                { mine && edit && <AddMoreImages setUpdate={setUpdate} properties={ properties } /> }
+                <Aside properties={ properties } setMessage={ setMessage } setDelete={ setDelete } mine={ mine } />
+                <DetailImages mine={ mine } loading={ loading } setLoading={ setLoading } setUpdate={ setUpdate } images={ images } id={ properties._id } changePicture={ changePicture } />
+                { mine && edit && <AddMoreImages setUpdate={ setUpdate } properties={ properties } /> }
             </main>
-            {deleteProp&&<Confirm func={ clickHandler } />}
-            {message&&<Message ownerName={ `${firstName} ${LastName}` } setMessage={setMessage} ownerEmail={ ownerEmail } email={ userEmail } name={ `${name} ${surname}` } />}
+            {deleteProp && <Confirm func={ clickHandler } /> }
+            {message && <Message ownerName={ `${firstName} ${LastName}` } setMessage={ setMessage } ownerEmail={ ownerEmail } email={ userEmail } name={ `${name} ${surname}` } /> }
         </div>
     )
 }

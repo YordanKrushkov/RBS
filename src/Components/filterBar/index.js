@@ -4,8 +4,7 @@ import BedroomCount from '../FormElements/Properties/Bedrooms'
 import RentingPrice from '../FormElements/Price/RentingPrice'
 import SellingPrice from '../FormElements/Price/SellingPrice'
 import AllCities from '../FormElements/Cities'
-const Filter = (props) => {
-    const { ChangeHandler, offer } = props.children
+const Filter = ({ChangeHandler,offer}) => {
 
     return (
         <div id='filterBar' className="filterBar" >

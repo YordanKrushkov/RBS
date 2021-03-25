@@ -7,7 +7,7 @@ import SellingPrice from '../FormElements/Price/SellingPrice'
 import TypeSelect from '../FormElements/Properties/Type'
 import BedroomCount from '../FormElements/Properties/Bedrooms'
 import { switchMenu } from '../../Utils/eventHandlers'
-
+import { searchProperty, getSome } from '../../Services/propertiesServices'
 const Search = () => {
     const [offer, changeOffer] = useState('RENT');
     const [search, changeSearch] = useState({ offer: offer });
@@ -28,11 +28,10 @@ const Search = () => {
     const searchIt = (e) => {
         e.preventDefault()
         history.push({
-            pathname: '/properties',
-            search: `?offer=${search.offer}&city=${search.city}&type=${search.type}&bedrooms=${search.bedrooms}&minPrice=${search.minPrice}&maxPrice=${search.maxPrice}`,
+            pathname: `${search.offer}`,
+            search: `?offer=${search.offer}&city=${search.city||''}&type=${search.type||''}&bedrooms=${search.bedrooms||''}&minPrice=${search.minPrice||''}&maxPrice=${search.maxPrice||''}`,
             state: search
         })
-
     }
     return (
         <form action="" onSubmit={ searchIt }>

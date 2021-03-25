@@ -1,15 +1,10 @@
-import { Fragment, useContext,useState } from 'react';
-import { Link, useHistory } from 'react-router-dom'
-import { AuthContext } from '../../Context';
-import logo from '../../Assets/images/Logo.svg';
-import { ActionContext } from '../../Context/actionContext'
-import MobileNavigation from './MobileNavigation';
-import { IoMenu } from "react-icons/io5";
+import React, { Fragment, useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { AuthContext } from '../../../Context';
+import { ActionContext } from '../../../Context/actionContext';
+import './index.scss';
+const MobileNavigation = ({mobile}) => {
 
-import './index.scss'
-const Header = () => {
-
-    const [mobile,setMobile]=useState(false);
     const { isAuthenticated, logout } = useContext(AuthContext);
     const { notify } = useContext(ActionContext);
     const isAuth = isAuthenticated;
@@ -19,16 +14,10 @@ const Header = () => {
         history.push('/');
         notify(true, 'Goodbye')
     };
-    const clickHandler=()=>{
-        mobile?setMobile(false):setMobile(true)
-    };
 
     return (
-        <div className="navigation">
-        <IoMenu className="mobileMenuButton" onClick={clickHandler}/>
-            <Link to="/"><img className="logo" src={ logo } alt="this is the logo" /></Link>
-           <MobileNavigation mobile={mobile} />
-            <ul className="navUl">
+        <div className={mobile? "mobileNavigaton clickedNav": "mobileNavigaton"}>
+            <ul>
                 { isAuth && <li><Link to="/post">Post</Link></li> }
                 { isAuth && <li><Link to="/profile">Profile</Link></li> }
                 <li><Link to="/rent">Rent</Link></li>
@@ -45,4 +34,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default MobileNavigation

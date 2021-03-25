@@ -5,24 +5,47 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 25%;
+        width: 27%;
         margin:5px 0;
+    
+        @include MQ(600px){
+            width: 35%;
+        }
         h2{
             font-size: 14px;
             margin: 0 10px;
             font-weight: 600;
+            word-break:inherit;
+            @include MQ(1100px){
+                font-size: 12px;
+            }
+            @include MQ(600px){
+                font-size: 10px;
+                margin: 0;
+            }
         }
         input{
             margin: 0;
             width: 16px;
             height: 16px;
             position: relative;
+         
+            @include MQ(600px){
+                width: 12px;
+                height: 12px;
+                margin-right: 12px;
+            }
             &::after{
                 content: "";
                 border:2px solid $mainColor;
-                width:12px;
-                height: 12px;
+                width:80%;
+                height: 80%;
                 position: absolute;
+
+                @include MQ(600px){
+                    width: 70%;
+                    height: 70%;
+                }
             }
         }
        

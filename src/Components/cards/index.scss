@@ -1,6 +1,6 @@
-@import '../../Desing/variables.scss';
-@import '../../Desing/mixin.scss';
-.parent{
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
+.parent {
     background-color: #ffff;
     border-radius: 10px;
     min-width: 500px;
@@ -9,106 +9,105 @@
     flex-direction: column;
     justify-content: space-between;
     margin: 20px 0;
-    @include MQ(600px){
+    @include MQ(600px) {
         min-width: 300px;
-        height: 180px
+        height: 180px;
     }
     @include shadows;
-    header{
+    header {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         position: relative;
         width: 100% !important;
-        #like{
+        #like {
             position: absolute;
             font-size: 20px;
             top: 5px;
             right: 10px;
 
-            &:hover{
-            color: $mainColor;
-            cursor: pointer;
+            &:hover {
+                color: $mainColor;
+                cursor: pointer;
             }
         }
-        #liked{
+        #liked {
             position: absolute;
             font-size: 20px;
             top: 5px;
             right: 10px;
 
-            &:hover{
-            color: $mainColor;
-            cursor: pointer;
+            &:hover {
+                color: $mainColor;
+                cursor: pointer;
             }
         }
     }
-    .cardImgInfo{
+    .cardImgInfo {
         width: 50%;
     }
-    .iconWrapper{
+    .iconWrapper {
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 10px 0;
-        
-        div{
+
+        div {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin: 10px;
-            @include MQ(600px){
+            @include MQ(600px) {
                 font-size: 10px;
             }
             .icon {
-                margin-right:5px;
+                margin-right: 5px;
             }
         }
     }
-    h6{
+    h6 {
         margin: 5px;
         font-size: 14px;
         font-weight: 600;
 
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 10px;
         }
     }
-    h2{
-        margin: 20px 0 ;
+    h2 {
+        margin: 20px 0;
         text-align: center;
         font-weight: 600;
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 14px;
         }
     }
 
-
-    footer{
+    footer {
         border-top: 1px solid $mainColor;
     }
-    button{
+    button {
         @include buttons;
         margin: 0;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
-        &:hover{
+        &:hover {
             cursor: pointer;
             background-color: darken($mainColor, 5);
         }
     }
 }
 
-.propImage{
+.propImage {
     align-content: flex-start;
     width: 240px;
     height: 190px;
 
-    @include MQ(600px){
+    @include MQ(600px) {
         min-width: 140px;
-        height: 140px
+        height: 140px;
     }
-    img{
+    img {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -116,7 +115,7 @@
     }
 }
 
-.cardLoader{
+.cardLoader {
     width: 100%;
-    margin:50px auto;
+    margin: 50px auto;
 }

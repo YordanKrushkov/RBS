@@ -11,13 +11,25 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @include MQ(810px){
+        min-height: 350px;
+        height: 350px; 
+    }
+    @include MQ(600px){
+        min-height: 250px;
+        height: 250px; 
+    }
+    @include MQ(600px){
+        min-height: 250px;
+        height: 250px; 
+    }
     @include shadows;
     header {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
+     
         section{
             display: flex;
             width: 80%;
@@ -31,23 +43,35 @@
                 display: flex;
                 flex-direction: column;
             }
-            
+            @include MQ(1105px){
+                flex-direction: column;
+            }
             img{
                 width: 80px;
                 height: 80px;
                 border-radius: 50%;
                 object-fit: cover;
+                @include MQ(600px){
+                    width: 40px;
+                    height: 40px;
+                }
             }
             h5{
                 margin:0;
                 padding: 0;
                 font-size: 20px !important;
                 font-weight: 600;
+                @include MQ(600px){
+                  font-size: 10px !important;
+                }
             }
             h6{
                 font-weight: 600;
                 font-size: 12px;
                 margin: 10px 0;
+                @include MQ(600px){
+                    font-size: 5px !important;
+                  }
             }
         }
 
@@ -57,11 +81,17 @@
             margin: 20px 0 0 0;
             font-size: 16px;
             font-weight: 600;
+            @include MQ(600px){
+                font-size: 10px;
+            }
         }
         h5 {
             font-size: 14px;
             font-weight: unset;
             margin: 10px 0 0 0;
+            @include MQ(600px){
+                font-size: 8px;
+            }
         }
 
         h2 {
@@ -69,6 +99,9 @@
             font-size: 28px;
             font-weight: 600;
             margin: 10px;
+            @include MQ(600px){
+                font-size: 14px;
+            }
         }
     }
 
@@ -93,6 +126,12 @@
         &:hover {
             cursor: pointer;
             background-color: darken($mainColor, 5);
+        }
+
+        @include MQ(600px){
+            font-size: 10px;
+            height: 30px !important;
+            max-height: 30px !important;
         }
     }
 

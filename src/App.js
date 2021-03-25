@@ -11,6 +11,7 @@ import Notify from './Components//Notification'
 import Properties from './Page/Properties';
 import SingleCard from './Page/DetailsPage';
 import Profile from './Page/Profile';
+import ErrorPage from './Page/404';
 function App() {
 
   const {action} = useContext(ActionContext)
@@ -31,7 +32,8 @@ function App() {
     <Route path="/search" component={Properties}/>
     <Route path="/profile" component={Profile}/>
     <Route path='/properties' component={ Properties } />
-    <Route path="/:id" component={SingleCard}/>
+    <Route path="/property/:id" component={SingleCard}/>
+    <Route path="/:err" component={ErrorPage}/>
     </Switch>
     </Router> 
     </div>

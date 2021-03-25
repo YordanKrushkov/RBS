@@ -17,7 +17,6 @@
     border-radius: 10px;
     @include shadows;
     @include MQ(600px) {
-        right: 0;
     }
     @include formHeader;
     
@@ -56,7 +55,7 @@
     align-items: center;
     margin: 0 auto;
     @include MQ(600px) {
-        max-width: 90%;
+        max-width: 70%;
     }
 }
 
@@ -75,6 +74,7 @@
 
 .options {
     @include inputField;
+
 }
 
 .typeflat {
@@ -91,7 +91,6 @@
         width: 110px !important;
     }
     @include MQ(600px) {
-        flex-direction: column;
     }
 }
 

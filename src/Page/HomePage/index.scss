@@ -9,6 +9,10 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    @include MQ(600px){
+        height: 70vh;
+    }
 }
 
 .img {
@@ -23,16 +27,6 @@
     position: absolute;
     top:10%;
     left: 50px;
-        
-    h1 {
-        font-size: 62px;
-        font-weight: 600;
-        font-style: italic;
-        color: $white;
-        margin-top:40px;
-        padding:0;
-        text-transform: capitalize;
-    }
 }
 
 
@@ -48,6 +42,10 @@
     }
     @include MQ(850px){
         justify-content: center;
+    }
+    @include MQ(600px){
+        justify-content: center;
+        margin-top: 10px;
     }
 }
 

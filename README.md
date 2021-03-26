@@ -2,10 +2,8 @@
 
 <h2>Rent Buy Sell</h2>
 
-
 <h4>Screenshots</h4>
 <img src="https://res.cloudinary.com/zltgrd/image/upload/v1616776751/Screenshot_1_klqmcp.png"/>
-
 
 <h4>Description</h4>
 A property webpage that allows the users to browse properties in the UK, <br/> search navigation to select the particular needs of the user, <br/> Google maps to view the location of the chosen property, <br/> Login option to create an account with profile picture, <br/> possibilities to list your own property, to add favourite properties, contact the owner.

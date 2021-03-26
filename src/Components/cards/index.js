@@ -1,18 +1,18 @@
 import { useState, useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom'
-import { Image, Transformation } from 'cloudinary-react'
+import { useHistory } from 'react-router-dom';
+import { Image, Transformation } from 'cloudinary-react';
 import { AuthContext } from '../../Context';
 import { ActionContext } from '../../Context/actionContext';
+import Loader from '../Loader';
 
-import { likeProperty } from '../../Services/propertiesServices'
-import charHandler from '../../Utils/charHandler'
+import { likeProperty } from '../../Services/propertiesServices';
+import charHandler from '../../Utils/charHandler';
 import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import './index.scss'
-import Loader from '../Loader';
+import './index.scss';
 
-const CardElement = ({data,loading}) => {
+const CardElement = ({ data, loading }) => {
     const [style, setStyle] = useState(true);
     const [lik, setLiked] = useState(false);
     const { userID } = useContext(AuthContext);
@@ -24,24 +24,24 @@ const CardElement = ({data,loading}) => {
     useEffect(() => {
         if (propertie.ownerId && propertie.ownerId._id === userID || !userID) {
             setStyle(false)
-        }
+        };
         if (propertie.ownerId && propertie.ownerId === userID) {
             setStyle(false)
-        }
+        };
         if (liked && liked.includes(id)) {
             setLiked(true)
-        }
+        };
         if (propertie.liked && propertie.liked.includes(userID)) {
             setLiked(true)
-        }
-    }, [lik, userID])
+        };
+    }, [lik, userID]);
 
 
     const { char, bath } = charHandler(propertie);
     const handleClick = (e) => {
         e.preventDefault();
         history.push(`/property/${id}`);
-    }
+    };
     const likeHandler = (e) => {
         let key = '';
 
@@ -56,11 +56,11 @@ const CardElement = ({data,loading}) => {
             like(id);
         }
         likeProperty(key, id);
-    }
+    };
 
     return (
         <div className="parent">
-       {loading && <Loader id="cardLoader"/>}
+            {loading && <Loader id="cardLoader" /> }
             <header>
                 <div className="propImage">
                     { style ? !lik ? <FaRegHeart id="like" onClick={ likeHandler } />

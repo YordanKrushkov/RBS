@@ -1,9 +1,10 @@
 import './index.scss';
-import { detailHendler } from '../../../Utils/eventHandlers'
+import { detailHendler } from '../../../Utils/eventHandlers';
 
-const props = ["Furnished", "Balcony", "Easy transport", "Garden", "Swiming pool", "Parking", "Garage", "Pets welcome", "Smoking allow"]
+const props = ["Furnished", "Balcony", "Easy transport", "Garden", "Swiming pool", "Parking", "Garage", "Pets welcome", "Smoking allow"];
 
 const CheckboxContainer = ({ initialState, setArr, arr, className }) => {
+
     return (
         <section data-testid="checbox" className={ className }>
             {props.map(x => (

@@ -32,7 +32,7 @@ const SubmitForm = () => {
         description: '',
         ownerId: '',
     });
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
 
     const history = useHistory();
     const { notify } = useContext(ActionContext);
@@ -54,7 +54,7 @@ const SubmitForm = () => {
         getData({
             ...properties,
             sellOrRent: offer
-        })
+        });
     }, [offer]);
     const submitHandler = (e) => {
         e.preventDefault();
@@ -70,16 +70,16 @@ const SubmitForm = () => {
                 .then((res) => {
                     if (res) {
                         notify(true, 'Submitted successfully');
-                        setLoading(false)
+                        setLoading(false);
                         history.push('/');
                     } else if (res.error) {
-                        setLoading(false)
+                        setLoading(false);
                         return
                     };
                 })
                 .catch(err => {
                     setLoading(false);
-                    console.error(err)
+                    console.error(err);
                 })
         };
 

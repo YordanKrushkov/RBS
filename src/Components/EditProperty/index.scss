@@ -1,91 +1,88 @@
-@import '../../Desing/variables.scss';
-@import '../../Desing/mixin.scss';
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
 
-
-#editDetailsContainer{
+#editDetailsContainer {
     background-color: white;
     width: 90%;
-    @include MQ(600px){
+    @include MQ(600px) {
         width: 95%;
     }
-    h2{
+    h2 {
         font-size: 16px;
         font-weight: 600;
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 10px;
         }
     }
-    #detailsIconWrapper{
+    #detailsIconWrapper {
         padding: 40px;
         margin: 0 auto;
         width: 60%;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        @include MQ(600px){
+        @include MQ(600px) {
             padding: 10px;
             width: 80%;
         }
 
-        div{
+        div {
             display: flex;
             align-items: center;
             margin-right: 20px;
-            @include MQ(600px){
+            @include MQ(600px) {
                 margin-right: 0;
             }
         }
 
-        .iconsEdit{
+        .iconsEdit {
             font-size: 16px;
             margin-right: 10px;
-            @include MQ(600px){
+            @include MQ(600px) {
                 font-size: 8px;
                 margin-right: 0;
             }
         }
     }
-    .optionMenu{
+    .optionMenu {
         @include inputField;
         height: 30px;
         width: 120px;
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 8px;
             height: 20px;
             width: 60px;
         }
     }
 
-  
-
-.editPropertyCheckbox{
-  display: flex;
-       flex-direction: column;
-       align-items: center;
-        flex-wrap:wrap;
+    .editPropertyCheckbox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
         height: 140px;
         width: 90%;
         margin: 10px auto;
-        @include MQ(600px){
+        @include MQ(600px) {
             height: max-content;
             max-height: 120px;
         }
-        .checkbox{
+        .checkbox {
             width: 30%;
-            @include MQ(600px){
+            @include MQ(600px) {
                 width: 37%;
             }
             h2 {
                 font-weight: 400;
                 font-size: 14px;
-                @include MQ(600px){
+                @include MQ(600px) {
                     font-size: 6px;
                 }
             }
         }
-}
+    }
 
-    textarea{
+    textarea {
         width: 70%;
         margin: 0 auto;
         resize: none;
@@ -94,22 +91,22 @@
         border: 2px solid $mainColor;
         outline: none;
         font-size: 14px;
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 8px;
             width: 80%;
             height: 50px;
             padding: 5px;
         }
-        &:focus{
+        &:focus {
             background-color: $color;
         }
     }
 
-    button{
+    button {
         @include buttons;
-        margin:0;
+        margin: 0;
         margin-top: 20px;
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 10px;
             height: 30px;
         }

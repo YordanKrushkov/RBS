@@ -1,4 +1,4 @@
-.card{
+.card {
     position: absolute;
     display: grid;
     grid-row: auto;
@@ -8,81 +8,70 @@
     top: 150px;
     right: 200px;
     border-radius: 10px;
- border-color:#018FF3;
-
+    border-color: #018ff3;
 }
 
-
-
-
-.imputs{
-    display:flex;
+.imputs {
+    display: flex;
     justify-content: space-evenly;
-  font-family: 'Montserrat', sans-serif;
-  border-color:  #018FF3;
-
+    font-family: "Montserrat", sans-serif;
+    border-color: #018ff3;
 }
 
-.type{
+.type {
     display: flex;
     justify-content: center;
-    margin-top:20px;
- border-color: #018FF3;
-
+    margin-top: 20px;
+    border-color: #018ff3;
 }
 
-
-.radio{
+.radio {
     display: flex;
     justify-content: space-evenly;
-    margin:20px auto;
+    margin: 20px auto;
     font-size: 20px;
-    
-    
 }
-.location{
- height: 50px;
- width: 100px;
- border-color: #018FF3;
-
+.location {
+    height: 50px;
+    width: 100px;
+    border-color: #018ff3;
 }
 
-.typeflat{
+.typeflat {
     height: 50px;
     width: 200px;
-    border-color: #018FF3;
+    border-color: #018ff3;
 }
 
-.card button{
+.card button {
     justify-self: center;
     color: white;
     font-size: 20px;
     font-weight: bold;
-    background-color: #018FF3;
+    background-color: #018ff3;
     border-radius: 50px;
     width: 200px;
-    border:none;
-    margin-bottom:40px;
- border-color: #018FF3;
-
+    border: none;
+    margin-bottom: 40px;
+    border-color: #018ff3;
 }
 
-.inputsEL{
- border-color: #018FF3;
+.inputsEL {
+    border-color: #018ff3;
 }
-.sortSelector{
+.sortSelector {
     width: 150px;
     height: 30px;
     border: none;
     font-size: 18px;
     padding: 2px;
-    border: 1px solid lightblue
+    border: 1px solid lightblue;
 }
-.neButton{
+.neButton {
     width: 150px;
     height: 30px;
     border: none;
     font-size: 18px;
     padding: 2px;
-    border: 1px solid lightblue
+    border: 1px solid lightblue;
 }

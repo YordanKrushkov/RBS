@@ -1,52 +1,51 @@
-@import '../../Desing/variables.scss';
-@import '../../Desing/mixin.scss';
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
 
-.regInputWrapper{
+.regInputWrapper {
     display: flex;
     flex-direction: column;
-    align-items:center;
-    margin:5px;
+    align-items: center;
+    margin: 5px;
 
-    label{
+    label {
         font-size: 16px;
         font-weight: 600;
         margin: 5px;
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 12px;
             margin: 2px;
-         }
+        }
     }
-    input{
+    input {
         @include inputField;
-        height: 40px ;
+        height: 40px;
         width: 100%;
         max-width: 100%;
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 10px;
             margin: 5px;
-         }
-    
-        &:focus{
+        }
+
+        &:focus {
             background-color: $color;
         }
     }
 }
-.email{
+.email {
     width: 100%;
     max-width: 100%;
     justify-content: center;
-     
-    input{
+
+    input {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: content-box;
         font-size: 14px;
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 10px;
             width: 97% !important;
             margin: 5px;
             margin-right: 12px;
-         }
-    
+        }
     }
 }

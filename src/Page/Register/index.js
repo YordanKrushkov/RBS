@@ -1,20 +1,20 @@
 import { useState, useContext, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom';
 import Loader from '../../Components/Loader';
 import RegisterInput from '../../Components/RegisterComponent';
 import { AuthContext } from '../../Context';
-import { ActionContext } from '../../Context/actionContext'
-import authenticate from '../../Services/auth'
-import { registerURL } from '../../Services/API'
-import { verifyRegister, hideError } from '../../Utils/formsValidator'
-import './index.scss'
+import { ActionContext } from '../../Context/actionContext';
+import authenticate from '../../Services/auth';
+import { registerURL } from '../../Services/API';
+import { verifyRegister, hideError } from '../../Utils/formsValidator';
+import './index.scss';
 
 const Register = () => {
     const [error, setErr] = useState({
         err: '',
         input: '',
     });
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
 
     const { login } = useContext(AuthContext);
     const history = useHistory();
@@ -36,9 +36,9 @@ const Register = () => {
             surname: e.target.surname.value,
             password: e.target.password.value,
             repassword: e.target.repasword.value,
-        }
+        };
         verifyRegister(user, setErr);
-        setLoading(true)
+        setLoading(true);
 
         if (!error.err) {
             await authenticate(registerURL, user,
@@ -68,7 +68,7 @@ const Register = () => {
         <div className="registerContainer">
             {loading && <Loader id="loginLoader" /> }
             <h1>Register</h1>
-            {error.err 
+            {error.err
                 ? <p className="wrong">{ error.err }</p>
                 : <p>Sign in for your favourite properties and more.</p>
             }
@@ -94,7 +94,6 @@ const Register = () => {
             </div>
         </div>
     )
-
 }
 
 export default Register

@@ -10,7 +10,7 @@ import './index.scss';
 
 const Search = () => {
     const [offer, changeOffer] = useState('RENT');
-    const [search, changeSearch] = useState({ offer: offer});
+    const [search, changeSearch] = useState({ offer: offer });
     const history = useHistory();
 
     const changeHandler = (e) => {
@@ -18,7 +18,7 @@ const Search = () => {
             ...search,
             [e.target.id]: e.target.value,
             offer: offer,
-        })
+        });
     };
     useEffect(() => {
         changeSearch({
@@ -33,7 +33,7 @@ const Search = () => {
             pathname: `${search.offer}`,
             search: `?offer=${search.offer}&city=${search.city || ''}&type=${search.type || ''}&bedrooms=${search.bedrooms || ''}&minPrice=${search.minPrice || ''}&maxPrice=${search.maxPrice || ''}`,
             state: search
-        })
+        });
     };
 
     return (

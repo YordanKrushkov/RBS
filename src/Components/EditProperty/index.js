@@ -1,5 +1,4 @@
-import './index.scss';
-import { useState, useEffect,useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import BedroomCount from '../../Components/FormElements/Properties/Bedrooms';
 import BathroomCount from '../../Components/FormElements/Properties/Bathrooms';
 import CheckboxContainer from '../../Components/FormElements/Checkbox';
@@ -7,10 +6,11 @@ import { updateProperty } from '../../Services/propertiesServices';
 import { ActionContext } from '../../Context/actionContext';
 import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
+import './index.scss';
 
-const EditProperty = ({ properties,setLoading}) => {
-    const initialState = properties.details
-    const { bedrooms, bathroom, description } = properties
+const EditProperty = ({ properties, setLoading }) => {
+    const initialState = properties.details;
+    const { bedrooms, bathroom, description } = properties;
     const [arr, setArr] = useState([]);
     const [editedPropertie, setEdit] = useState({
         id: '',
@@ -18,15 +18,13 @@ const EditProperty = ({ properties,setLoading}) => {
         bathroom: '',
         details: [],
         description: '',
-    })
-    const { editProp,notify } = useContext(ActionContext);
+    });
+    const { editProp, notify } = useContext(ActionContext);
 
-    //Set INITIALSTATE
     useEffect(() => {
         setArr(initialState)
     }, [initialState]);
 
-    //Set INITAL EDITED PROPERTIE
     useEffect(() => {
         setEdit({
             id: properties._id,
@@ -34,26 +32,23 @@ const EditProperty = ({ properties,setLoading}) => {
             bathroom: bathroom,
             description: description,
             details: arr
-        })
-    }, [ properties]);
+        });
+    }, [properties]);
 
-    //UPDATE DETAILS
     useEffect(() => {
         setEdit({
             ...editedPropertie,
             details: arr
         })
-    }, [ arr]);
-   
-    //UPDATE PROPERTY
+    }, [arr]);
+
     const onChangeHandler = (e) => {
         setEdit({
             ...editedPropertie,
             [e.target.id]: e.target.value,
         });
-    }
+    };
 
-    //SUBMIT
     const submitHandler = (e) => {
         e.preventDefault(e);
         setLoading(true)
@@ -64,12 +59,13 @@ const EditProperty = ({ properties,setLoading}) => {
         updateProperty(editedPropertie)
             .then(() => {
                 editProp(false)
-                notify(true,"Updated successfully");
+                notify(true, "Updated successfully");
                 setLoading(false)
             })
             .catch((err) => {
-                notify(true,"Please, try again");
-                setLoading(false)});
+                notify(true, "Please, try again");
+                setLoading(false)
+            });
     };
 
     return (

@@ -4,7 +4,8 @@ const RegisterInput = ({ type, name, label, error }) => {
     let err = false;
     if (name === "repasword" && error.input === "password") {
         err = true;
-    }
+    };
+
     return (
         <div data-testid="register" className={ name === 'email' ? 'regInputWrapper email' : "regInputWrapper" }>
             <label htmlFor={ name }>{ label }</label>
@@ -12,6 +13,6 @@ const RegisterInput = ({ type, name, label, error }) => {
         </div>
 
     );
-}
+};
 
 export default RegisterInput;

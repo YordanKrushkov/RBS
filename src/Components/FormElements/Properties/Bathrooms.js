@@ -1,5 +1,7 @@
 const BathroomCount = (props) => {
-    let { className, func, value } = props.children
+
+    let { className, func, value } = props.children;
+
     return (
         <select data-testid="bathroom" name="type" id="bathroom" className={ className } onChange={ func } required>
             {value

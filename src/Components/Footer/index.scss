@@ -1,0 +1,32 @@
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
+
+#footer {
+    background-color: $mainColor;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    div,
+    a {
+        display: flex;
+        align-items: center;
+        svg {
+            color: $white;
+            margin-right: 5px;
+        }
+    }
+    a {
+        text-decoration: none;
+        color: $white;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    h6 {
+        color: $white;
+        font-weight: 400;
+        margin: 2px;
+        font-size: 12px;
+    }
+}

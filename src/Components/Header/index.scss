@@ -1,7 +1,7 @@
-@import '../../Desing/variables.scss';
-@import '../../Desing/mixin.scss';
-.navigation{
-    margin:0;
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
+.navigation {
+    margin: 0;
     position: relative;
     z-index: 1;
     height: 60px;
@@ -10,33 +10,32 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
-    @include MQ (600px){
-       flex-direction: column;
-    
-     };
+    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75);
+    @include MQ(600px) {
+        flex-direction: column;
+    }
 }
-.navUl{
+.navUl {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 100%;
     width: 30%;
-    @include MQ (1200px){
-        width: 40%
-    };
-    @include MQ (900px){
-        width: 50%
-    };
-    @include MQ (800px){
-        width: 55%
-    };
-    @include MQ (600px){
-       display: none;
-    };
-    li{
+    @include MQ(1200px) {
+        width: 40%;
+    }
+    @include MQ(900px) {
+        width: 50%;
+    }
+    @include MQ(800px) {
+        width: 55%;
+    }
+    @include MQ(600px) {
+        display: none;
+    }
+    li {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -44,67 +43,66 @@
         width: (100%/4);
         text-transform: uppercase;
         font-weight: bold;
-      &:hover{
-        font-weight: bold;
-        background-color: darken($mainColor, 2);
-        cursor: pointer;
-      }
-      a{
-        height: 100%;
-        width: 100%;
-        padding-top: 40px;
-        text-decoration: none;
-        color: white;
-        font-size:18px;
-        font-weight: 600;
+        &:hover {
+            font-weight: bold;
+            background-color: darken($mainColor, 2);
+            cursor: pointer;
+        }
+        a {
+            height: 100%;
+            width: 100%;
+            padding-top: 40px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
     }
-    }
-    #logout{
+    #logout {
         color: white;
-        font-size:20px;
+        font-size: 20px;
     }
 }
 
-
-.loginField{
+.loginField {
     display: none;
 }
 
-.img{
+.img {
     width: 35px;
-    margin: 10px 0 0 0 ;
+    margin: 10px 0 0 0;
 }
 
-.logout{
+.logout {
     display: flex;
     width: 20%;
     align-items: center;
     justify-content: center;
 }
 
-.logo{
+.logo {
     height: 50px;
-    margin:5px 0 0 50px;
+    margin: 5px 0 0 50px;
 
-    @include MQ (600px){
+    @include MQ(600px) {
         margin: 0;
-    };
+    }
 }
 
-.mobileMenuButton{
+.mobileMenuButton {
     position: fixed;
     right: 10px;
     font-size: 52px;
     color: $white;
     display: none;
-    @include MQ (600px){
+    @include MQ(600px) {
         display: block;
-    };
-    &:hover{
-        cursor: pointer;
-        color: darken($white, 8);   
     }
-    &:active{
+    &:hover {
+        cursor: pointer;
+        color: darken($white, 8);
+    }
+    &:active {
         color: darken($white, 10);
     }
 }

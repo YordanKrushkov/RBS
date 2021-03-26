@@ -1,5 +1,7 @@
 const BedroomCount = (props) => {
-    let { className, func, value } = props.children
+
+    let { className, func, value } = props.children;
+
     return (
         <select data-testid="bedroom" name="type" id="bedrooms" className={ className } defaultValue="0" onChange={ func } required>
             {value

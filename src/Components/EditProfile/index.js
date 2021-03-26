@@ -38,7 +38,8 @@ const Edit = ({ isUpdate, setLoading }) => {
             })
             .catch(err => {
                 notify(true, 'Please, try again!');
-                setLoading(false);})
+                setLoading(false);
+            })
     };
 
     return (<div id="editFormWrapper">

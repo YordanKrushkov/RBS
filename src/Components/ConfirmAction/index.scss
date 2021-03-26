@@ -1,8 +1,7 @@
-@import '../../Desing/variables.scss';
-@import '../../Desing/mixin.scss';
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
 
-
-#confirm{
+#confirm {
     position: fixed;
     background-color: $white;
     border-radius: 10px;
@@ -16,37 +15,44 @@
     margin-right: auto;
     left: 0;
     right: 0;
+
     @include shadows;
-    @include MQ(600px){
+    @include MQ(600px) {
         width: 300px;
         height: 130px;
     }
-    header{
-        h1{
+
+    header {
+        h1 {
             font-weight: 600;
-            @include MQ(600px){
+            @include MQ(600px) {
                 font-size: 18px;
             }
         }
     }
-    footer{
-        button{
+
+    footer {
+        button {
             @include buttons;
-            margin:0;
+            margin: 0;
             border-radius: 0;
             height: 50px;
-            @include MQ(600px){
+
+            @include MQ(600px) {
                 font-size: 14px;
                 height: 35px;
             }
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
                 background-color: darken($mainColor, 5);
             }
         }
-        button:nth-child(1){
+
+        button:nth-child(1) {
             background-color: $orange;
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
                 background-color: darken($orange, 5);
             }

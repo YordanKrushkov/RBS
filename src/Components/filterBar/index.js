@@ -1,10 +1,11 @@
-import './index.scss'
-import TypeSelect from '../FormElements/Properties/Type'
-import BedroomCount from '../FormElements/Properties/Bedrooms'
-import RentingPrice from '../FormElements/Price/RentingPrice'
-import SellingPrice from '../FormElements/Price/SellingPrice'
-import AllCities from '../FormElements/Cities'
-const Filter = ({ChangeHandler,offer}) => {
+import AllCities from '../FormElements/Cities';
+import TypeSelect from '../FormElements/Properties/Type';
+import BedroomCount from '../FormElements/Properties/Bedrooms';
+import RentingPrice from '../FormElements/Price/RentingPrice';
+import SellingPrice from '../FormElements/Price/SellingPrice';
+import './index.scss';
+
+const Filter = ({ ChangeHandler, offer }) => {
 
     return (
         <div id='filterBar' className="filterBar" >

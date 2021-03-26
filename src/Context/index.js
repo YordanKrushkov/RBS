@@ -1,5 +1,5 @@
 import React, { Component, createContext } from 'react';
-import {userVerify} from '../Services/Users'
+import {userVerify} from '../Services/Users';
 export const AuthContext = createContext();
 
 class AuthContextProvider extends Component {
@@ -10,15 +10,13 @@ class AuthContextProvider extends Component {
         likedProperties:'',
         name:'',
         surname:''
-    }
-
-
+    };
 
     updateProperties=(res)=>{
         this.setState({
             likedProperties:res.likedProperties,
         })
-    }
+    };
 
     login = ({email,name,surname,likedProperties,id,}) => {
         this.setState({
@@ -29,7 +27,8 @@ class AuthContextProvider extends Component {
             name:name,
             surname: surname
         })
-    }
+    };
+
     logout = () => {
         document.cookie = 'x-auth-token=';
         localStorage.removeItem('user');
@@ -41,7 +40,8 @@ class AuthContextProvider extends Component {
             name:'',
             surname:''
         })
-    }
+    };
+
     componentDidMount() {
         userVerify().then((res) => {
                 if (res && res.auth) {
@@ -54,11 +54,11 @@ class AuthContextProvider extends Component {
                         likedProperties:res.user.likedProperties
                     })
                 } else {
-                    this.logout()
+                    this.logout();
                 }
             })
-            .catch((err) =>console.log(err))
-    }
+            .catch((err) =>console.log(err));
+    };
     
     render() {
         return (
@@ -67,6 +67,6 @@ class AuthContextProvider extends Component {
             </AuthContext.Provider>
         );
     }
-}
+};
 
 export default AuthContextProvider;

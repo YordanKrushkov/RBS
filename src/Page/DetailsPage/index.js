@@ -1,42 +1,42 @@
 import { useState, useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom'
-import { deleteProperty, getSingleProp } from '../../Services/propertiesServices'
-import DetailsContainer from '../../Components/DetailsComponent';
-import DetailImages from '../../Components/DetailsImages'
+import { useHistory } from 'react-router-dom';
+import { Image, Transformation } from 'cloudinary-react';
+import { deleteProperty, getSingleProp } from '../../Services/propertiesServices';
+import { AuthContext } from '../../Context';
+import { ActionContext } from '../../Context/actionContext';
 import Message from '../../Components/Message';
-import Confirm from '../../Components/ConfirmAction'
-import { switchMenu, confirm } from '../../Utils/eventHandlers'
-import { Image, Transformation } from 'cloudinary-react'
-import GoogleMap from '../../Components/GoogleMap'
+import Aside from '../../Components/DetailsAsside';
+import GoogleMap from '../../Components/GoogleMap';
+import Confirm from '../../Components/ConfirmAction';
+import EditProperty from '../../Components/EditProperty';
+import DetailImages from '../../Components/DetailsImages';
+import AddMoreImages from '../../Components/AddMoreImages';
+import DetailsContainer from '../../Components/DetailsComponent';
 import getLocation from '../../Utils/getLocation';
-import EditProperty from '../../Components/EditProperty'
-import { AuthContext } from '../../Context'
-import { ActionContext } from '../../Context/actionContext'
-import AddMoreImages from '../../Components/AddMoreImages'
-import Aside from '../../Components/DetailsAsside'
+import { switchMenu, confirm } from '../../Utils/eventHandlers';
 import './index.scss';
 
 const SingleCard = () => {
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
     const [properties, setProperties] = useState('');
     const [menu, setMenu] = useState('Property Details');
-    const [update, setUpdate] = useState(false)
-    const [deleteProp, setDelete] = useState(false)
-    const [message, setMessage] = useState(false)
+    const [update, setUpdate] = useState(false);
+    const [deleteProp, setDelete] = useState(false);
+    const [message, setMessage] = useState(false);
     const [location, setLocation] = useState('');
     const [profile, setProfile] = useState('');
-    const [mine, isMine] = useState(false)
-    const { userEmail, name, surname, userID } = useContext(AuthContext)
-    const { edit } = useContext(ActionContext)
-    let images = properties.images
-    const history = useHistory()
-    const id = history.location.pathname
+    const [mine, isMine] = useState(false);
+    const { edit } = useContext(ActionContext);
+    const { userEmail, name, surname, userID } = useContext(AuthContext);
+    let images = properties.images;
+    const history = useHistory();
+    const id = history.location.pathname;
     let ownerEmail, firstName, LastName = '';
     if (properties) {
         ownerEmail = properties.ownerId.email;
         firstName = properties.ownerId.name;
         LastName = properties.ownerId.surname;
-    }
+    };
     useEffect(() => {
         if (properties && properties.ownerId._id === userID) {
             isMine(true)
@@ -49,16 +49,17 @@ const SingleCard = () => {
                 setLoading(false)
             })
             .catch(err => console.error(err))
-    }, [edit, update])
+    }, [edit, update]);
+
     useEffect(() => {
         getLocation(properties.street, properties.city)
             .then(res => setLocation(res))
             .catch(err => console.error(err))
-    }, [properties])
+    }, [properties,edit]);
 
     const changePicture = (e) => {
         setProfile(e.target.src)
-    }
+    };
     const clickHandler = (e) => {
         let res = confirm(e);
         if (res) {
@@ -70,7 +71,8 @@ const SingleCard = () => {
         } else {
             setDelete(false)
         }
-    }
+    };
+
     return (
         <div id="detailsPage">
             <div id="propertyInfo">
@@ -86,7 +88,7 @@ const SingleCard = () => {
                     </header>
                     { edit ? <EditProperty setLoading={ setLoading } properties={ properties } />
                         : menu === "Property Details" ? <DetailsContainer loading={ loading } properties={ properties } />
-                            : <div id="mapContainer"><GoogleMap location={ location } /></div> }
+                            : <div id="mapContainer"><GoogleMap >{{location:location}}</GoogleMap></div> }
                 </div>
             </div>
             <main>

@@ -3,7 +3,7 @@ const AllCities = (props) => {
     let {className, func,value}=props.children
 
     return (
-        <select name="town" name="city" id="city" defaultValue="0" className={className} onChange={func}  required>
+        <select data-testid="city" name="town" name="city" id="city" defaultValue="0" className={className} onChange={func}  required>
              {value?<option value={value}>{value}</option>:  <option value="0">Select...</option>}
             <option id="city" value="London">London</option>
             <option id="city" value="Greater Manchester">Greater Manchester</option>

@@ -26,8 +26,8 @@ const Header = () => {
     return (
         <div className="navigation">
         <IoMenu className="mobileMenuButton" onClick={clickHandler}/>
-            <Link to="/"><img className="logo" src={ logo } alt="this is the logo" /></Link>
-           <MobileNavigation mobile={mobile} />
+            <Link to="/"><img className="logo" src={ logo } alt="this is the logo" onClick={()=>setMobile(false)}/></Link>
+           <MobileNavigation mobile={mobile} setMobile={setMobile} />
             <ul className="navUl">
                 { isAuth && <li><Link to="/post">Post</Link></li> }
                 { isAuth && <li><Link to="/profile">Profile</Link></li> }

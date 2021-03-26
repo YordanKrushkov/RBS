@@ -2,9 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+A property webpage that allows the users to browse properties in the UK, search navigation to select the particular needs of the user, Google maps to view the location of the chosen property, Login option to create an account with profile picture, possibilities to list your own property, to add favourite properties, contact the owner.
 
 ### `npm start`
 

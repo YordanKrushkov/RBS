@@ -1,7 +1,7 @@
-@import '../../Desing/variables.scss';
-@import '../../Desing/mixin.scss';
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
 
-#notify{
+#notify {
     background-color: $orange;
     position: fixed;
     top: 70px;
@@ -11,16 +11,15 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     transition: width 0.4s;
-    h1{
+    h1 {
         font-size: 18px;
         font-weight: 600;
         text-align: center;
         color: white;
-         transition: width 1s;
-         white-space: nowrap;
-         padding: 2px 20px;
+        transition: width 1s;
+        white-space: nowrap;
+        padding: 2px 20px;
     }
-  
 }
 .grow {
     width: 300px !important;

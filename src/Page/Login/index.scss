@@ -1,7 +1,6 @@
-
-@import '../../Desing/variables.scss';
-@import '../../Desing/mixin.scss';
-.loginContainer{
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
+.loginContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,122 +11,115 @@
     border-radius: 10px;
     margin: 50px auto;
     @include shadows;
-    @include MQ(1100px){
+    @include MQ(1100px) {
         width: 60%;
     }
-    @include MQ(800px){
+    @include MQ(800px) {
         width: 70%;
     }
-    @include MQ(600px){
+    @include MQ(600px) {
         width: 95%;
         height: 50vh;
         margin-top: 80px;
     }
-    p{
+    p {
         font-size: 14px;
         margin: 2px;
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 12px;
         }
     }
-    h1{
+    h1 {
         margin: 10px 2px 10px 0;
-        align-self:center;
+        align-self: center;
         font-weight: 600;
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 18px;
         }
     }
-
 }
 
-.loginForm{
+.loginForm {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width:60%;
+    width: 60%;
     margin: 0 auto;
     background-color: $white;
 
- label{
-    font-size: 16px;
-    font-weight: 600;
-    margin: 10px;
-    @include MQ(600px){
-        font-size: 12px;
+    label {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 10px;
+        @include MQ(600px) {
+            font-size: 12px;
+        }
     }
- }
 
- input{
-    height: 40px;
-    width: 100%;
-    border-radius: 10px;
-    outline: none;
-    font-size: 16px;
-    box-sizing: border-box;
-    text-align:center;
-    border: 2px solid $mainColor;
-    @include MQ(600px){
-        font-size: 10px;
-        height: 35px;
+    input {
+        height: 40px;
+        width: 100%;
+        border-radius: 10px;
+        outline: none;
+        font-size: 16px;
+        box-sizing: border-box;
+        text-align: center;
+        border: 2px solid $mainColor;
+        @include MQ(600px) {
+            font-size: 10px;
+            height: 35px;
+        }
+        &:focus {
+            background-color: $color;
+        }
     }
-    &:focus{
-        background-color: $color;
+
+    button {
+        @include buttons;
+        width: 100%;
+        margin: 20px 0;
+        border-radius: 10px;
+        @include MQ(600px) {
+            font-size: 10px;
+            height: 35px;
+        }
     }
- }
-
-
-
- button{
-@include buttons;
-    width: 100%;
-    margin: 20px 0;
-    border-radius: 10px;
-    @include MQ(600px){
-        font-size: 10px;
-        height: 35px;
-    }
-  
- }
-
 }
 
-#forgot{
+#forgot {
     color: $mainColor;
     text-decoration: underline;
     font-size: 14px;
     font-weight: 600;
-    margin:0 0 20px 10px;
-    @include MQ(600px){
+    margin: 0 0 20px 10px;
+    @include MQ(600px) {
         font-size: 10px;
         margin-bottom: 0;
     }
-    &:hover{
-    color: darken($mainColor, 5);
+    &:hover {
+        color: darken($mainColor, 5);
     }
 }
-.redirecRegister{
-    align-self:center;
+.redirecRegister {
+    align-self: center;
 
-    p{
+    p {
         text-align: center;
-        margin-bottom:20px ;
-        @include MQ(600px){
+        margin-bottom: 20px;
+        @include MQ(600px) {
             font-size: 10px;
             margin-bottom: 10px;
         }
     }
-    a{
+    a {
         color: $mainColor;
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 10px;
         }
     }
 }
 
-
-
-#join{
+#join {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,24 +127,24 @@
     font-size: 24px;
     color: $mainColor;
     margin-bottom: 20px;
-    @include MQ(600px){
+    @include MQ(600px) {
         font-size: 16px;
         margin-bottom: 10px;
     }
-    &:hover{
+    &:hover {
         color: darken($orange, 5);
     }
 }
 
-#wrongLogin{
+#wrongLogin {
     color: red;
     font-size: 14px;
-    @include MQ(600px){
+    @include MQ(600px) {
         font-size: 10px;
     }
 }
 
-.loginLoader{
+.loginLoader {
     position: absolute;
     top: 150px;
     margin-right: 20px;

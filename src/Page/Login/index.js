@@ -4,17 +4,17 @@ import { AuthContext } from '../../Context';
 import Loader from '../../Components/Loader';
 import authenticate from '../../Services/auth';
 import { loginURL } from '../../Services/API';
-import {hideError} from '../../Utils/formsValidator';
+import { hideError } from '../../Utils/formsValidator';
 import { ActionContext } from '../../Context/actionContext';
 import './index.scss';
 
 const Login = () => {
     const [error, setErr] = useState({
-        err:'',
-        input:''
+        err: '',
+        input: ''
     });
-    const {login} = useContext(AuthContext);
-    const [loading,setLoading]=useState(false);
+    const { login } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
     const history = useHistory();
     const { notify } = useContext(ActionContext);
 
@@ -28,32 +28,31 @@ const Login = () => {
         await authenticate(loginURL, user, (user) => {
             login(user);
             localStorage.setItem("user", user.email);
-            notify(true,`Welcome, ${user.name} ${user.surname}`);
+            notify(true, `Welcome, ${user.name} ${user.surname}`);
             setLoading(false);
             history.push('/');
         }, (err) => {
-            setErr({err:true});
+            setErr({ err: true });
             setLoading(false);
-            notify(true,`Sorry, please try again!`);
-            history.push('/login')
+            notify(true, `Sorry, please try again!`);
+            history.push('/login');
         });
     };
-     hideError(error.err,setErr);
-
+    hideError(error.err, setErr);
 
     return (
         <div className="loginContainer">
             <h1 >Sign in</h1>
-          {loading&&<Loader id="loginLoader"/>}  
+            {loading && <Loader id="loginLoader" /> }
             {error.err
                 ? <p id="wrongLogin">Wrong email or password! Please, try again!</p>
-                : <p >Sign in for your favourite properties and more.</p> 
+                : <p >Sign in for your favourite properties and more.</p>
             }
             <form action="" className="loginForm" onSubmit={ submitHandler }>
                 <label htmlFor="email">Email</label>
-                <input className={ error.err ? "errors":'' } type="email" name="email" id="email" />
+                <input className={ error.err ? "errors" : '' } type="email" name="email" id="email" />
                 <label htmlFor="password">Password</label>
-                <input className={ error.err ? "errors":'' } type="password" name="password" id="password" />
+                <input className={ error.err ? "errors" : '' } type="password" name="password" id="password" />
                 <button>Login</button>
             </form>
             <a href="/forgot" id="forgot" >Forgot your password?</a>

@@ -1,7 +1,7 @@
 import Loader from '../Loader';
 import { IoIosBed } from "react-icons/io";
 import { GiBathtub } from "react-icons/gi";
-import './index.scss'
+import './index.scss';
 
 const DetailsContainer = ({ properties, loading }) => {
 
@@ -35,10 +35,9 @@ const DetailsContainer = ({ properties, loading }) => {
                         <p>{ properties.description }</p>
                     </div>
                 </div>
-           
             </div>
             <div id="date">
-                <h6>Last updated at: {properties.updatedAt? properties.updatedAt.split('T')[0]: ''}</h6>
+                <h6>Last updated at: { properties.updatedAt ? properties.updatedAt.split('T')[0] : '' }</h6>
             </div>
         </div>
     )

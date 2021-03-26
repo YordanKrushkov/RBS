@@ -45,7 +45,8 @@ const SingleCard = () => {
         if (properties && properties.ownerId._id === userID) {
             isMine(true)
         }
-    }, [properties])
+    }, [properties]);
+    
     useEffect(() => {
         getSingleProp(id)
             .then(res => {
@@ -95,7 +96,7 @@ const SingleCard = () => {
                         : menu === "Property Details" ? <DetailsContainer loading={ loading } properties={ properties } />
                             : <div id="mapContainer"><GoogleMap >{ { location: location } }</GoogleMap></div> }
                 </div>
-                
+
             </div>
             <main>
                 <Aside properties={ properties } setMessage={ setMessage } setDelete={ setDelete } mine={ mine } />

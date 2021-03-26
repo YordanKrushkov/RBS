@@ -1,6 +1,6 @@
-@import '../../Desing/variables.scss';
-@import '../../Desing/mixin.scss';
-.homeContainer{
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
+.homeContainer {
     width: 100%;
     height: 85vh;
     position: relative;
@@ -10,45 +10,44 @@
     background-position: center;
     background-repeat: no-repeat;
 
-    @include MQ(600px){
+    @include MQ(600px) {
         height: 70vh;
     }
 }
 
 .img {
     box-sizing: border-box;
-    width:100%;
+    width: 100%;
     height: 110%;
     display: block;
-    margin:-1px 0;
+    margin: -1px 0;
 }
 
-.homeTitle{
+.homeTitle {
     position: absolute;
-    top:10%;
+    top: 10%;
     left: 50px;
 }
 
-
-.cardContainer{
+.cardContainer {
     width: 75%;
-    
+
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 60px auto;
-    @include MQ(1288px){
+    @include MQ(1288px) {
         width: 100%;
     }
-    @include MQ(850px){
+    @include MQ(850px) {
         justify-content: center;
     }
-    @include MQ(600px){
+    @include MQ(600px) {
         justify-content: center;
         margin-top: 10px;
     }
 }
 
-.homeLoader{
+.homeLoader {
     margin-top: 40px;
 }

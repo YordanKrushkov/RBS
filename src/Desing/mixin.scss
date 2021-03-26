@@ -1,17 +1,15 @@
-@import './variables.scss';
-
+@import "./variables.scss";
 
 @mixin inputField {
     height: 40px;
     border: 2px solid $mainColor;
-    margin:10px;
+    margin: 10px;
     width: 80%;
     max-width: 200px;
     font-size: 14px;
     border-radius: 5px;
     outline: none;
 }
-
 
 @mixin formHeader {
     header {
@@ -49,16 +47,14 @@
                 cursor: pointer;
                 background-color: darken($mainColor, 3);
             }
-            &:nth-child(1){
+            &:nth-child(1) {
                 border-top-left-radius: 10px;
             }
-            &:nth-child(2){
+            &:nth-child(2) {
                 border-top-right-radius: 10px;
             }
-           
         }
-    } 
-
+    }
 }
 
 @mixin buttons {
@@ -73,23 +69,23 @@
     outline: none;
     &:hover {
         cursor: pointer;
-        background-color: darken($mainColor,5);
+        background-color: darken($mainColor, 5);
     }
 }
 
 @mixin MQ($arg) {
-    @media screen and (max-width:$arg) {
-        @content
+    @media screen and (max-width: $arg) {
+        @content;
     }
-};
+}
 @mixin MinQ($arg) {
-    @media screen and (min-width:$arg) {
-        @content
+    @media screen and (min-width: $arg) {
+        @content;
     }
-};
+}
 
 @mixin shadows {
-    box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75);
 }

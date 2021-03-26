@@ -1,5 +1,5 @@
 import './index.scss';
-import img from '../../Assets/images/404.png'
+import img from '../../Assets/images/404.png';
 
 const ErrorPage = () => {
     return ( 
@@ -7,6 +7,6 @@ const ErrorPage = () => {
            <img src={img} alt=""/>
         </div>
      );
-}
+};
  
 export default ErrorPage;

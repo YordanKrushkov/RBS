@@ -12,6 +12,7 @@ import Properties from './Page/Properties';
 import SingleCard from './Page/DetailsPage';
 import Profile from './Page/Profile';
 import ErrorPage from './Page/404';
+import Footer from './Components/Footer';
 function App() {
 
   const {action} = useContext(ActionContext)
@@ -35,6 +36,7 @@ function App() {
     <Route path="/property/:id" component={SingleCard}/>
     <Route path="/:err" component={ErrorPage}/>
     </Switch>
+    <Footer/>
     </Router> 
     </div>
   );

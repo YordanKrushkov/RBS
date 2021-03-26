@@ -1,13 +1,14 @@
-@import '../../Desing/variables.scss';
-@import '../../Desing/mixin.scss';
+@import "../../Desing/variables.scss";
+@import "../../Desing/mixin.scss";
 
-#newImageWrapper{
+#newImageWrapper {
     width: 100%;
     margin-top: 10px !important;
+
     div {
         width: 100%;
         box-sizing: border-box;
-        #newImageList{
+        #newImageList {
             width: 100%;
             min-height: 40px;
             border-radius: 5px;
@@ -17,64 +18,68 @@
             flex-wrap: wrap;
             padding: 0;
             display: none;
-            @include MQ(600px){
+            @include MQ(600px) {
                 min-height: 10px;
-               }
-            li{
+            }
+
+            li {
                 text-decoration: none;
                 width: 120px;
                 margin: 0 5px;
-                @include MQ(600px){
+                @include MQ(600px) {
                     max-height: 40px;
                     max-width: 60px;
-                   }
-                img{
+                }
+
+                img {
                     object-fit: cover;
                     width: 120px;
-                    @include MQ(600px){
-                     max-height: 40px;
-                     max-width: 60px;
-                     bject-fit: cover;
+                    @include MQ(600px) {
+                        max-height: 40px;
+                        max-width: 60px;
+                        bject-fit: cover;
                     }
                 }
             }
         }
     }
+}
+
+button {
+    @include buttons;
+    margin: 10px;
+    width: 100%;
+    height: 40px;
+    @include MQ(600px) {
+        font-size: 12px;
+        height: 30px;
+        margin: 0;
+        margin-top: 10px;
     }
-    button{
-        @include buttons;
-        margin: 10px;
-        width: 100%;
-        height: 40px;
-        @include MQ(600px){
-            font-size: 12px;
-            height: 30px;
-            margin:0;
-            margin-top: 10px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    #addMoreImages {
+        font-size: 48px;
+        color: $mainColor;
+        @include MQ(600px) {
+            font-size: 20px;
         }
-       
-    }
-    footer{
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        #addMoreImages{
-            font-size: 48px;
-            color: $mainColor;
-            @include MQ(600px){
-                font-size: 20px;
-            }
-            &:hover{
-                cursor: pointer;
-                color: darken($mainColor, 5);
-               
-            }
-        }
-        input {
-            display: none;
+
+        &:hover {
+            cursor: pointer;
+            color: darken($mainColor, 5);
         }
     }
 
-    .imgLoading{
-        margin-left: 170px;
+    input {
+        display: none;
     }
+}
+
+.imgLoading {
+    margin-left: 170px;
+}

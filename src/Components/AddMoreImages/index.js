@@ -8,12 +8,13 @@ import { MdAddAPhoto } from "react-icons/md";
 import './index.scss';
 
 const AddMoreImages = ({ properties }) => {
+
     const [img, setIMG] = useState([]);
     const [loading, setLoading] = useState(false);
-
     const { editProp, notify } = useContext(ActionContext);
+
     const submitHandler = (e) => {
-        setLoading(true)
+        setLoading(true);
 
         submitData(img, properties._id, '/properties/update')
             .then(res => {

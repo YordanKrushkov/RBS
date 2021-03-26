@@ -1,6 +1,7 @@
 @import "../../Desing/variables.scss";
 @import "../../Desing/mixin.scss";
-.filterBar{
+
+.filterBar {
     background-color: $white;
     display: flex;
     justify-content: space-around;
@@ -11,58 +12,53 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     margin: 0 auto;
-    @include MQ(600px){
+    @include MQ(600px) {
         width: 100%;
         height: 40px;
         border-radius: 0;
     }
     @include shadows;
 
-    #filterText{
+    #filterText {
         padding-left: 10px;
-        @include MQ(600px){
-         display: none;
+        @include MQ(600px) {
+            display: none;
         }
     }
 }
-.filterButton{
+.filterButton {
     width: (100% /6);
-    @include MQ(1300px){
+    @include MQ(1300px) {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
         padding: 2px 0;
-         box-sizing: border-box;
-     height: 100%;
-
-
+        box-sizing: border-box;
+        height: 100%;
     }
-   
-
 }
-.filterSpan{
+.filterSpan {
     font-size: 14px;
     font-weight: 600;
     margin-right: 5px;
-    @include MQ(600px){
-        font-size: 8px;  
+    @include MQ(600px) {
+        font-size: 8px;
         padding: 0;
-        margin: 0;   
+        margin: 0;
     }
 }
-.searchInput{
+.searchInput {
     width: 120px;
     height: 30px;
     border: none;
     padding: 2px;
     border: 2px solid $mainColor;
     font-size: 14px;
-    @include MQ(600px){
+    @include MQ(600px) {
         font-size: 8px;
         padding: 1px;
         width: 50px;
         height: 20px;
     }
 }
-

@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import './index.scss'
 import Filter from "../../Components/FilterBar";
-import { searchProperty, getSome } from '../../Services/propertiesServices'
-import CardElement from '../../Components/Cards'
-
+import CardElement from '../../Components/Cards';
+import { searchProperty, getSome } from '../../Services/propertiesServices';
+import { FaHouseDamage } from "react-icons/fa";
+import './index.scss';
 
 const Properties = (prop) => {
-    const [properties, takeProperties] = useState()
+    const [properties, takeProperties] = useState();
     const [loading, setLoading] = useState(true);
     let offer = prop.location.pathname.split('/')[1].toUpperCase();
-    let data=prop.location.state;
+    let data = prop.location.state;
     const [filter, setFilter] = useState({
         offer: offer,
         city: '',
@@ -19,8 +19,8 @@ const Properties = (prop) => {
         minPrice: '',
         maxPrice: '',
         sortBy: 'newest'
-    })
-    const history=useHistory()
+    });
+    const history = useHistory();
     useEffect(() => {
         if (data) {
             setFilter({
@@ -32,35 +32,44 @@ const Properties = (prop) => {
                 offer: offer,
             })
         }
-    }, [prop.location])
+    }, [prop.location]);
 
     useEffect(() => {
         if (data) {
-            searchProperty(filter).then(res => {
-                takeProperties(res);
-                setLoading(false);
-            })
-                .catch(err => console.log("error", err))
+            searchProperty(filter)
+                .then(res => {
+                    takeProperties(res);
+                    setLoading(false);
+                })
+                .catch(err => console.log("error", err));
         } else {
-            getSome(filter).then(res => {
-                takeProperties(res);
-                setLoading(false);
-            })
-            .catch(err => console.log("error", err))
+            getSome(filter)
+                .then(res => {
+                    takeProperties(res);
+                    setLoading(false);
+                })
+                .catch(err => console.log("error", err));
         }
-    }, [filter])
+    }, [filter]);
     const ChangeHandler = (e) => {
         setFilter({
             ...filter,
             offer: offer,
             [e.target.id]: e.target.value
-        })
-    }
+        });
+    };
+
     return (
         <div id="propertiesContainer">
-            <Filter ChangeHandler={ChangeHandler} offer={offer}/>
+            <Filter ChangeHandler={ ChangeHandler } offer={ offer } />
             <main>
                 { properties && properties.map(x => <CardElement loading={ loading } data={ x } key={ x._id } />) }
+                { properties && properties.length === 0 &&
+                    <div id="emptyHouse">
+                        <h1>No properties available at the moment...</h1>
+                        <FaHouseDamage />
+                    </div>
+                }
             </main>
         </div>
     );

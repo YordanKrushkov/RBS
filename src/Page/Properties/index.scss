@@ -1,31 +1,42 @@
-@import '../../Desing/mixin.scss';
-#propertiesContainer{
+@import "../../Desing/mixin.scss";
+#propertiesContainer {
     width: 100%;
+    min-height: 83.2vh;
     margin: 0 auto;
 
-    main{
+    main {
         width: 70%;
         margin: 30px auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        #emptyHouse {
+            margin: 0 auto;
+            h1 {
+                font-weight: 600;
+                color: $orange;
+            }
+            svg {
+                font-size: 72px;
+                color: $orange;
+            }
+        }
 
-        @include MQ (1300px){
+        @include MQ(1300px) {
             width: 85%;
         }
-        @include MQ (1200px){
+        @include MQ(1200px) {
             width: 90%;
         }
-        @include MQ (1130px){
+        @include MQ(1130px) {
             width: 95%;
         }
-        @include MQ (1070px){
+        @include MQ(1070px) {
             width: 95%;
         }
-        @include MQ (1030px){
+        @include MQ(1030px) {
             width: 80%;
-        justify-content: center;
-
+            justify-content: center;
         }
     }
 }

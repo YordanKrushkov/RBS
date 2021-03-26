@@ -5,45 +5,45 @@
     display: flex;
     flex-direction: column;
     width: 50%;
-    height:auto;
+    height: auto;
     background-color: white;
     margin: 40px auto;
     justify-content: flex-start;
     border-radius: 10px;
 
-    @include MQ(1300px){
+    @include MQ(1300px) {
         width: 55%;
         margin: 20px auto;
     }
-    @include MQ(1200px){
+    @include MQ(1200px) {
         width: 60%;
         margin: 20px auto;
     }
-    @include MQ(970px){
+    @include MQ(970px) {
         width: 70%;
         margin: 20px auto;
     }
-    @include MQ(820px){
+    @include MQ(820px) {
         width: 80%;
         margin: 20px auto;
     }
-    @include MQ(600px){
+    @include MQ(600px) {
         width: 95%;
         margin: 20px auto;
     }
 
-   @include shadows;
-    h1{
+    @include shadows;
+    h1 {
         text-transform: uppercase;
         font-size: 20px;
         font-weight: 600;
-        margin:30px 0 10px 0;
-        padding:0;
-        @include MQ(815px){
+        margin: 30px 0 10px 0;
+        padding: 0;
+        @include MQ(815px) {
             font-size: 16px;
             margin: 20px 0;
         }
-        @include MQ(600px){
+        @include MQ(600px) {
             font-size: 14px;
             margin: 10px 0;
         }
@@ -53,27 +53,27 @@
     main {
         width: 80%;
         margin: 20px auto;
-        @include MQ(815px){
+        @include MQ(815px) {
             width: 95%;
             margin: 10px auto;
         }
-        @include MQ(600px){
+        @include MQ(600px) {
             width: 95%;
             margin: 10px auto;
         }
-        p{
+        p {
             font-size: 14px;
             padding: 0;
-            margin:10px;
+            margin: 10px;
             font-weight: 600;
             color: $orange;
-            @include MQ(815px){
-               font-size: 12px;
-               margin: 5px;
+            @include MQ(815px) {
+                font-size: 12px;
+                margin: 5px;
             }
-            @include MQ(600px){
-               font-size: 10px;
-               margin: 5px;
+            @include MQ(600px) {
+                font-size: 10px;
+                margin: 5px;
             }
         }
         section {
@@ -89,12 +89,12 @@
 
             input {
                 width: 100%;
-                @include MQ(815px){
-                width: 80%;
-                 }
-                @include MQ(600px){
-                width: 80%;
-                 }
+                @include MQ(815px) {
+                    width: 80%;
+                }
+                @include MQ(600px) {
+                    width: 80%;
+                }
             }
 
             #street {
@@ -104,18 +104,18 @@
                 align-self: flex-end;
                 margin-right: 20px;
                 padding: 0 10px;
-                @include MQ(600px){
+                @include MQ(600px) {
                     height: 22px;
-                    }
+                }
             }
             h2 {
                 margin: 0;
                 font-size: 16px;
                 font-weight: 600;
-                @include MQ(815px){
+                @include MQ(815px) {
                     font-size: 14px;
                 }
-                @include MQ(600px){
+                @include MQ(600px) {
                     font-size: 10px;
                 }
             }
@@ -134,7 +134,7 @@
         .optionMenu {
             @include inputField;
             outline: none;
-            @include MQ(600px){
+            @include MQ(600px) {
                 height: 25px !important;
                 font-size: 10px;
             }
@@ -143,11 +143,10 @@
             }
         }
 
-     
         .secondRow {
             width: (100% / 4);
 
-            @include MQ (600px){
+            @include MQ(600px) {
                 width: (95% / 4);
             }
 
@@ -160,128 +159,124 @@
         }
     }
 
-   .checkboxContainer {
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-        flex-wrap:wrap;
+    .checkboxContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
         height: 100px;
         width: 80%;
         margin: 10px auto;
-        
-        @include MQ(600px){
-        width: 90%;
-        height: 80px;
 
-        }
-   } 
-
-
-   .formDescription{
-
-    width: 75%;
-    margin: 10px auto;
-    height: 100px;
-    h2 {
-        font-size: 16px;
-        font-weight: 600;
-        @include MQ(600px){
-            font-size: 12px;
-        }
-    }
-    textarea{
-        width: 100%;
-        height: 100%;
-        border: 2px solid $mainColor;
-        border-radius: 5px;
-        font-size: 14px;
-        padding: 10px;
-        outline: none;
-        resize: none;
-        box-sizing: border-box;
-        &:focus{
-            background-color: $color;
-        }
-        @include MQ(600px){
-            font-size: 10px;
-            height: 60%;
-            margin: 5px 0;
-        }
-    }
-   }
-   .addImages{
-       width: 75%;
-       margin: 10px auto;
-       box-sizing: border-box;
-    #imgContainer{
-        min-height: 40px;
-        border-radius: 5px;
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        display: none;
-
-        li{
-            text-decoration: none;
-            margin: 0 5px;
+        @include MQ(600px) {
+            width: 90%;
+            height: 80px;
         }
     }
 
-    section {
-        display: flex;
-    }
-    span{
-        @include buttons;
-        background-color: $orange;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .formDescription {
+        width: 75%;
         margin: 10px auto;
-        font-size: 16px;
-        font-weight: 600;
-        width: 400px;
-        border-radius:10px;
-        @include MQ(600px){
-            height: 30px;
-            font-size: 12px;
-            margin: 5px 0;
+        height: 100px;
+        h2 {
+            font-size: 16px;
+            font-weight: 600;
+            @include MQ(600px) {
+                font-size: 12px;
+            }
         }
-        &:hover{
-            background-color: darken($orange, 5);
+        textarea {
+            width: 100%;
+            height: 100%;
+            border: 2px solid $mainColor;
+            border-radius: 5px;
+            font-size: 14px;
+            padding: 10px;
+            outline: none;
+            resize: none;
+            box-sizing: border-box;
+            &:focus {
+                background-color: $color;
+            }
+            @include MQ(600px) {
+                font-size: 10px;
+                height: 60%;
+                margin: 5px 0;
+            }
         }
     }
-    input {
-        display: none;
-    }
-   }
+    .addImages {
+        width: 75%;
+        margin: 10px auto;
+        box-sizing: border-box;
+        #imgContainer {
+            min-height: 40px;
+            border-radius: 5px;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            display: none;
 
+            li {
+                text-decoration: none;
+                margin: 0 5px;
+            }
+        }
+
+        section {
+            display: flex;
+        }
+        span {
+            @include buttons;
+            background-color: $orange;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+            font-size: 16px;
+            font-weight: 600;
+            width: 400px;
+            border-radius: 10px;
+            @include MQ(600px) {
+                height: 30px;
+                font-size: 12px;
+                margin: 5px 0;
+            }
+            &:hover {
+                background-color: darken($orange, 5);
+            }
+        }
+        input {
+            display: none;
+        }
+    }
 
     button {
-  @include buttons;
-  height: 60px;
-  margin: 40px 0 0 0;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  @include MQ(600px){
-    height: 40px;
-    font-size: 12px;
-    margin-top:10px;
-}
-}///end of the container
+        @include buttons;
+        height: 60px;
+        margin: 40px 0 0 0;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        @include MQ(600px) {
+            height: 40px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    } ///end of the container
 }
 
-#wrongInput{
+#wrongInput {
     color: red !important;
     font-size: 12px;
     font-weight: 600;
     padding: none;
     margin: 5px;
-    @include MQ(600px){
+    @include MQ(600px) {
         font-size: 10px;
     }
 }
 
-.postLoader{
+.postLoader {
     position: absolute;
     top: 160px;
     left: 48%;

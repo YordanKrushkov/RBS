@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../Context';
-import authenticate from '../../Services/auth'
-import { loginURL } from '../../Services/API'
-import {hideError} from '../../Utils/formsValidator'
-import { ActionContext } from '../../Context/actionContext'
-import './index.scss'
 import Loader from '../../Components/Loader';
+import authenticate from '../../Services/auth';
+import { loginURL } from '../../Services/API';
+import {hideError} from '../../Utils/formsValidator';
+import { ActionContext } from '../../Context/actionContext';
+import './index.scss';
 
 const Login = () => {
     const [error, setErr] = useState({
@@ -14,9 +14,9 @@ const Login = () => {
         input:''
     });
     const {login} = useContext(AuthContext);
-    const [loading,setLoading]=useState(false)
+    const [loading,setLoading]=useState(false);
     const history = useHistory();
-    const { notify } = useContext(ActionContext)
+    const { notify } = useContext(ActionContext);
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -24,7 +24,7 @@ const Login = () => {
         const user = {
             email: e.target.email.value,
             password: e.target.password.value,
-        }
+        };
         await authenticate(loginURL, user, (user) => {
             login(user);
             localStorage.setItem("user", user.email);
@@ -33,12 +33,12 @@ const Login = () => {
             history.push('/');
         }, (err) => {
             setErr({err:true});
+            setLoading(false);
             notify(true,`Sorry, please try again!`);
             history.push('/login')
-        })
+        });
     };
-
-     hideError(error.err,setErr)
+     hideError(error.err,setErr);
 
 
     return (

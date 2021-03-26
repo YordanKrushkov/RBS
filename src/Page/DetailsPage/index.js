@@ -26,7 +26,7 @@ const SingleCard = () => {
     const [location, setLocation] = useState('');
     const [profile, setProfile] = useState('');
     const [mine, isMine] = useState(false);
-    const { edit } = useContext(ActionContext);
+    const { edit, editProp } = useContext(ActionContext);
     const { userEmail, name, surname, userID } = useContext(AuthContext);
     let images = properties.images;
     const history = useHistory();
@@ -38,6 +38,10 @@ const SingleCard = () => {
         LastName = properties.ownerId.surname;
     };
     useEffect(() => {
+        editProp(false)
+    }, [])
+
+    useEffect(() => {
         if (properties && properties.ownerId._id === userID) {
             isMine(true)
         }
@@ -46,7 +50,8 @@ const SingleCard = () => {
         getSingleProp(id)
             .then(res => {
                 setProperties(res);
-                setLoading(false)
+                setLoading(false);
+
             })
             .catch(err => console.error(err))
     }, [edit, update]);
@@ -55,7 +60,7 @@ const SingleCard = () => {
         getLocation(properties.street, properties.city)
             .then(res => setLocation(res))
             .catch(err => console.error(err))
-    }, [properties,edit]);
+    }, [properties, edit]);
 
     const changePicture = (e) => {
         setProfile(e.target.src)
@@ -88,8 +93,9 @@ const SingleCard = () => {
                     </header>
                     { edit ? <EditProperty setLoading={ setLoading } properties={ properties } />
                         : menu === "Property Details" ? <DetailsContainer loading={ loading } properties={ properties } />
-                            : <div id="mapContainer"><GoogleMap >{{location:location}}</GoogleMap></div> }
+                            : <div id="mapContainer"><GoogleMap >{ { location: location } }</GoogleMap></div> }
                 </div>
+                
             </div>
             <main>
                 <Aside properties={ properties } setMessage={ setMessage } setDelete={ setDelete } mine={ mine } />

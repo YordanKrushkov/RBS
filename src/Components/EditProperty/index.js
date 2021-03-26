@@ -67,7 +67,9 @@ const EditProperty = ({ properties,setLoading}) => {
                 notify(true,"Updated successfully");
                 setLoading(false)
             })
-            .catch((err) => notify(true,"Please, try again"));
+            .catch((err) => {
+                notify(true,"Please, try again");
+                setLoading(false)});
     };
 
     return (

@@ -1,25 +1,25 @@
-import { useState, useEffect,useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { ActionContext } from '../../Context/actionContext';
+import Loader from '../../Components/Loader';
 import AllCities from '../../Components/FormElements/Cities';
-import { openImgInput, switchMenu, detailHendler } from '../../Utils/eventHandlers';
-import { uploadImage } from '../../Utils/imgUploader';
-import submitData from '../../Services/submitData';
-import {userVerify} from '../../Services/Users';
-import {verifySubmit,hideError} from '../../Utils/formsValidator'
 import CheckboxContainer from '../../Components/FormElements/Checkbox';
 import OptionsSection from '../../Components/FormElements/OptionsSection';
-import { ActionContext } from '../../Context/actionContext'
-import Loader from '../../Components/Loader';
+import { uploadImage } from '../../Utils/imgUploader';
+import { verifySubmit, hideError } from '../../Utils/formsValidator';
+import { openImgInput, switchMenu, detailHendler } from '../../Utils/eventHandlers';
+import submitData from '../../Services/submitData';
+import { userVerify } from '../../Services/Users';
 import './index.scss';
 
 const SubmitForm = () => {
     const [arr, setArr] = useState([]);
     const [img, setIMG] = useState([]);
     const [offer, changeOffer] = useState('RENT');
-    const [error, setErr]=useState({
-        err:'',
-        input:''
-    })
+    const [error, setErr] = useState({
+        err: '',
+        input: ''
+    });
     const [properties, getData] = useState({
         type: '',
         price: '',
@@ -32,15 +32,15 @@ const SubmitForm = () => {
         description: '',
         ownerId: '',
     });
-    const [loading,setLoading]=useState(false)
+    const [loading, setLoading] = useState(false)
 
     const history = useHistory();
-    const { notify } = useContext(ActionContext)
+    const { notify } = useContext(ActionContext);
     useEffect(() => {
         userVerify()
-        .then((res) => { !res.auth && history.push('/login') })
-        .catch((err) => history.push('/login'))
-    }, [])
+            .then((res) => { !res.auth && history.push('/login') })
+            .catch((err) => history.push('/login'))
+    }, []);
 
     const onChangeHandler = (e) => {
         getData({
@@ -55,36 +55,40 @@ const SubmitForm = () => {
             ...properties,
             sellOrRent: offer
         })
-    }, [offer])
+    }, [offer]);
     const submitHandler = (e) => {
         e.preventDefault();
-        setLoading(true)
-        verifySubmit(properties,img, setErr)
+        setLoading(true);
+        verifySubmit(properties, img, setErr);
         getData({
             ...properties,
             sellOrRent: offer,
             details: arr,
         });
-       if(!error.err){
-     submitData(img, properties, '/properties/create')
-            .then((res) => {
-                if(res){
-                    notify(true,'Submitted successfully');
-                    setLoading(false)
-                    history.push('/');
-                }else if(res.error){
-                  return
-                }
-            })
-            .catch(err => console.error(err))
-       }
-   
+        if (!error.err) {
+            submitData(img, properties, '/properties/create')
+                .then((res) => {
+                    if (res) {
+                        notify(true, 'Submitted successfully');
+                        setLoading(false)
+                        history.push('/');
+                    } else if (res.error) {
+                        setLoading(false)
+                        return
+                    };
+                })
+                .catch(err => {
+                    setLoading(false);
+                    console.error(err)
+                })
+        };
+
     };
-    hideError(error.err,setErr)
+    hideError(error.err, setErr);
 
     return (
         <div id="submitPropertie">
-          {loading&&<Loader id="postLoader"/>}  
+            {loading && <Loader id="postLoader" /> }
             <header>
                 <ul >
                     <li onClick={ (e) => { switchMenu(e, changeOffer) } } value='RENT' style={ { borderTopLeftRadius: 10 } } className="new">RENT</li>
@@ -97,17 +101,17 @@ const SubmitForm = () => {
                     <section>
                         <div className="submitInputWrapper">
                             <h2>City *</h2>
-                            <AllCities>{ { className: error.input!=='city'?"optionMenu":"optionMenu errors", func: onChangeHandler } }</AllCities>
+                            <AllCities>{ { className: error.input !== 'city' ? "optionMenu" : "optionMenu errors", func: onChangeHandler } }</AllCities>
                         </div>
                         <div className="submitInputWrapper addressStreet">
                             <h2>Address *</h2>
-                            <input type="text" className={error.input==="street"? "errors":''} id="street" onChange={ onChangeHandler } />
+                            <input type="text" className={ error.input === "street" ? "errors" : '' } id="street" onChange={ onChangeHandler } />
                         </div>
                     </section>
-                    <OptionsSection error={error} onChangeHandler={onChangeHandler} />
-                    {error.err
-                    ? <p id="wrongInput">{error.err}</p>
-                    :<p>All fields marked with <b>*</b> are required and must be filled.</p>
+                    <OptionsSection error={ error } onChangeHandler={ onChangeHandler } />
+                    { error.err
+                        ? <p id="wrongInput">{ error.err }</p>
+                        : <p>All fields marked with <b>*</b> are required and must be filled.</p>
                     }
                 </main>
                 <CheckboxContainer className="checkboxContainer" detailHendler={ detailHendler } arr={ arr } setArr={ setArr } />
@@ -117,7 +121,7 @@ const SubmitForm = () => {
                         </ul>
                     </div>
                     <section>
-                        <span id="imageButton" className={error.input==="imageButton"? "errors":''} onClick={ () => { openImgInput('fileImg') } }>{ img.length == 0 ? "Add Profile Picture *" : "Add More Images" }</span>
+                        <span id="imageButton" className={ error.input === "imageButton" ? "errors" : '' } onClick={ () => { openImgInput('fileImg') } }>{ img.length == 0 ? "Add Profile Picture *" : "Add More Images" }</span>
                         <input id="fileImg" type="file" multiple onChange={ (e) => { uploadImage(e, setIMG, 'imgContainer') } } />
                     </section>
 

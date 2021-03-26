@@ -35,9 +35,9 @@ const Filter = ({ChangeHandler,offer}) => {
             <div className="filterButton">
                 <label className="filterSpan">Sort by:</label>
                 <select name="sortBy" id="sortBy" className="searchInput" onChange={ ChangeHandler }>
-                    <option id="sortBy" value="newest" > Newest</option>
-                    <option id="sortBy" value='lowerPrice' >Price: Low-High</option>
-                    <option id="sortBy" value='higherPrice' >Price: High-Low</option>
+                    <option id="sortBy" name="sortBy" value="newest" > Newest</option>
+                    <option id="sortBy" name="sortBy" value='lowerPrice' >Price: Low-High</option>
+                    <option id="sortBy" name="sortBy" value='higherPrice' >Price: High-Low</option>
                 </select>
             </div>
         </div>

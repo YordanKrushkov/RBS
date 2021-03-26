@@ -17,7 +17,7 @@ const MobileNavigation = ({mobile,setMobile}) => {
 
 
     return (
-        <div d className={mobile? "mobileNavigaton clickedNav": "mobileNavigaton"}>
+        <div className={mobile? "mobileNavigaton clickedNav": "mobileNavigaton"}>
             <ul>
                 { isAuth && <li><Link to="/post" onClick={()=>setMobile(false)}>Post</Link></li> }
                 { isAuth && <li><Link to="/profile" onClick={()=>setMobile(false)}>Profile</Link></li> }

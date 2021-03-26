@@ -1,12 +1,12 @@
-import { useState, useContext} from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 import Loader from '../../Components/Loader';
+import RegisterInput from '../../Components/RegisterComponent';
 import { AuthContext } from '../../Context';
+import { ActionContext } from '../../Context/actionContext'
 import authenticate from '../../Services/auth'
 import { registerURL } from '../../Services/API'
 import { verifyRegister, hideError } from '../../Utils/formsValidator'
-import RegisterInput from '../../Components/RegisterComponent';
-import { ActionContext } from '../../Context/actionContext'
 import './index.scss'
 
 const Register = () => {
@@ -14,14 +14,22 @@ const Register = () => {
         err: '',
         input: '',
     });
-    const [loading,setLoading]=useState(false)
+    const [loading, setLoading] = useState(false)
 
     const { login } = useContext(AuthContext);
     const history = useHistory();
-    const { notify } = useContext(ActionContext)
+    const { notify } = useContext(ActionContext);
+
+    useEffect(() => {
+        if (error.err) {
+            setTimeout(() => {
+                setLoading(false)
+            }, 500)
+        }
+    }, [error]);
+
     const submitHandler = async (e) => {
         e.preventDefault();
-
         const user = {
             email: e.target.email.value,
             name: e.target.name.value,
@@ -31,33 +39,37 @@ const Register = () => {
         }
         verifyRegister(user, setErr);
         setLoading(true)
-        if(!error.err){
-            await authenticate(registerURL, user, 
+
+        if (!error.err) {
+            await authenticate(registerURL, user,
                 (user) => {
-                if(!user){
-                    setErr({err:'Something went wrong, please try again!'});
-                    notify(true,`Sorry, please try again!`);
-                }
-                login(user);
-                localStorage.setItem("user", user.email);
-                notify(true,`Welcome, ${user.name} ${user.surname}`);
-                setLoading(false)
-                history.push('/');
-            }, (e) => {
-                console.log(e);
-                notify(true,`Sorry, please try again!`);
-                history.push('/register')
-            })
+                    if (!user) {
+                        setErr({ err: 'Something went wrong, please try again!' });
+                        notify(true, `Sorry, please try again!`);
+                        setLoading(false)
+                    }
+                    login(user);
+                    localStorage.setItem("user", user.email);
+                    notify(true, `Welcome, ${user.name} ${user.surname}`);
+                    setLoading(false)
+                    history.push('/');
+                }, (e) => {
+                    console.log(e);
+                    notify(true, `Sorry, please try again!`);
+                    history.push('/register');
+                    setLoading(false);
+                })
         }
     };
 
-        hideError(error.err, setErr);
-    
+    hideError(error.err, setErr);
+
     return (
         <div className="registerContainer">
-        {loading&&<Loader id="loginLoader"/>}  
+            {loading && <Loader id="loginLoader" /> }
             <h1>Register</h1>
-            {error.err ? <p className="wrong">{ error.err }</p>
+            {error.err 
+                ? <p className="wrong">{ error.err }</p>
                 : <p>Sign in for your favourite properties and more.</p>
             }
             <form action="" onSubmit={ submitHandler }>

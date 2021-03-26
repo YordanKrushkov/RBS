@@ -18,7 +18,7 @@ const Properties = (prop) => {
         bedrooms: '',
         minPrice: '',
         maxPrice: '',
-        sort: ''
+        sortBy: 'newest'
     })
     const history=useHistory()
     useEffect(() => {

@@ -101,7 +101,7 @@ const verifyRegister = (user, setErr) => {
 };
 
 
-const hideError = (state, setState) => {
+const hideError = (state, setState,) => {
     if (state) {
         setTimeout(() => {
             setState({err:'',input:''})

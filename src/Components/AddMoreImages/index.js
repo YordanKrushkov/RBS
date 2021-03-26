@@ -21,7 +21,10 @@ const AddMoreImages = ({ properties }) => {
                 notify(true, 'Submitted successfully');
                 setLoading(false)
             })
-            .catch(err => notify(true, 'Please, try again!'));
+            .catch(err => {
+                notify(true, 'Please, try again!');
+                setLoading(false);
+            });
     };
 
     return (

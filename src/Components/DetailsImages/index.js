@@ -17,7 +17,10 @@ const DetailImages = ({ images, id, changePicture, mine, setUpdate, loading, set
                 notify(true, 'Deleted');
                 setLoading(false)
             })
-            .catch(err => notify(true, 'Please, try again!'));
+            .catch(err => {
+                notify(true, 'Please, try again!')
+                setLoading(false)
+            });
         setUpdate(false);
     };
 

@@ -10,8 +10,9 @@ import './index.scss';
 
 const Search = () => {
     const [offer, changeOffer] = useState('RENT');
-    const [search, changeSearch] = useState({ offer: offer });
+    const [search, changeSearch] = useState({ offer: offer});
     const history = useHistory();
+
     const changeHandler = (e) => {
         changeSearch({
             ...search,
@@ -27,7 +28,7 @@ const Search = () => {
     }, [offer]);
 
     const searchIt = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         history.push({
             pathname: `${search.offer}`,
             search: `?offer=${search.offer}&city=${search.city || ''}&type=${search.type || ''}&bedrooms=${search.bedrooms || ''}&minPrice=${search.minPrice || ''}&maxPrice=${search.maxPrice || ''}`,

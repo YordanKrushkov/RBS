@@ -2,7 +2,7 @@ import './index.scss';
 
 const Loader = ({id}) => {
     return ( 
-        <div className={`${'ring'} ${id}`}></div>
+        <div data-testid="loader" className={`${'ring'} ${id}`}></div>
      );
 }
  

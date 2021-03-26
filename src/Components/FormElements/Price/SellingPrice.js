@@ -4,7 +4,7 @@
  const SellingPrice=(props)=>{
         let {id,className,func}=props.children
         return (
-            <select name="price" id={ id } defaultValue="0" className={ className } onChange={func}>
+            <select data-testid="sellingPrice" name="price" id={ id } defaultValue="0" className={ className } onChange={func}>
                 <option value="0">Select...</option>
                 <option value="10000">10 000</option>
                 <option value="20000">20 000</option>

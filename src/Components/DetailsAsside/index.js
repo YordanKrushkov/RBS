@@ -1,11 +1,14 @@
 import {useContext} from 'react';
+import {Link} from 'react-router-dom'
 import {ActionContext} from '../../Context/actionContext'
+import {AuthContext} from '../../Context/'
 import {Image, Transformation} from 'cloudinary-react'
 import './index.scss'
 
 
 const Aside = ({ properties, mine,setDelete,setMessage }) => {
     const {editProp,edit}=useContext(ActionContext)
+    const {isAuthenticated}=useContext(AuthContext)
     const rent = properties.sellOrRent === 'RENT';
     let img;
     if(properties.ownerId){
@@ -29,12 +32,14 @@ const Aside = ({ properties, mine,setDelete,setMessage }) => {
             <h5>{ `${properties.street} ${properties.city}` }</h5>
         </header>
         <div>
-            { !mine
+           {isAuthenticated ? !mine
                 ? <button onClick={ () => setMessage(true)}>Contact</button>
                 : (<div className="buttonsWrapper">
                     <button onClick={ () => { editProp(!edit)}} id="editPropButton">{!edit?"Edit" : "Close"}</button>
                     <button onClick={ () => setDelete(true)} id="deleteButton">Delete</button>
-                </div>) }
+                </div>) 
+           :<Link to='/login'><button type="button">Contact</button></Link>
+           }
         </div>
     </aside>);
 }

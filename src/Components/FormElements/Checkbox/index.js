@@ -5,7 +5,7 @@ const props = ["Furnished", "Balcony", "Easy transport", "Garden", "Swiming pool
 
 const CheckboxContainer = ({ initialState, setArr, arr, className }) => {
     return (
-        <section className={ className }>
+        <section data-testid="checbox" className={ className }>
             {props.map(x => (
                 <div className="checkbox" key={ x }>
                     <h2>{ x }</h2>

@@ -6,7 +6,7 @@ const RegisterInput = ({ type, name, label, error }) => {
         err = true;
     }
     return (
-        <div className={ name === 'email' ? 'regInputWrapper email' : "regInputWrapper" }>
+        <div data-testid="register" className={ name === 'email' ? 'regInputWrapper email' : "regInputWrapper" }>
             <label htmlFor={ name }>{ label }</label>
             <input className={ error.input === name || err ? 'errors' : '' } type={ type } name={ name } id={ name } />
         </div>

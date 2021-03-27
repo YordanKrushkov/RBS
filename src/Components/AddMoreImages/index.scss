@@ -17,7 +17,6 @@
             flex-direction: row;
             flex-wrap: wrap;
             padding: 0;
-            display: none;
             @include MQ(600px) {
                 min-height: 10px;
             }

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { ActionContext } from '../../Context/actionContext';
 import Loader from '../Loader';
 import submitData from '../../Services/submitData';
@@ -12,7 +12,8 @@ const AddMoreImages = ({ properties }) => {
     const [img, setIMG] = useState([]);
     const [loading, setLoading] = useState(false);
     const { editProp, notify } = useContext(ActionContext);
-
+    useEffect(() => {
+    }, [img])
     const submitHandler = (e) => {
         setLoading(true);
 
@@ -33,11 +34,16 @@ const AddMoreImages = ({ properties }) => {
             <div>
                 { loading && <Loader id="imgLoading" /> }
                 <ul id="newImageList">
+                    { img.length !== 0 && img.map(x =>
+                        <li key={ x }>
+                            <img src={ x } alt="add new image" />
+                        </li>)
+                    }
                 </ul>
             </div>
             <footer>
                 <MdAddAPhoto id="addMoreImages" onClick={ () => openImgInput('addNewImage') } />
-                <input type="file" multiple id="addNewImage" onChange={ (e) => uploadImage(e, setIMG, 'newImageList') } />
+                <input type="file" multiple id="addNewImage" onChange={ (e) => uploadImage(e, setIMG) } />
             </footer>
             {img.length !== 0 ? <button id="submitMoreImages" onClick={ submitHandler }>SUBMIT</button> : null }
         </section>

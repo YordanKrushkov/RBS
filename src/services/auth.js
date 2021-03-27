@@ -1,4 +1,5 @@
 const authenticate = async (url, body, onSuccess, onFailure) => {
+
     try {
         const promise = await fetch(url, {
             method: 'POST',
@@ -6,9 +7,9 @@ const authenticate = async (url, body, onSuccess, onFailure) => {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
-        const authToken = promise.headers.get('Authorization')
-        document.cookie = `x-auth-token=${authToken}`
+        });
+        const authToken = promise.headers.get('Authorization');
+        document.cookie = `x-auth-token=${authToken}`;
 
         const response = await promise.json()
         if (response.email && authToken && response._id) {
@@ -18,15 +19,13 @@ const authenticate = async (url, body, onSuccess, onFailure) => {
                 name: response.name,
                 surname: response.surname,
                 properties:response.properties
-            })
+            });
         } else {
-            onFailure()
+            onFailure();
         }
     } catch (e) {
-        onFailure(e)
+        onFailure(e);
     }
-}
-
-
+};
 
 export default authenticate

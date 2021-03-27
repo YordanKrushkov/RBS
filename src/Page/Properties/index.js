@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import Filter from "../../Components/FilterBar";
 import CardElement from '../../Components/Cards';
 import { searchProperty, getSome } from '../../Services/propertiesServices';
@@ -20,7 +19,6 @@ const Properties = (prop) => {
         maxPrice: '',
         sortBy: 'newest'
     });
-    const history = useHistory();
     useEffect(() => {
         if (data) {
             setFilter({

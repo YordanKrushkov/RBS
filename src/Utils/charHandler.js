@@ -1,14 +1,14 @@
-const charHandler=(propertie)=>{
+const charHandler = (propertie) => {
     let char, bath = '';
     if (propertie.bedrooms && propertie.bedrooms !== 'Studio') {
-        char = propertie.bedrooms.charAt(0)
+        char = propertie.bedrooms.charAt(0);
     } else {
-        char = '1'
+        char = '1';
     }
     if (propertie.bathroom) {
-        bath = propertie.bathroom.charAt(0)
+        bath = propertie.bathroom.charAt(0);
     }
-    return {char,bath}
-
+    return { char, bath };
 }
+
 export default charHandler

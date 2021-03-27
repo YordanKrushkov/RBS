@@ -1,6 +1,6 @@
+//Verify Submited Property
 const verifySubmit = (propertie, img, setErr) => {
     const { city, street, type, bedrooms, bathroom, price } = propertie;
-    console.log(city);
     if (!city) {
         setErr({
             err: 'Please, select city!',
@@ -50,9 +50,9 @@ const verifySubmit = (propertie, img, setErr) => {
         });
         return
     }
-}
+};
 
-
+//Verify Register
 const verifyRegister = (user, setErr) => {
     const { name, surname, email, password, repassword } = user;
     if (!email) {
@@ -100,14 +100,14 @@ const verifyRegister = (user, setErr) => {
     };
 };
 
-
+//Hide Error
 const hideError = (state, setState,) => {
     if (state) {
         setTimeout(() => {
             setState({err:'',input:''})
         }, 2000)
     }
-}
+};
 
 export {
     verifyRegister,

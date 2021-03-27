@@ -118,10 +118,14 @@ const SubmitForm = () => {
                 <section className="addImages">
                     <div>
                         <ul id="imgContainer">
+                            { img.length !== 0 && img.map(x =>
+                                <li key={ x }>
+                                    <img src={ x }  alt="upload more"/>
+                                </li>) }
                         </ul>
                     </div>
                     <section>
-                        <span id="imageButton" className={ error.input === "imageButton" ? "errors" : '' } onClick={ () => { openImgInput('fileImg') } }>{ img.length == 0 ? "Add Profile Picture *" : "Add More Images" }</span>
+                        <span id="imageButton" className={ error.input === "imageButton" ? "errors" : '' } onClick={ () => { openImgInput('fileImg') } }>{ img.length === 0 ? "Add Profile Picture *" : "Add More Images" }</span>
                         <input id="fileImg" type="file" multiple onChange={ (e) => { uploadImage(e, setIMG, 'imgContainer') } } />
                     </section>
 

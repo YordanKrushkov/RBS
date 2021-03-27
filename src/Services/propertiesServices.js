@@ -1,57 +1,57 @@
-import { likePriperties, deleteAPI, updatePropertyURL,baseUrl } from './API'
-import getCookie from './cookies'
+import { likePriperties, deleteAPI, updatePropertyURL, baseUrl } from './API';
+import getCookie from './cookies';
 
 //GET Data
-const getData=async ()=>{
+const getData = async () => {
     const promise = await fetch(`${baseUrl}all`, {
-        method:'GET',
+        method: 'GET',
         headers: {
-        'Authorization': getCookie('x-auth-token')
-    }});
-    const res=await promise.json()
-    return res
+            'Authorization': getCookie('x-auth-token')
+        }
+    });
+    const res = await promise.json();
+    return res;
 };
 
 //Fillter Property
-const getSome =async (filter)=> {
+const getSome = async (filter) => {
     const promise = await fetch(`${baseUrl}${filter.offer}?city=${filter.city}&type=${filter.type}&bedrooms=${filter.bedrooms}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&sortBy=${filter.sortBy}`,
-    {
-        method:'GET',
-        headers: {
-        'Authorization': getCookie('x-auth-token')
-    }});
-    const res=await promise.json()
-    return res
+        {
+            method: 'GET',
+            headers: {
+                'Authorization': getCookie('x-auth-token')
+            }
+        });
+    const res = await promise.json();
+    return res;
 };
-
 
 //Search Property
-const searchProperty=async(filter)=>{
+const searchProperty = async (filter) => {
 
     const promise = await fetch(`${baseUrl}/properties?offer=${filter.offer}&city=${filter.city}&type=${filter.type}&bedrooms=${filter.bedrooms}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}`,
-    {
-        method:'GET',
-        headers: {
-        'Authorization': getCookie('x-auth-token')
-    }});  
-    const properties = await promise.json();
-    return properties
-};
-
-//Get single property
-const getSingleProp=async (prop)=> {
-    console.log(prop);
-    let id=prop.split('property/')[1]
-    console.log(id);
-    const promise = await fetch(`${baseUrl}${id}`,  {
-        method:'GET',
-        headers: {
-        'Authorization': getCookie('x-auth-token')
-    }});
+        {
+            method: 'GET',
+            headers: {
+                'Authorization': getCookie('x-auth-token')
+            }
+        });
     const properties = await promise.json();
     return properties;
 };
 
+//Get single property
+const getSingleProp = async (prop) => {
+    let id = prop.split('property/')[1]
+    const promise = await fetch(`${baseUrl}${id}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': getCookie('x-auth-token')
+        }
+    });
+    const properties = await promise.json();
+    return properties;
+};
 
 //Like Property
 const likeProperty = (key, id) => {
@@ -64,7 +64,7 @@ const likeProperty = (key, id) => {
         },
     })
         .then(() => { })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
 };
 
 //Delete Property
@@ -91,8 +91,8 @@ const updateProperty = async (prop) => {
             'Authorization': getCookie('x-auth-token'),
         }
     })
-    const result = await property.json()
-    return result
+    const result = await property.json();
+    return result;
 };
 
 export {

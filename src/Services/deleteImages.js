@@ -1,4 +1,4 @@
-import {deletImg} from './API'
+import {deletImg} from './API';
 import getCookie from './cookies';
 
 const deleteImages= async(src,id)=>{
@@ -9,8 +9,8 @@ const deleteImages= async(src,id)=>{
             'Content-Type': 'application/json',
             'Authorization': getCookie('x-auth-token'),
         }
-    })
-    const res=await promise.json()
-    return res
+    });
+    const res=await promise.json();
+    return res;
 }
 export default deleteImages

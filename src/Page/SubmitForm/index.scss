@@ -28,7 +28,7 @@
         margin: 20px auto;
     }
     @include MQ(600px) {
-        width: 95%;
+        width: 80%;
         margin: 20px auto;
     }
 
@@ -44,8 +44,8 @@
             margin: 20px 0;
         }
         @include MQ(600px) {
-            font-size: 14px;
-            margin: 10px 0;
+            font-size: 12px;
+            margin: 8px 0;
         }
     }
     @include formHeader;
@@ -72,7 +72,7 @@
                 margin: 5px;
             }
             @include MQ(600px) {
-                font-size: 10px;
+                font-size: 8px;
                 margin: 5px;
             }
         }
@@ -80,6 +80,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+      
         }
         .submitInputWrapper {
             display: flex;
@@ -93,7 +95,7 @@
                     width: 80%;
                 }
                 @include MQ(600px) {
-                    width: 80%;
+                    width: 70%;
                 }
             }
 
@@ -105,7 +107,8 @@
                 margin-right: 20px;
                 padding: 0 10px;
                 @include MQ(600px) {
-                    height: 22px;
+                    height: 20px;
+                    margin-right: 10px;
                 }
             }
             h2 {
@@ -116,7 +119,7 @@
                     font-size: 14px;
                 }
                 @include MQ(600px) {
-                    font-size: 10px;
+                    font-size: 8px;
                 }
             }
         }
@@ -126,6 +129,7 @@
         }
         input {
             @include inputField;
+            
             outline: none;
             &:focus {
                 background-color: $color;
@@ -135,7 +139,7 @@
             @include inputField;
             outline: none;
             @include MQ(600px) {
-                height: 25px !important;
+                height: 22px !important;
                 font-size: 10px;
             }
             &:focus {
@@ -170,7 +174,7 @@
 
         @include MQ(600px) {
             width: 90%;
-            height: 80px;
+            height: 70px;
         }
     }
 
@@ -182,7 +186,7 @@
             font-size: 16px;
             font-weight: 600;
             @include MQ(600px) {
-                font-size: 12px;
+                font-size: 10px;
             }
         }
         textarea {
@@ -199,7 +203,7 @@
                 background-color: $color;
             }
             @include MQ(600px) {
-                font-size: 10px;
+                font-size: 8px;
                 height: 60%;
                 margin: 5px 0;
             }
@@ -210,11 +214,14 @@
         margin: 10px auto;
         box-sizing: border-box;
         #imgContainer {
-            min-height: 40px;
+            min-height: 5px;
             border-radius: 5px;
             list-style: none;
             display: flex;
             flex-wrap: wrap;
+            @include MQ(600px) {
+                margin: 5px 0;
+            }
             li {
                 text-decoration: none;
                 margin: 0 5px; 
@@ -243,7 +250,7 @@
             border-radius: 10px;
             @include MQ(600px) {
                 height: 30px;
-                font-size: 12px;
+                font-size: 10px;
                 margin: 5px 0;
             }
             &:hover {
@@ -262,9 +269,9 @@
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
         @include MQ(600px) {
-            height: 40px;
+            height: 30px;
             font-size: 12px;
-            margin-top: 10px;
+            margin-top: 5px;
         }
     } ///end of the container
 }
@@ -283,5 +290,7 @@
 .postLoader {
     position: absolute;
     top: 160px;
-    left: 48%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }

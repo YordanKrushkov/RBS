@@ -55,6 +55,7 @@ const SubmitForm = () => {
             ...properties,
             sellOrRent: offer
         });
+        console.log(offer);
     }, [offer]);
     const submitHandler = (e) => {
         e.preventDefault();
@@ -91,8 +92,8 @@ const SubmitForm = () => {
             {loading && <Loader id="postLoader" /> }
             <header>
                 <ul >
-                    <li onClick={ (e) => { switchMenu(e, changeOffer) } } value='RENT' style={ { borderTopLeftRadius: 10 } } className="new">RENT</li>
-                    <li onClick={ (e) => { switchMenu(e, changeOffer) } } value='SALE' style={ { borderTopRightRadius: 10 } } className="">SALE</li>
+                    <li onClick={ (e) => { switchMenu(e, changeOffer) } } value='RENT' className={ offer === "RENT" ? 'clicked' : '' } >RENT</li>
+                    <li onClick={ (e) => { switchMenu(e, changeOffer) } } value='SALE' className={ offer === "SALE" ? 'clicked' : '' }>SALE</li>
                 </ul>
             </header>
             <h1>{ offer } your property</h1>
@@ -120,7 +121,7 @@ const SubmitForm = () => {
                         <ul id="imgContainer">
                             { img.length !== 0 && img.map(x =>
                                 <li key={ x }>
-                                    <img src={ x }  alt="upload more"/>
+                                    <img src={ x } alt="upload more" />
                                 </li>) }
                         </ul>
                     </div>

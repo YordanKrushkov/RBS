@@ -13,7 +13,7 @@
 
     @include MQ(600px) {
         min-width: 300px;
-        height: 180px;
+        height: 130px;
     }
 
     @include shadows;
@@ -30,7 +30,9 @@
             font-size: 20px;
             top: 5px;
             right: 10px;
-
+            @include MQ(600px) {
+             font-size: 10px
+            }
             &:hover {
                 color: $mainColor;
                 cursor: pointer;
@@ -42,7 +44,9 @@
             font-size: 20px;
             top: 5px;
             right: 10px;
-
+            @include MQ(600px) {
+                font-size: 10px
+               }
             &:hover {
                 color: $mainColor;
                 cursor: pointer;
@@ -83,6 +87,7 @@
 
         @include MQ(600px) {
             font-size: 10px;
+            margin: 2px;
         }
     }
 
@@ -91,12 +96,16 @@
         text-align: center;
         font-weight: 600;
         @include MQ(600px) {
-            font-size: 14px;
+            font-size: 12px;
+            margin: 5px;
         }
     }
 
     footer {
         border-top: 1px solid $mainColor;
+        @include MQ(600px) {
+            border: none
+           }
     }
 
     button {
@@ -104,7 +113,9 @@
         margin: 0;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
-
+        @include MQ(600px) {
+            height: 30px;
+           }
         &:hover {
             cursor: pointer;
             background-color: darken($mainColor, 5);
@@ -118,8 +129,8 @@
     height: 190px;
 
     @include MQ(600px) {
-        min-width: 140px;
-        height: 140px;
+        width: 150px;
+        height: 120px;
     }
 
     img {

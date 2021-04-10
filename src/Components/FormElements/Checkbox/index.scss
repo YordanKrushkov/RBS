@@ -20,7 +20,7 @@
             font-size: 12px;
         }
         @include MQ(600px) {
-            font-size: 10px;
+            font-size: 8px;
             margin: 0;
         }
     }
@@ -31,9 +31,9 @@
         position: relative;
 
         @include MQ(600px) {
-            width: 12px;
-            height: 12px;
-            margin-right: 12px;
+            width: 10px;
+            height: 10px;
+            margin-right: 10px;
         }
         &::after {
             content: "";
@@ -43,8 +43,8 @@
             position: absolute;
 
             @include MQ(600px) {
-                width: 70%;
-                height: 70%;
+                width: 60%;
+                height: 60%;
             }
         }
     }

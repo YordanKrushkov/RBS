@@ -21,6 +21,7 @@ const Header = () => {
     };
     const clickHandler = () => {
         mobile ? setMobile(false) : setMobile(true);
+        window.scrollTo(0,0)
     };
 
     return (

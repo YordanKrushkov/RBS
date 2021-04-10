@@ -22,8 +22,8 @@ const Login = () => {
         e.preventDefault();
         setLoading(true);
         const user = {
-            email: e.target.email.value,
-            password: e.target.password.value,
+            email: e.target.email.value.trim(),
+            password: e.target.password.value.trim(),
         };
         await authenticate(loginURL, user, (user) => {
             login(user);

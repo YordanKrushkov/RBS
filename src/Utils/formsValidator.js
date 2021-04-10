@@ -55,6 +55,7 @@ const verifySubmit = (propertie, img, setErr) => {
 //Verify Register
 const verifyRegister = (user, setErr) => {
     const { name, surname, email, password, repassword } = user;
+    
     if (!email) {
         setErr({
             err: 'Please, insert your email!',

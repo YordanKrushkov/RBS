@@ -15,7 +15,6 @@ const Register = () => {
         input: '',
     });
     const [loading, setLoading] = useState(false);
-
     const { login } = useContext(AuthContext);
     const history = useHistory();
     const { notify } = useContext(ActionContext);
@@ -31,11 +30,11 @@ const Register = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         const user = {
-            email: e.target.email.value,
-            name: e.target.name.value,
-            surname: e.target.surname.value,
-            password: e.target.password.value,
-            repassword: e.target.repasword.value,
+            email: e.target.email.value.trim(),
+            name: e.target.name.value.trim(),
+            surname: e.target.surname.value.trim(),
+            password: e.target.password.value.trim(),
+            repassword: e.target.repasword.value.trim(),
         };
         verifyRegister(user, setErr);
         setLoading(true);

@@ -41,6 +41,6 @@ const DetailsContainer = ({ properties, loading }) => {
             </div>
         </div>
     )
+};
 
-}
 export default DetailsContainer

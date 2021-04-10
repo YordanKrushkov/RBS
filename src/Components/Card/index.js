@@ -13,6 +13,7 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import './index.scss';
 
 const CardElement = ({ data, loading }) => {
+    
     const [style, setStyle] = useState(true);
     const [lik, setLiked] = useState(false);
     const { userID } = useContext(AuthContext);

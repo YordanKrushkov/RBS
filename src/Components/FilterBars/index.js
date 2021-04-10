@@ -43,6 +43,6 @@ const Filter = ({ ChangeHandler, offer }) => {
             </div>
         </div>
     )
-}
+};
 
 export default Filter

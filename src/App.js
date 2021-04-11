@@ -13,6 +13,7 @@ import SingleCard from './Page/DetailsPage';
 import Profile from './Page/Profile';
 import ErrorPage from './Page/404';
 import Footer from './Components/Footer';
+import CustomErrorBoundry from './Components/CustomErrorBoundry'
 function App() {
 
   const {action} = useContext(ActionContext)
@@ -23,6 +24,7 @@ function App() {
     <Router> 
     <Header/>
     {action&&<Notify/>}
+    <CustomErrorBoundry>
     <Switch>
     <Route exact path="/" component={Body}/>
     <Route path="/login" component={Login}/>
@@ -37,6 +39,7 @@ function App() {
     <Route path="/:err" component={ErrorPage}/>
     </Switch>
     <Footer/>
+    </CustomErrorBoundry>
     </Router> 
     </div>
   );

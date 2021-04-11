@@ -23,6 +23,7 @@ const EditProperty = ({ properties, setLoading }) => {
 
     useEffect(() => {
         setArr(initialState)
+  
     }, [initialState]);
 
     useEffect(() => {
